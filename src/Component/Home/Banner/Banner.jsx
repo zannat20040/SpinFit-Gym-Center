@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import Button from "../../../Shared Component/Navbar/Button";
 
 const Banner = () => {
   const gymSliderContent = [
@@ -42,26 +43,48 @@ const Banner = () => {
 
   return (
     <div>
-      <div
-        className="hero min-h-screen"
-        style={{
-          backgroundImage:
-            "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
+        <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
         }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
       >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-            <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-            <button className="btn btn-primary">Get Started</button>
+       {
+        gymSliderContent.map((item,index)=>(
+          <SwiperSlide>
+          <div
+          className="hero h-[550px]"
+          style={{
+            backgroundImage:
+              `url(${item.image})`,
+          }}
+        >
+          <div className="hero-overlay bg-opacity-80 bg-black"></div>
+          <div className="text-neutral-content container mx-auto px-4">
+            <div className="max-w-lg text-start">
+              <h1 className="mb-5 text-6xl font-bold text-[#dde244] font-oswald">{item.title}</h1>
+              <p className="mb-5 font-roboto">
+              {item.description}
+              </p>
+              <Button label={'Join to our Classes'}></Button>
+            </div>
           </div>
         </div>
-      </div>
+          </SwiperSlide>
+        )) 
+       }
+      
+      </Swiper>
+
+ 
     </div>
   );
 };

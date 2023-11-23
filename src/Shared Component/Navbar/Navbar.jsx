@@ -48,8 +48,9 @@ const Navbar = () => {
   );
 
   return (
-    <div className="container mx-auto">
-      <div className="navbar text-white font-roboto">
+   <div className="sticky bg-slate-900">
+     <div className="container mx-auto">
+      <div className="navbar text-white font-roboto ">
         <div className="flex-1">
           <Link>
             <img src={logo} alt="" className="h-16" />
@@ -101,6 +102,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+   </div>
   );
 };
 

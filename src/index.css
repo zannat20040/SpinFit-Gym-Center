@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+*{
+    font-size: 16px;
+
+}
+
+.font-oswald{
+    font-family: 'Oswald', sans-serif;
+}
+.font-roboto{
+    font-family: 'Roboto Condensed', sans-serif;
+}

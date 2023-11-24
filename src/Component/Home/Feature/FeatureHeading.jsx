@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../Shared Component/Navbar/Button';
+import Button from '../../../Shared Component/Button';
 
 const FeatureHeading = () => {
     return (

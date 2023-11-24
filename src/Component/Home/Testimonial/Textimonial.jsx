@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 
 // import required modules
-import { Scrollbar } from "swiper/modules";
+import { Autoplay, Scrollbar } from "swiper/modules";
 
 const Textimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -36,7 +36,11 @@ const Textimonial = () => {
             scrollbar={{
               hide: true,
             }}
-            modules={[Scrollbar]}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            modules={[Scrollbar,Autoplay]}
             className="mySwiper"
           >
             {testimonials.map((testimonial, index) => (

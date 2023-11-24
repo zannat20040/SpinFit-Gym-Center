@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../../Shared Component/Navbar/Button";
+import Button from "../../../Shared Component/Button";
 import { VscActivateBreakpoints } from "react-icons/vsc";
 import { FaFacebookF, FaGoogle } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";

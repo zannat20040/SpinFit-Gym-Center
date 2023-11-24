@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../Shared Component/Navbar/Button";
+import Button from "../../Shared Component/Button";
 import { Link } from "react-router-dom";
 
 const Error = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/images/spinfit-removebg-preview.png";
+import logo from "../assets/images/spinfit-removebg-preview.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 

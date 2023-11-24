@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/images/spinfit-removebg-preview.png";
+import logo from "../assets/images/spinfit-removebg-preview.png";
 const Navbar = () => {
   const navList = (
     <>
@@ -48,7 +48,7 @@ const Navbar = () => {
   );
 
   return (
-   <div className="sticky bg-slate-900">
+   <div className="sticky bg-slate-900 top-0 z-50">
      <div className="container mx-auto">
       <div className="navbar text-white font-roboto ">
         <div className="flex-1">
@@ -60,7 +60,7 @@ const Navbar = () => {
           <div className="form-control">
             <ul className="menu menu-horizontal px-1 flex gap-4 ">{navList}</ul>
           </div>
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end profile">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full border-2 border-[#dde244]">
                 <img
@@ -71,7 +71,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] shadow menu menu-sm dropdown-content space-y-3 p-4 w-52 bg-slate-900"
+              className="mt-3  shadow menu menu-sm dropdown-content space-y-3 p-4 w-52 bg-slate-900"
             >
               <NavLink
                 to="/"

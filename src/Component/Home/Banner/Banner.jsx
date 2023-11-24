@@ -7,14 +7,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import Button from "../../../Shared Component/Navbar/Button";
+import Button from "../../../Shared Component/Button";
 import { gymSliderContents } from "../../../Utils";
 
 const Banner = () => {
  
 
   return (
-    <div>
+    <div className="-z-50">
         <Swiper
         spaceBetween={30}
         centeredSlides={true}

@@ -4,7 +4,7 @@ import FeatureLayout from '../Component/Home/Feature/FeatureLayout';
 import AboutLayout from '../Component/Home/About/AboutLayout';
 import Textimonial from '../Component/Home/Testimonial/Textimonial';
 import Blog from '../Component/Home/Blog/Blog';
-import Footer from '../Shared Component/Navbar/Footer';
+import Footer from '../Shared Component/Footer';
 import TeamLayout from '../Component/Home/Team member/TeamLayout';
 
 const Home = () => {

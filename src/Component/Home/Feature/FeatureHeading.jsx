@@ -5,7 +5,7 @@ import Button from '../../../Shared Component/Navbar/Button';
 const FeatureHeading = () => {
     return (
         <div className="text-neutral-content flex justify-end">
-            <div className="max-w-md text-end px-2 z-50">
+            <div className="max-w-md text-end ">
               <h1 className="mb-5 text-6xl font-bold  text-[#dde244] font-oswald">
                 Unlock Your Fitness Potential
               </h1>

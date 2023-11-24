@@ -26,7 +26,7 @@ const Blog = () => {
       </div>
       <div className="grid grid-cols-3 gap-5 ">
         {blogs.map((blog, index) => (
-          <div className="card w-96 bg-gray-500 rounded-none group ">
+          <div className="card w-96 bg-gray-500 rounded-none group "  key={index}>
             <figure className="h-[250px]">
               <img
                 src={blog.image}

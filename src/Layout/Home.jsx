@@ -4,6 +4,7 @@ import FeatureLayout from '../Component/Home/Feature/FeatureLayout';
 import AboutLayout from '../Component/Home/About/AboutLayout';
 import Textimonial from '../Component/Home/Testimonial/Textimonial';
 import Blog from '../Component/Home/Blog/Blog';
+import Footer from '../Shared Component/Navbar/Footer';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <AboutLayout></AboutLayout>
             <Textimonial></Textimonial>
             <Blog></Blog>
+            <Footer></Footer>
         </div>
     );
 };

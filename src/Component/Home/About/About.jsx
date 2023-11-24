@@ -13,7 +13,7 @@ const About = () => {
           Since 2008
         </p>
         <h1 className="mb-5 text-6xl font-bold font-oswald">
-          Welcome to <span className="text-6xl text-[#dde244]">SpinFit</span>!
+          Welcome to <span className="text-6xl text-[#dde244]">SpinFit</span>
         </h1>
         <p className="mb-5 font-roboto">
           We dedicated a premier fitness facility to helping individuals achieve

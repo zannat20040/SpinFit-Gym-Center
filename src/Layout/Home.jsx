@@ -5,6 +5,7 @@ import AboutLayout from '../Component/Home/About/AboutLayout';
 import Textimonial from '../Component/Home/Testimonial/Textimonial';
 import Blog from '../Component/Home/Blog/Blog';
 import Footer from '../Shared Component/Navbar/Footer';
+import TeamLayout from '../Component/Home/Team member/TeamLayout';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <Banner></Banner>
             <FeatureLayout></FeatureLayout>
             <AboutLayout></AboutLayout>
+            <TeamLayout></TeamLayout>
             <Textimonial></Textimonial>
             <Blog></Blog>
             <Footer></Footer>

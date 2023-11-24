@@ -1,12 +1,35 @@
 import React from "react";
 import logo from "../../assets/images/spinfit-removebg-preview.png";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Footer = () => {
+
+    const HandleNewsletter=(e)=>{
+        e.preventDefault()
+        const form = e.target
+        const name = form.name.value
+        const email = form.email.value
+        const subscribers = {
+            name : name,
+            email:  email
+        }
+
+        axios.post('http://localhost:5000/subscribers', subscribers)
+        .then(res=>{
+            console.log(res.data)
+            toast.success('Stay tuned for the latest news from SpinFit')
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
+
   return (
     <>
       <div className="border-t-2 border-gray-500">
         <div className="container mx-auto px-4">
-          <footer className="footer justify-between py-10 font-roboto text-base  text-white">
+          <footer className="footer flex justify-between py-10 font-roboto text-base  text-white">
             <nav>
               <header className="footer-title">Services</header>
               <a className="link link-hover">Nutritional Services</a>
@@ -31,7 +54,36 @@ const Footer = () => {
               <a className="link link-hover">Privacy policy</a>
               <a className="link link-hover">Cookie policy</a>
             </nav>
-            
+            {/* newletter section */}
+            <form onSubmit={HandleNewsletter} className="w-1/4">
+              <header className="footer-title">Newsletter</header>
+              <p>Subscribe our Newsletter and gets out latest updates , offers, products and promotions we provide</p>
+              <div className="form-control w-full ">
+
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Type your name here"
+                      required
+                      className="input text-gray-600 input-bordered rounded-none"
+                    />
+                  </div>
+              <fieldset className="form-control w-full">
+
+                <div className="join">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="username@site.com"
+                    className="input w-full text-gray-600 input-bordered rounded-none join-item"
+                  />
+                  <button  className="btn bg-[#dde244] border-none text-slate-950 btn-primary rounded-none join-item hover:bg-black hover:text-white">
+                    Subscribe
+                  </button>
+                </div>
+              </fieldset>
+            </form>
           </footer>
         </div>
       </div>

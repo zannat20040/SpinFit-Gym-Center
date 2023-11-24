@@ -25,7 +25,7 @@ const Textimonial = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 mt-16">
       <div className="grid grid-cols-2 gap-6">
       <div></div>
         <div className="text-end">

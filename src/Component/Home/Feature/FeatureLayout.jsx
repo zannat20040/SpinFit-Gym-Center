@@ -6,8 +6,7 @@ import Feature from "./Feature";
 const FeatureLayout = () => {
   return (
     <>
-      <div className="hero py-10"></div>
-      <div className="container m-auto px-4">
+      <div className="container m-auto px-4 py-20">
         <div className="grid grid-cols-2 py-10 items-center">
           <div className="grid grid-cols-2 gap-4">
             {gymFeatures.map((feature, index) => (

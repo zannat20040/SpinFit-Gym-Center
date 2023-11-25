@@ -1,15 +1,60 @@
-import React from "react";
-import Header from "../Shared Component/Header";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Shared Component/Button";
 import RouteLabel from "../Shared Component/RouteLabel";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { imgUpload } from "../Shared Component/imageUpload";
+import swal from "sweetalert";
+import { updateProfile } from "firebase/auth";
+import GoogleSignIn from "../Shared Component/GoogleSignIn";
 
 const Signup = () => {
+
+  const { createWithPass } = useContext(AuthContext);
+  const HandleSignup = async(e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+   const image = form.photo.files[0];
+    const photo = await imgUpload(image)    
+
+   
+    console.log(name, email, password, photo);
+
+    createWithPass(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user
+ 
+      swal("Congratulations!", 'You have taken the first step towards an amazing journey' , "success");
+
+      updateProfile(user ,{
+        displayName: name,
+        photoURL: photo
+      })
+        .then(() => {
+
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+    })
+    .catch((error) => {
+      swal("Sorry!", error.message , "error");
+    });
+
+  };
+
+
+
   return (
     <>
       <RouteLabel label={'signup'}></RouteLabel>
       <div className="container max-w-lg mx-auto h-screen ">
-        <form className="card-body p-2 ">
+        <form className="card-body p-2 " onSubmit={HandleSignup}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-400 font-roboto ">
             <div className="form-control">
               <label className="label">
@@ -83,7 +128,7 @@ const Signup = () => {
         <div className="divider text-white">OR</div>
 
         <div className="flex gap-4 justify-center items-center px-2 mt-4 ">
-          <Button label={"Continue with Google"}></Button>
+          <GoogleSignIn label={"Continue with Google"}></GoogleSignIn>
         </div>
       </div>
     </>

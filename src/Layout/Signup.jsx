@@ -27,15 +27,14 @@ const Signup = () => {
     createWithPass(email, password)
     .then((userCredential) => {
       const user = userCredential.user
- 
+      console.log(user)
       swal("Congratulations!", 'You have taken the first step towards an amazing journey' , "success");
 
       updateProfile(user ,{
         displayName: name,
         photoURL: photo
       })
-        .then(() => {
-
+        .then((res) => {
         })
         .catch((error) => {
           console.log(error);
@@ -47,8 +46,6 @@ const Signup = () => {
     });
 
   };
-
-
 
   return (
     <>
@@ -73,7 +70,7 @@ const Signup = () => {
             <div className="form-control">
               <label className="label ">
                 <span className="label-text rounded-none text-white tracking-wider">
-                  Photo{" "}
+                  Profile Image{" "}
                 </span>
               </label>
               <input

@@ -6,9 +6,9 @@ import swal from "sweetalert";
 const GoogleSignIn = ({label}) => {
   const { googleSignIn } = useContext(AuthContext);
   const HandleGoogleSignin = () => {
-    console.log("word");
     googleSignIn()
       .then((result) => {
+        console.log(result)
         swal("Congratulations!", 'You have taken the first step towards an amazing journey' , "success");
       })
       .catch((error) => {

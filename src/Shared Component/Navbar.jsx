@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/images/spinfit-removebg-preview.png";
-
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import swal from "sweetalert";
 
 const Navbar = () => {
+  const { user, signOutProfile, setuser } = useContext(AuthContext);
+  const HandleLogout = () => {
+    signOutProfile()
+      .then(() => {
+        swal("Good job!", "Logged out successfully!", "success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const navList = (
     <>
@@ -68,11 +79,16 @@ const Navbar = () => {
               </div>
               <div className="dropdown dropdown-end profile">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full border-2 border-[#dde244]">
-                    <img
+                  <div className="w-10 rounded-full border-2 ">
+                    {
+                      user ? <img
                       alt="Tailwind CSS Navbar component"
-                      src="https://cdn3.vectorstock.com/i/1000x1000/13/17/male-avatar-profile-picture-gold-member-silhouette-vector-5351317.jpg"
-                    />
+                      src={user?.photoURL}
+                    /> : <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://cdn3.vectorstock.com/i/1000x1000/13/17/male-avatar-profile-picture-gold-member-silhouette-vector-5351317.jpg"
+                  />
+                    }
                   </div>
                 </label>
                 <ul
@@ -87,31 +103,41 @@ const Navbar = () => {
                   >
                     DashBoard
                   </NavLink>
-                  <NavLink
-                    to="/signup"
-                    
-                    className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "active" : ""
-                    }
-                  >
-                    Sign in
-                  </NavLink>
-                  <NavLink
-                    to="/login" 
-                    className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "active" : ""
-                    }
-                  >
-                    Log in
-                  </NavLink>
+                  {user ? (
+                    <NavLink
+                      onClick={HandleLogout}
+                      className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "active" : ""
+                      }
+                    >
+                      Log out
+                    </NavLink>
+                  ) : (
+                    <>
+                      <NavLink
+                        to="/signup"
+                        className={({ isActive, isPending }) =>
+                          isPending ? "pending" : isActive ? "active" : ""
+                        }
+                      >
+                        Sign in
+                      </NavLink>
+                      <NavLink
+                        to="/login"
+                        className={({ isActive, isPending }) =>
+                          isPending ? "pending" : isActive ? "active" : ""
+                        }
+                      >
+                        Log in
+                      </NavLink>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };

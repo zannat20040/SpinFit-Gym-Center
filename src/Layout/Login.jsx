@@ -15,11 +15,9 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
 
       loginWithPass(email, password)
         .then((userCredential) => {
-          console.log(userCredential)
           swal("Good job!", "Logged in successfully!", "success");
         })
         .catch((error) => {

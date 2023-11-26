@@ -6,7 +6,7 @@ import Login from "./Layout/Login";
 import Signup from "./Layout/Signup";
 import Gallery from "./Layout/Gallery";
 import Dashboard from "./Dashboard/Common/Dashboard";
-
+import Forum from "./Dashboard/Common/Forum";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element:<Login></Login>,
+        element: <Login></Login>,
       },
       {
         path: "/signup",
@@ -30,14 +30,15 @@ export const router = createBrowserRouter([
         path: "/gallery",
         element: <Gallery></Gallery>,
       },
-      
     ],
   },
   {
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
-    children:[
-      
-    ]
+    children: [
+      {
+        path: "forum", element: <Forum></Forum> 
+      }
+    ],
   },
 ]);

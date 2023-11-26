@@ -39,11 +39,15 @@ const AuthProvider = ({children}) => {
     return signOut(auth);
   };
 
+
+
   useEffect(() => {
     const unSubcribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       setLoading(false);
+
+
 
       } else {
         setLoading(false);
@@ -64,8 +68,7 @@ const AuthProvider = ({children}) => {
     setUser,
     user,
     setLoading,
-    loading
-  };
+    loading  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

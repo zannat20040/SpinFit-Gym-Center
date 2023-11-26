@@ -8,9 +8,10 @@ const Gallery = () => {
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
-  const fetchData = async () => {
-    const response = await axios.get('http://localhost:5000/gallery');
-      const newItems = response.data.slice(items.length, items.length + 12);
+  const fetchData = () => {
+    axios.get('http://localhost:5000/gallery')
+    .then(res=>{
+      const newItems = res.data.slice(items.length, items.length + 12);
       setItems([...items, ...newItems]);
 
       if (items.length < 76) {
@@ -18,6 +19,10 @@ const Gallery = () => {
       } else {
         setHasMore(false);
       }
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   };
 
   useEffect(() => {

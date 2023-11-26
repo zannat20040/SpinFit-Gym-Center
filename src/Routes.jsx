@@ -4,6 +4,8 @@ import Error from "./Component/Error Page/Error";
 import Home from "./Layout/Home";
 import Login from "./Layout/Login";
 import Signup from "./Layout/Signup";
+import Gallery from "./Layout/Gallery";
+import Dashboard from "./Dashboard/Common/Dashboard";
 
 
 export const router = createBrowserRouter([
@@ -24,19 +26,18 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <Signup></Signup>,
       },
+      {
+        path: "/gallery",
+        element: <Gallery></Gallery>,
+      },
+      
     ],
   },
-  // {
-  //   path: "/user",
-  //   errorElement:<Error></Error>,
-  //   element: <Authenticaltion></Authenticaltion>,
-  //   children:[
-  //     {
-  //       path: "/user/login",
-  //       element: <Login></Login>
-  //     },
-  //     {
-  //       path: "/user/signup",
-  //       element: <Signup></Signup>
-  //     }
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children:[
+      
+    ]
+  },
 ]);

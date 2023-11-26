@@ -96,7 +96,7 @@ const Navbar = () => {
                   className="mt-3  shadow menu menu-sm dropdown-content space-y-3 p-4 w-52 bg-slate-900"
                 >
                   <NavLink
-                    to="/"
+                    to="/dashboard"
                     className={({ isActive, isPending }) =>
                       isPending ? "pending" : isActive ? "active" : ""
                     }

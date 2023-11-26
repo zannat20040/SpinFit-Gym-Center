@@ -41,11 +41,14 @@ const Signup = () => {
               .post("http://localhost:5000/users", userInfo)
               .then((res) => {
                 console.log(res.data);
-                swal(
-                  "Congratulations!",
-                  "You have taken the first step towards an amazing journey",
-                  "success"
-                );
+                if(res.data.res.insertedId){
+                  swal(
+                    "Congratulations!",
+                    "You have taken the first step towards an amazing journey",
+                    "success"
+                  );
+                }
+                
               })
               .catch((error) => {
                 console.log(error);

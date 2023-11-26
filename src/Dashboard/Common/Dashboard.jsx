@@ -4,21 +4,76 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import usersData from "../../Custom hooks/usersData";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import logo from "../../assets/images/spinfit-removebg-preview.png";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const userInfo = usersData();
-  console.log(userInfo);
+
   return (
-    <div>
-      <div className="drawer lg:drawer-open ">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <Navbar></Navbar>
-        <Sidebar></Sidebar>
-        <Outlet></Outlet>
+    <div className="drawer h-screen">
+      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex relative">
+        {/* Page content here */}
+        <Sidebar className=''></Sidebar>
+        <div className="w-full">
+          <div className=" bg-slate-950 p-4 mb-6 flex justify-between lg:justify-end sticky top-0 z-40 ">
+            <label
+              htmlFor="my-drawer"
+              className="relative border-0 lg:hidden uppercase tracking-widest w-12 bg-[#dde244] rounded-none btn btn-primary drawer-button "
+            >
+              <FaBars className="text-4xl text-black "></FaBars>
+            </label>
+
+            <Navbar></Navbar>
+          </div>
+
+          <div className="px-4 bg-slate-900 py-14 ">
+            <Outlet></Outlet>
+          </div>
+        </div>
+      </div>
+      <div className="drawer-side  z-50">
+        <label
+          htmlFor="my-drawer"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+
+        <ul className="menu p-4 w-80 min-h-full bg-slate-950 text-white lg:hidden">
+          <div className="bg-slate-900 p-4 flex justify-center">
+            <Link to="/">
+              <img src={logo} alt="" className="h-10" />
+            </Link>
+          </div>
+          <div className="flex flex-col gap-2 mt-5 flex-grow">
+            <Link to="/" className="p-2 font-roboto ">
+              Add new Class
+            </Link>
+            <Link to="" className="p-2 font-roboto ">
+              Manage Slots
+            </Link>
+            <Link to="/" className="p-2 font-roboto ">
+              Manage member
+            </Link>
+            <Link to="forum" className="p-2 font-roboto ">
+              Add new Forum
+            </Link>
+          </div>
+          <div className="flex flex-col gap-2 mt-5">
+            <Link to="/" className="p-2 font-roboto ">
+              Update profile
+            </Link>
+            <Link to="/" className="p-2 font-roboto ">
+              Log out
+            </Link>
+          </div>
+        </ul>
       </div>
     </div>
+
+
   );
 };
 

@@ -38,7 +38,7 @@ const Gallery = () => {
           dataLength={items.length} 
           next={fetchData}
           hasMore={hasMore}
-          loader={<CustomLoader></CustomLoader>}
+          loader={<div className="skeleton w-32 h-32"></div>}
           endMessage={
             <p style={{ textAlign: "center", marginTop: "20px" }}>
               <b className="text-white ">Yay! You have seen it all</b>

@@ -9,7 +9,7 @@ import logo from "../../assets/images/spinfit-removebg-preview.png";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  const userInfo = usersData();
+  
 
   return (
     <div className="drawer h-screen">
@@ -48,7 +48,7 @@ const Dashboard = () => {
             </Link>
           </div>
           <div className="flex flex-col gap-2 mt-5 flex-grow">
-            <Link to="/" className="p-2 font-roboto ">
+            <Link to="addclass" className="p-2 font-roboto ">
               Add new Class
             </Link>
             <Link to="" className="p-2 font-roboto ">

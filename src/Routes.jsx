@@ -7,6 +7,7 @@ import Signup from "./Layout/Signup";
 import Gallery from "./Layout/Gallery";
 import Dashboard from "./Dashboard/Common/Dashboard";
 import Forum from "./Dashboard/Common/Forum";
+import AddClass from "./Dashboard/Trainer/AddClass";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,9 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "forum", element: <Forum></Forum> 
+      },
+      {
+        path: "addclass", element: <AddClass></AddClass>
       }
     ],
   },

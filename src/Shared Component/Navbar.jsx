@@ -35,7 +35,7 @@ const Navbar = () => {
         Gallery
       </NavLink>
       <NavLink
-        to="/trainer  "
+        to="/trainer "
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""
         }

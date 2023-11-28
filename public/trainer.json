@@ -1,0 +1,93 @@
+[
+  {
+    "id":"52dhidsh32wiuvhw5263",
+    "fullName": "John Doe",
+    "email": "john.doe@example.com",
+    "age": 30,
+    "profileImage": "path/to/profile-image.jpg",
+    "skills": [
+      {
+        "skill": "programming",
+        "value": 100
+      },
+      {
+        "skill": "problemSolving",
+        "value": 70
+      },
+      {
+        "skill": "design",
+        "value": 100
+      },
+      {
+        "skill": "communication",
+        "value": 70
+      },
+      {
+        "skill": "teamwork",
+        "value": 70
+      }
+    ],
+    "availableTime": {
+      "week": 20,
+      "day": 4
+    },
+    "otherInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "appliedButton": true,
+    "yearsOfExperience": 5,
+    "socialIcons": {
+      "linkedin": "https://www.linkedin.com/in/johndoe",
+      "twitter": "https://twitter.com/johndoe",
+      "github": "https://github.com/johndoe"
+    },
+    "availableTimeSlot": {
+      "start": "9:00 AM",
+      "end": "5:00 PM"
+    }
+  },
+  {
+    "id":"346hsdgsd343vhw5263",
+    "fullName": "John Doe rrrrrrr",
+    "email": "john.doe@example.com",
+    "age": 30,
+    "profileImage": "path/to/profile-image.jpg",
+    "skills": [
+      {
+        "skill": "programming",
+        "value": 100
+      },
+      {
+        "skill": "problemSolving",
+        "value": 70
+      },
+      {
+        "skill": "design",
+        "value": 100
+      },
+      {
+        "skill": "communication",
+        "value": 70
+      },
+      {
+        "skill": "teamwork",
+        "value": 70
+      }
+    ],
+
+    "availableTime": {
+      "week": 20,
+      "day": 4
+    },
+    "otherInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "appliedButton": true,
+    "yearsOfExperience": 5,
+    "socialIcons": {
+      "linkedin": "https://www.linkedin.com/in/johndoe",
+      "twitter": "https://twitter.com/johndoe",
+      "github": "https://github.com/johndoe"
+    },
+    "availableTimeSlot": {
+      "start": "9:00 AM",
+      "end": "5:00 PM"
+    }
+  }
+]

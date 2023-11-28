@@ -25,10 +25,11 @@ const PostDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto mt-10 text-center"><span className="loading loading-ring loading-lg"></span></div>
+      <div className="container mx-auto mt-10 text-center">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
     );
   }
-
 
   return (
     <>

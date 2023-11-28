@@ -8,7 +8,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/spinfit-removebg-preview.png";
 
 const Dashboard = () => {
-  const userInfo = usersData();
+  const {data:userInfo, isLoading} = usersData();
   const navigate = useNavigate()
 
   const { signOutProfile } = useContext(AuthContext);
@@ -22,6 +22,11 @@ const Dashboard = () => {
         console.log(error);
       });
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
 
   return (
     <div className="drawer h-screen">
@@ -37,7 +42,7 @@ const Dashboard = () => {
             >
               <FaBars className="text-4xl text-black "></FaBars>
             </label>
-
+            
             <Navbar></Navbar>
           </div>
 
@@ -60,7 +65,7 @@ const Dashboard = () => {
             </Link>
           </div>
           {
-            userInfo.role==='trainer' &&
+            userInfo?.role==='trainer' &&
             <div className="flex flex-col gap-2 mt-5 flex-grow">
             <Link to="addclass" className="p-2 font-roboto ">
               Add new Class
@@ -77,7 +82,7 @@ const Dashboard = () => {
           </div>
           }
           {
-            userInfo.role==='admin' &&
+            userInfo?.role==='admin' &&
             <div className="flex flex-col gap-2 mt-5 flex-grow">
             <Link to="/application" className="p-2 font-roboto ">
             Applied Trainer

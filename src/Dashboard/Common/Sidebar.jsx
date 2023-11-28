@@ -5,7 +5,7 @@ import usersData from "../../Custom hooks/usersData";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Sidebar = () => {
-  const userInfo = usersData();
+  const {data:userInfo, isLoading} = usersData();
   const navigate = useNavigate()
     const { signOutProfile } = useContext(AuthContext);
   const HandleLogout = () => {
@@ -18,6 +18,10 @@ const Sidebar = () => {
         console.log(error);
       });
   };
+  
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
@@ -27,7 +31,7 @@ const Sidebar = () => {
             <img src={logo} alt="" className="h-10" />
           </Link>
         </div>
-        {userInfo.role === "trainer" && (
+        {userInfo?.role === "trainer" && (
           <div className="flex flex-col gap-2 mt-5 flex-grow">
             <Link to="addclass" className="p-2 font-roboto ">
               Add new Class
@@ -43,7 +47,7 @@ const Sidebar = () => {
             </Link>
           </div>
         )}
-        {userInfo.role === "admin" && (
+        {userInfo?.role === "admin" && (
           <div className="flex flex-col gap-2 mt-5 flex-grow">
             <Link to="application" className="p-2 font-roboto ">
               Applied Trainer

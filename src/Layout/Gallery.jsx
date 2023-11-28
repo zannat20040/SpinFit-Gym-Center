@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import RouteLabel from "../Shared Component/RouteLabel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
-import CustomLoader from "../Shared Component/CustomLoader";
 
 const Gallery = () => {
   const [items, setItems] = useState([]);
@@ -37,7 +36,7 @@ const Gallery = () => {
           dataLength={items.length} 
           next={fetchData}
           hasMore={hasMore}
-          loader={<div className="skeleton w-32 h-32"></div>}
+          loader={<div className="container mx-auto mt-10 text-center"><span className="loading loading-ring loading-lg"></span></div>}
           endMessage={
             <p style={{ textAlign: "center", marginTop: "20px" }}>
               <b className="text-white ">Yay! You have seen it all</b>

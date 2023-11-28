@@ -7,7 +7,13 @@ import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  const userInfo = usersData();
+  const {data:userInfo, isLoading} = usersData();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  
   return (
 
 <div className="flex gap-2 justify-end">

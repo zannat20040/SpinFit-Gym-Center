@@ -11,6 +11,8 @@ import AddClass from "./Dashboard/Trainer/AddClass";
 import Classes from "./Layout/Classes";
 import Community from "./Layout/Community";
 import PostDetail from "./Component/Community/PostDetail";
+import Trainer from "./Layout/Trainer";
+import TrainerDetails from "./Layout/TrainerDetails";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +39,14 @@ export const router = createBrowserRouter([
       {
         path: "/classes",
         element: <Classes></Classes>,
+      },
+      {
+        path: "/trainer",
+        element: <Trainer></Trainer>,
+      },
+      {
+        path: "/trainer/:id",
+        element: <TrainerDetails></TrainerDetails>,
       },
       {
         path: "/community",

@@ -6,11 +6,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 
-
 const AddClass = () => {
   const userInfo = usersData();
-  const editor = useRef(null);
-  const [content, setContent] = useState("");
 
   const HandleCheckbox = (day, event) => {
     const timeboxId = `timepicker-${day}`;
@@ -27,6 +24,7 @@ const AddClass = () => {
 
   const HandleAddClass = async (e) => {
     e.preventDefault();
+
 
     const form = e.target;
     const classname = form.classname.value;
@@ -45,6 +43,7 @@ const AddClass = () => {
       [day.toLowerCase()]: form[`timepicker-${day.toLowerCase()}`]?.value,
     }));
 
+    
     const newClass = {
       classname: classname,
       details: details,
@@ -52,24 +51,32 @@ const AddClass = () => {
       name: name,
       category: category,
       schedule: selectedDaysWithTime,
+      allSlot:{
+        sun: [],
+        mon: [],
+        tues: [],
+        wed: [],
+        thurs: [],
+        fri: [],
+        sat: [],
+      }
     };
 
-    selectedDaysWithTime.map((day)=>{
-      console.log(day)
-      
-      const allSchedule = {
-        email: email,
-        name: name,
-        'sun':[],
-        'mon':[],
-        'tues':[],
-        'wed':[],
-        'thurs':[],
-        'fri':[],
-        'sat':[]
-      };
-    })
-    
+    // selectedDaysWithTime.map((day) => {
+    //   console.log(day);
+
+    //   const allSchedule = {
+    //     email: email,
+    //     name: name,
+    //     sun: [],
+    //     mon: [],
+    //     tues: [],
+    //     wed: [],
+    //     thurs: [],
+    //     fri: [],
+    //     sat: [],
+    //   };
+    // });
 
     axios
       .post("http://localhost:5000/allClass", newClass)
@@ -83,8 +90,8 @@ const AddClass = () => {
         console.log(error);
       });
 
+      
   };
-
 
   return (
     <div className="container max-w-lg mx-auto h-screen ">
@@ -109,8 +116,11 @@ const AddClass = () => {
               Class Details
             </span>
           </label>
-          <textarea className="textarea textarea-bordered h-32 w-full rounded-none " name="content" value='content' placeholder="Bio"></textarea>
-
+          <textarea
+            className="textarea textarea-bordered h-32 w-full rounded-none "
+            name="content"
+            placeholder="Write your content "
+          ></textarea>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-400 font-roboto ">
           <div className="form-control">

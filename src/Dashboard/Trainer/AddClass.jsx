@@ -83,7 +83,6 @@ const AddClass = () => {
         console.log(error);
       });
 
-    console.log(newClass);
   };
 
 

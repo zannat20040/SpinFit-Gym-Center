@@ -5,7 +5,7 @@ import { SlLike, SlDislike } from "react-icons/sl";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Like from "./Like";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Dislike from "./Dislike";
 const PostDetail = () => {
   const params = useParams();
   const {
@@ -25,18 +25,9 @@ const PostDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-4 w-52">
-        <div className="skeleton h-32 w-full"></div>
-        <div className="skeleton h-4 w-28"></div>
-        <div className="skeleton h-4 w-full"></div>
-        <div className="skeleton h-4 w-full"></div>
-      </div>
+      <div className="container mx-auto mt-10 text-center"><span className="loading loading-ring loading-lg"></span></div>
     );
   }
-
-  const HandleDisLike = () => {
-    console.log("dislike");
-  };
 
 
   return (
@@ -74,10 +65,12 @@ const PostDetail = () => {
                   </span>
                 </div>
 
-                <SlDislike
-                  className="text-xl text-[#dde244] cursor-pointer "
-                  onClick={HandleDisLike}
-                />
+                <div className="flex items-center flex-col gap-2">
+                  <Dislike details={details}></Dislike>
+                  <span className="font-roboto text-white">
+                    {details?.dislike}
+                  </span>
+                </div>
               </div>
             </div>
             <figure>

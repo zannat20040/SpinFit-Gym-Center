@@ -39,16 +39,11 @@ const AuthProvider = ({children}) => {
     return signOut(auth);
   };
 
-
-
   useEffect(() => {
     const unSubcribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
       setLoading(false);
-
-
-
       } else {
         setLoading(false);
         setUser(null);

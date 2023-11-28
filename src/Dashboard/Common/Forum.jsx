@@ -35,6 +35,8 @@ const Forum = () => {
       name: name,
       like: 0,
       dislike: 0,
+      likedUser:[],
+      dislikedUser:[]
     };
 
     axios
@@ -49,7 +51,6 @@ const Forum = () => {
         console.log(error);
       });
 
-    console.log(blog);
   };
 
   return (

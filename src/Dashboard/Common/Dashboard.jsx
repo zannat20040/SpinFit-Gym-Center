@@ -8,9 +8,7 @@ import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/images/spinfit-removebg-preview.png";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
   const userInfo = usersData();
-
 
   return (
     <div className="drawer h-screen">

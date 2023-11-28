@@ -5,11 +5,9 @@ import { imgUpload } from "../../Utils/imageUpload";
 import usersData from "../../Custom hooks/usersData";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Forum = () => {
-  const editor = useRef(null);
-  const [content, setContent] = useState("");
-  console.log(content);
   const userInfo = usersData();
 
   const HandleForm = async (e) => {
@@ -19,10 +17,12 @@ const Forum = () => {
     const image = form.photo.files[0];
     const photo = await imgUpload(image);
     const category = form.category.value;
+    const content = form.content.value;
     const title = form.title.value;
     const badge = userInfo.role;
     const name = userInfo.name;
-    const date = new Date();
+    const currentDate = new Date('2023-11-27T00:00:00.000Z');
+    let date = currentDate.toISOString().split('T')[0];
     const blog = {
       postDetail: {
         post: content,
@@ -33,6 +33,8 @@ const Forum = () => {
       },
       badge: badge,
       name: name,
+      like: 0,
+      dislike: 0,
     };
 
     axios
@@ -69,12 +71,7 @@ const Forum = () => {
             <label className="label">
               <span className="label-text text-white">Write Your blog</span>
             </label>
-            <JoditEditor
-              ref={editor}
-              value={content}
-              tabIndex={1} // tabIndex of textarea
-              onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-            />
+            <textarea className="textarea textarea-bordered h-32 w-full rounded-none " name="content" value='content' placeholder="Bio"></textarea>
           </div>
           <div className="grid grid-cols-2 gap-5 mt-5 ">
             <div className="form-control">
@@ -109,6 +106,7 @@ const Forum = () => {
                 <option value="equipment">Equipment</option>
                 <option value="fitness">Fitness</option>
                 <option value="general">General</option>
+                <option value="tips-&-tricks">Tips & Tricks</option>
                 <option value="nutrition">Nutrition</option>
                 <option value="events">Events</option>
                 <option value="safety-tips">Safety Tips</option>
@@ -120,7 +118,7 @@ const Forum = () => {
             </div>
           </div>
           <div className="form-control mt-6 text-center">
-            <Button label={"Post"}></Button>
+            <Button label={"Post"} ></Button>
           </div>
         </form>
       </div>

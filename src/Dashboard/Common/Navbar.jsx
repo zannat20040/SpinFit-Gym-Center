@@ -7,7 +7,6 @@ import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  const [isOpen,setIsOpen] = useState(false)
   const userInfo = usersData();
   // const HandleDrawer =()=>{
   //   setIsOpen(!isOpen)

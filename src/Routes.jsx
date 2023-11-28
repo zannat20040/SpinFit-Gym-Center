@@ -8,6 +8,9 @@ import Gallery from "./Layout/Gallery";
 import Dashboard from "./Dashboard/Common/Dashboard";
 import Forum from "./Dashboard/Common/Forum";
 import AddClass from "./Dashboard/Trainer/AddClass";
+import Classes from "./Layout/Classes";
+import Community from "./Layout/Community";
+import PostDetail from "./Component/Community/PostDetail";
 
 export const router = createBrowserRouter([
   {
@@ -31,18 +34,34 @@ export const router = createBrowserRouter([
         path: "/gallery",
         element: <Gallery></Gallery>,
       },
+      {
+        path: "/classes",
+        element: <Classes></Classes>,
+      },
+      {
+        path: "/community",
+        element: <Community></Community>,
+      },
+      {
+        path: "/community/:id",
+        element: <PostDetail></PostDetail>,
+        // loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`),
+      }
     ],
   },
+
   {
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: "forum", element: <Forum></Forum> 
+        path: "forum",
+        element: <Forum></Forum>,
       },
       {
-        path: "addclass", element: <AddClass></AddClass>
-      }
+        path: "addclass",
+        element: <AddClass></AddClass>,
+      },
     ],
   },
 ]);

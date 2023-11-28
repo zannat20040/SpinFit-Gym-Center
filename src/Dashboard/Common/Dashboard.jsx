@@ -9,7 +9,8 @@ import logo from "../../assets/images/spinfit-removebg-preview.png";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  
+  const userInfo = usersData();
+
 
   return (
     <div className="drawer h-screen">
@@ -18,7 +19,7 @@ const Dashboard = () => {
         {/* Page content here */}
         <Sidebar className=''></Sidebar>
         <div className="w-full">
-          <div className=" bg-slate-950 p-4 mb-6 flex justify-between lg:justify-end sticky top-0 z-40 ">
+          <div className=" bg-slate-950 p-4  flex justify-between lg:justify-end sticky top-0 z-40 ">
             <label
               htmlFor="my-drawer"
               className="relative border-0 lg:hidden uppercase tracking-widest w-12 bg-[#dde244] rounded-none btn btn-primary drawer-button "
@@ -29,7 +30,7 @@ const Dashboard = () => {
             <Navbar></Navbar>
           </div>
 
-          <div className="px-4 bg-slate-900 py-14 ">
+          <div className="px-4 bg-slate-900 pt-14 pb-40 ">
             <Outlet></Outlet>
           </div>
         </div>
@@ -47,7 +48,9 @@ const Dashboard = () => {
               <img src={logo} alt="" className="h-10" />
             </Link>
           </div>
-          <div className="flex flex-col gap-2 mt-5 flex-grow">
+          {
+            userInfo.role==='member' &&
+            <div className="flex flex-col gap-2 mt-5 flex-grow">
             <Link to="addclass" className="p-2 font-roboto ">
               Add new Class
             </Link>
@@ -61,6 +64,27 @@ const Dashboard = () => {
               Add new Forum
             </Link>
           </div>
+          }
+          {
+            userInfo.role==='admin' &&
+            <div className="flex flex-col gap-2 mt-5 flex-grow">
+            <Link to="/application" className="p-2 font-roboto ">
+            Applied Trainer
+            </Link>
+            <Link to="" className="p-2 font-roboto ">
+            All Trainers
+            </Link>
+            <Link to="/" className="p-2 font-roboto ">
+            Balance
+            </Link>
+            <Link to="forum" className="p-2 font-roboto ">
+              Add new Forum
+            </Link>
+          </div>
+          }
+
+          
+          
           <div className="flex flex-col gap-2 mt-5">
             <Link to="/" className="p-2 font-roboto ">
               Update profile

@@ -29,7 +29,6 @@ const Gallery = () => {
     fetchData();
   }, []);
 
-  console.log(items);
   return (
     <div className="">
       <RouteLabel label={"gallery"}></RouteLabel>

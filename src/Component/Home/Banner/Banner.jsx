@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Button from "../../../Shared Component/Button";
 import { gymSliderContents } from "../../../Utils";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
  
@@ -46,7 +47,7 @@ const Banner = () => {
               <p className="mb-5 font-roboto">
               {content.description}
               </p>
-              <Button label={'Join to our Classes'}></Button>
+              <Link to='/classes'><Button label={'Join to our Classes'}></Button></Link>
             </div>
           </div>
         </div>

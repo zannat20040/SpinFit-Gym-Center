@@ -51,7 +51,7 @@ const Navbar = () => {
         Classes
       </NavLink>
       <NavLink
-        to="/forums"
+        to="/community"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""
         }
@@ -120,7 +120,7 @@ const Navbar = () => {
                           isPending ? "pending" : isActive ? "active" : ""
                         }
                       >
-                        Sign in
+                        Sign up
                       </NavLink>
                       <NavLink
                         to="/login"

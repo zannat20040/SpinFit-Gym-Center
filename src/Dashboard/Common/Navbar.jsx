@@ -9,7 +9,8 @@ const Navbar = () => {
   const { user } = useContext(AuthContext);
   const userInfo = usersData();
   return (
-    <div className="flex gap-2 justify-end">
+
+<div className="flex gap-2 justify-end">
     <div className="flex flex-col items-end font-roboto">
       <span className="capitalize text-white">{userInfo?.name}</span>
       <span className="capitalize text-white">{userInfo?.role}</span>

@@ -4,11 +4,24 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import usersData from "../../Custom hooks/usersData";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/spinfit-removebg-preview.png";
 
 const Dashboard = () => {
   const userInfo = usersData();
+  const navigate = useNavigate()
+
+  const { signOutProfile } = useContext(AuthContext);
+  const HandleLogout = () => {
+    signOutProfile()
+      .then(() => {
+        navigate('/')
+        swal("Good job!", "Logged out successfully!", "success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="drawer h-screen">
@@ -47,7 +60,7 @@ const Dashboard = () => {
             </Link>
           </div>
           {
-            userInfo.role==='member' &&
+            userInfo.role==='trainer' &&
             <div className="flex flex-col gap-2 mt-5 flex-grow">
             <Link to="addclass" className="p-2 font-roboto ">
               Add new Class
@@ -81,13 +94,11 @@ const Dashboard = () => {
           </div>
           }
 
-          
-          
           <div className="flex flex-col gap-2 mt-5">
             <Link to="/" className="p-2 font-roboto ">
               Update profile
             </Link>
-            <Link to="/" className="p-2 font-roboto ">
+            <Link className="p-2 font-roboto " onClick={HandleLogout} >
               Log out
             </Link>
           </div>

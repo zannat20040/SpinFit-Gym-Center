@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import Button from "../Shared Component/Button";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
-const SignupLayout = ({ HandleSignup }) => {
+const SignupLayout = ({ HandleSignup  }) => {
+
+  const {loading} = useContext(AuthContext)
+
 
   return (
-    <div className="container max-w-lg mx-auto h-screen ">
-      {/* <form className="card-body p-2 " onSubmit={HandleSignup}>
+    <div className="container max-w-lg mx-auto h-screen pb-24">
+      <form className="card-body p-2 " onSubmit={HandleSignup}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-400 font-roboto ">
           <div className="form-control">
             <label className="label">
@@ -67,7 +70,13 @@ const SignupLayout = ({ HandleSignup }) => {
           />
         </div>
         <div className="form-control mt-6 text-center">
-        <button className="uppercase tracking-widest  btn btn-outline bg-[#dde244] rounded-none"><span className='mr-6'>Register now</span> <FaArrowRightLong></FaArrowRightLong></button>
+          {loading ? (
+            <button className="btn rounded-none bg-[#dde244]" >
+              <span className="loading loading-dots loading-sm text-black"></span>
+            </button>
+          ) : (
+            <Button label={"register now"}></Button>
+          )}
         </div>
       </form>
       <div className="flex gap-4 justify-center px-2 mt-4 text-white font-roboto">
@@ -79,32 +88,10 @@ const SignupLayout = ({ HandleSignup }) => {
 
       <div className="divider text-white">OR</div>
 
-      <div className="flex gap-4 justify-center items-center px-2 mt-4 ">
         <GoogleSignIn label={"Continue with Google"}></GoogleSignIn>
-      </div> */}
-  
-      <div className="flex gap-4 justify-center px-2 mt-4">
-        <p>Already have and account? </p>
-        <Link
-          to="/authentication/login"
-          className="text-green-700 font-medium  "
-        >
-          Login
-        </Link>
-      </div>
-      <div className="flex gap-4 justify-center items-center px-2 mt-4">
-        <p>Or, Create account with</p>
-        <button
-          className="w-10 h-10flex justify-center items-center text-lg text-white rounded-[50%]"
-          
-        >
-          <img
-            src="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png"
-            alt=""
-            className="avater rounded-full"
-          />
-        </button>
-      </div>
+      
+
+     
     </div>
   );
 };

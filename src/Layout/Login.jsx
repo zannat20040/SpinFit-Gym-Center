@@ -72,9 +72,9 @@ const Login = () => {
           </Link>
         </div>
         <div className="divider text-white">OR</div>
-        <div className="flex gap-4 justify-center items-center px-2 mt-4 ">
+        
           <GoogleSignIn label={"Continue with Google"}></GoogleSignIn>
-        </div>
+       
       </div>
     </>
   );

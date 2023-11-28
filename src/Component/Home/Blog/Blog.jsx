@@ -5,17 +5,33 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { SlCalender } from "react-icons/sl";
 
 const Blog = () => {
-  const [blogs, setblogs] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const [forums, setForums] = useState([])
+  const [mostRecentPost, setMostRecentPost] = useState(null);
   useEffect(() => {
     axios
-      .get("./blog.json")
+      .get("http://localhost:5000/blog")
       .then((res) => {
-        setblogs(res.data);
+        setBlogs(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  
+
+    
+    useEffect(() => {
+      const sortedBlogs = [...blogs].sort((a, b) => b.postDetail?.date - a.postDetail?.date);
+      console.log(sortedBlogs)
+      const mostRecent = sortedBlogs.slice(-3);
+      setForums(mostRecent);
+    }, [blogs]);
+
+  // console.log(forums)
+  console.log(mostRecentPost);
+  
 
   return (
     <div className="container mx-auto px-4 pb-32">
@@ -25,48 +41,54 @@ const Blog = () => {
         </h1>
       </div>
       <div className="grid grid-cols-3 gap-5 ">
-        {blogs.map((blog, index) => (
-          <div className="card w-96 bg-gray-500 rounded-none group "  key={index}>
-            <figure className="h-[250px]">
-              <img
-                src={blog.image}
-                alt="Shoes"
-                className="group-hover:scale-125  duration-300  transition ease-in-out delay-150"
-              />
-            </figure>
-            <div className="card-body">
-              <div className="flex justify-between">
-                <div className="badge badge-outline rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244]">
-                  {blog.category}
-                </div>
-                <div className="font-medium uppercase text-black flex gap-3 items-center">
-                <SlCalender></SlCalender>
-                <span>{blog.date}</span>
-                </div>
-              </div>
-              <h2 className="card-title text-2xl font-bold font-oswald  duration-300  transition ease-in-out delay-150 group-hover:text-[#dde244] mt-5">
-                {blog.title}
-              </h2>
-              {blog.content.split(" ").length > 20 ? (
-                <p className="text-white font-roboto">
-                  {blog.content.split(" ").slice(0, 20).join(" ")}{" "}
-                  <span className="font-bold text-[#dde244]">... </span>
-                  <Link className="uppercase  text-[#dde244] font-medium rounded-none flex gap-3 items-center py-3">
-                    <span className="inline">Read More</span>
-                    <FaArrowRightLong className="inline"></FaArrowRightLong>
-                  </Link>
-                </p>
-              ) : (
-                <>
-                  <p className="text-white font-roboto">{blog.content}</p>
-                  <Link className="uppercase  text-[#dde244] font-medium rounded-none flex gap-3 items-center py-3">
-                    <span className="inline">Read More</span>
-                    <FaArrowRightLong className="inline"></FaArrowRightLong>
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
+        {forums.map((forum, index) => (
+         <div className="card w-96 bg-gray-500 rounded-none group ">
+         <figure className="h-[250px]">
+           <img
+             src={forum.postDetail?.image}
+             alt="Shoes"
+             className="group-hover:scale-125  duration-300  transition ease-in-out delay-150"
+           />
+         </figure>
+         <div className="card-body">
+           <div className="flex justify-between flex-wrap gap-3">
+             <div className="badge badge-outline w-fit rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244]">
+               {forum.postDetail?.category}
+             </div>
+             <div className="font-medium uppercase text-black flex gap-3 items-center">
+               <SlCalender></SlCalender>
+               <span>{forum?.postDetail?.date.split("T")[0]}</span>
+             </div>
+           </div>
+           <h2 className="card-title text-2xl font-bold font-oswald  duration-300  transition ease-in-out delay-150 group-hover:text-[#dde244] mt-5">
+             {forum?.postDetail?.title}
+           </h2>
+           {forum?.postDetail?.post.split(" ").length > 20 ? (
+             <p className="text-white font-roboto">
+               {forum?.postDetail?.post.split(" ").slice(0, 20).join(" ")}{" "}
+               <span className="font-bold text-[#dde244]">... </span>
+               <Link
+                 to={`http://localhost:5173/community/${forum?._id}`}
+                 className="uppercase  text-[#dde244] font-medium rounded-none flex gap-3 items-center py-3"
+               >
+                 <span className="inline">Read More</span>
+                 <FaArrowRightLong className="inline"></FaArrowRightLong>
+               </Link>
+             </p>
+           ) : (
+             <>
+               <p className="text-white font-roboto">{forum?.postDetail?.post}</p>
+               <Link
+                 to={`http://localhost:5173/community/${forum?._id}`}
+                 className="uppercase  text-[#dde244] font-medium rounded-none flex gap-3 items-center py-3"
+               >
+                 <span className="inline">Read More</span>
+                 <FaArrowRightLong className="inline"></FaArrowRightLong>
+               </Link>
+             </>
+           )}
+         </div>
+       </div>
         ))}
       </div>
     </div>

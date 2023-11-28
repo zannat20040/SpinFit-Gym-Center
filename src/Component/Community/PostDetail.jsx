@@ -36,16 +36,16 @@ const PostDetail = () => {
       <div className="container mx-auto px-4 pb-20">
         {details && (
           <div className="card lg:card-side rounded-none ">
-            <div className="card-body ">
+            <div className="card-body w-1/2">
               <h2 className="card-title text-4xl text-white font-oswald ">
                 {details?.postDetail?.title}
               </h2>
-              <div className="badge badge-outline w-fit rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244]">
+              <div className=" mb-10 badge badge-outline w-fit rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244]">
                 {details?.badge}
               </div>
-              <p>dvibwdvusdv</p>
+              <p>{details?.postDetail?.post}</p>
 
-              <p className="font-roboto">
+              <p className="font-roboto mt-10">
                 Category:{" "}
                 <span className="text-[#dde244] capitalize">
                   {details?.postDetail?.category}
@@ -73,7 +73,7 @@ const PostDetail = () => {
                 </div>
               </div>
             </div>
-            <figure>
+            <figure className="w-1/2">
               <img src={details?.postDetail?.image} alt="Album" />
             </figure>
           </div>

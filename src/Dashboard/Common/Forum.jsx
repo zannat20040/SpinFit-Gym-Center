@@ -21,14 +21,12 @@ const Forum = () => {
     const title = form.title.value;
     const badge = userInfo.role;
     const name = userInfo.name;
-    const currentDate = new Date('2023-11-27T00:00:00.000Z');
-    let date = currentDate.toISOString().split('T')[0];
     const blog = {
       postDetail: {
         post: content,
         title: title,
         image: photo,
-        date: date,
+        date: new Date(),
         category: category,
       },
       badge: badge,
@@ -72,7 +70,7 @@ const Forum = () => {
             <label className="label">
               <span className="label-text text-white">Write Your blog</span>
             </label>
-            <textarea className="textarea textarea-bordered h-32 w-full rounded-none " name="content" value='content' placeholder="Bio"></textarea>
+            <textarea className="textarea textarea-bordered h-32 w-full rounded-none " name="content"  placeholder="Write your content"></textarea>
           </div>
           <div className="grid grid-cols-2 gap-5 mt-5 ">
             <div className="form-control">
@@ -107,6 +105,7 @@ const Forum = () => {
                 <option value="equipment">Equipment</option>
                 <option value="fitness">Fitness</option>
                 <option value="general">General</option>
+                <option value="yoga">Yoga</option>
                 <option value="tips-&-tricks">Tips & Tricks</option>
                 <option value="nutrition">Nutrition</option>
                 <option value="events">Events</option>

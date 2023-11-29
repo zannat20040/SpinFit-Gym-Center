@@ -54,7 +54,7 @@ const TeamLayout = () => {
         </h1>
         <div className="grid  py-10 items-center">
           <div className="grid grid-cols-4 gap-4 ">
-            {trainers.map((member, index) => (
+            {trainers?.map((member, index) => (
               <Team member={member} key={index}></Team>
             ))}
           </div>

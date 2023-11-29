@@ -84,7 +84,7 @@ const Trainer = () => {
                     </div>
                   </div>
                   <div className="card-actions">
-                    <Link to={`/trainer/${trainer.id}`}>
+                    <Link to={`/trainer/${trainer._id}`}>
                       <Button label={"know more"}></Button>
                     </Link>
                   </div>

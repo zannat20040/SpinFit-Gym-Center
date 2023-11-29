@@ -52,6 +52,7 @@ export const router = createBrowserRouter([
       {
         path: "/trainer/:id",
         element: <TrainerDetails></TrainerDetails>,
+        loader:({params})=>fetch(`http://localhost:5000/application/${params.id}`),
       },
       {
         path: "/community",

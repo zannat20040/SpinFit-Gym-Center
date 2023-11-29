@@ -5,7 +5,7 @@ import usersData from "../../Custom hooks/usersData";
 
 const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSkillCheckbox}) => {
   const { data: userInfo } = usersData();
-  const allDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const allDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
 
   const skills = [
     "Supplementation",
@@ -72,6 +72,20 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                 className="input input-bordered rounded-none"
                 required
                 name="experience"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-white tracking-wider font-roboto">
+                  Your Specialization
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="type here.."
+                className="input input-bordered rounded-none"
+                required
+                name="specialization"
               />
             </div>
             <div className="form-control">

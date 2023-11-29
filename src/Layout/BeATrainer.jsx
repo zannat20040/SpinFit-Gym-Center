@@ -10,7 +10,7 @@ import swal from "sweetalert";
 const BeATrainer = () => {
   const { data: userInfo } = usersData();
 
-  const allDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const allDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
   const skills = [
     "Supplementation",
     "Dietary Guidelines",
@@ -37,7 +37,7 @@ const BeATrainer = () => {
   };
 
   const HandleSkillCheckbox = (index, event) => {
-    const level = `skill-level${index+1}`;
+    const level = `skill-level${index + 1}`;
     const skillLevel = document.getElementById(level);
 
     if (event.target.checked) {
@@ -54,6 +54,7 @@ const BeATrainer = () => {
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
+    const specialization = form.specialization.value;
     const experience = form.experience.value;
     const age = form.age.value;
     const linkedin = form.linkedin.value;
@@ -70,45 +71,37 @@ const BeATrainer = () => {
 
     let totalSum = 0;
 
-    const selectedDaysWithTime = {};
+    const selectedDaysWithTime = [];
+
     for (const day of selectedDays) {
       const slotHour = form[`totalSlot-${day.toLowerCase()}`]?.value;
       if (slotHour) {
-        selectedDaysWithTime[day.toLowerCase()] = slotHour;
+        selectedDaysWithTime.push({
+          day: day.toLowerCase(),
+          slot: slotHour,
+        });
         totalSum += parseInt(slotHour);
       }
     }
 
     // skill level handle according to the skills
-
-    const getLevel = document.querySelectorAll(`input[type="range"]`);
-    // console.log(getLevel);
- 
   
-
     let index = 0;
-    // for (const level of skills) {
-    //   const value = getLevel[index].value ;
-    //   updatedskills.push({
-    //     skill: level,
-    //     value: value || 20,
-    //   });
-    //   index++;
-    // }
-    const updatedskills = []
+
+    const updatedskills = [];
 
     const selectedSkill = skills.filter(
-      (skill,index) => form[`skill${index+1}`]?.checked
+      (skill, index) => form[`skill${index + 1}`]?.checked
     );
     for (const skill of selectedSkill) {
       const skillIndex = skills.indexOf(skill);
-  const skillIsChecked = form[`skill${skillIndex + 1}`]?.checked;
-  
+      const skillIsChecked = form[`skill${skillIndex + 1}`]?.checked;
+
       if (skillIsChecked) {
-        const skillLevel= form[`skill-level${skillIndex}`].value;
+        const skillLevel = form[`skill-level${skillIndex}`].value;
         updatedskills.push({
           skill: skill,
-          value: skillLevel || 20,
+          value: skillLevel ,
         });
       }
     }
@@ -118,14 +111,15 @@ const BeATrainer = () => {
       fullName: name,
       email: email,
       age: age,
+      specialization:specialization,
       yearsOfExperience: experience,
       profileImage: photo,
       role: userInfo?.role,
-      socialIcons: {
-        facebook: facebook,
-        linkedin: linkedin,
-        instagram: instagram,
-      },
+      socialIcons: [
+        { platform: "Facebook", link: facebook },
+        { platform: "Linkedin", link: linkedin },
+        { platform: "Instagram", link: instagram },
+      ],
       availableTimeSlot: selectedDaysWithTime,
       skills: updatedskills,
       weeklyAvailableTime: totalSum,
@@ -136,7 +130,11 @@ const BeATrainer = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
-          swal("Congratulations!", "Your application has been submitted. Wait for next response!", "success");
+          swal(
+            "Congratulations!",
+            "Your application has been submitted. Wait for next response!",
+            "success"
+          );
         }
       })
       .catch((error) => {

@@ -24,7 +24,6 @@ const Blog = () => {
     
     useEffect(() => {
       const sortedBlogs = [...blogs].sort((a, b) => b.postDetail?.date - a.postDetail?.date);
-      console.log(sortedBlogs)
       const mostRecent = sortedBlogs.slice(-3);
       setForums(mostRecent);
     }, [blogs]);

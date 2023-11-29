@@ -1,9 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import RouteLabel from "../Shared Component/RouteLabel";
-import { FaArrowRightLong } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import { SlCalender } from "react-icons/sl";
 import CommunityMainPg from "../Component/Community/CommunityMainPg";
 
 const Community = () => {

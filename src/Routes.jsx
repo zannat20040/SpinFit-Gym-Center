@@ -13,6 +13,7 @@ import Community from "./Layout/Community";
 import PostDetail from "./Component/Community/PostDetail";
 import Trainer from "./Layout/Trainer";
 import TrainerDetails from "./Layout/TrainerDetails";
+import BeATrainer from "./Layout/BeATrainer";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/trainer",
         element: <Trainer></Trainer>,
+      },
+      {
+        path: "/newTrainer",
+        element: <BeATrainer></BeATrainer>,
       },
       {
         path: "/trainer/:id",

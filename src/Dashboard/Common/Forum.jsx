@@ -1,11 +1,11 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
-import JoditEditor from "jodit-react";
 import Button from "../../Shared Component/Button";
 import { imgUpload } from "../../Utils/imageUpload";
 import usersData from "../../Custom hooks/usersData";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const Forum = () => {
   const userInfo = usersData();

@@ -1,10 +1,8 @@
 import React, { useRef, useState } from "react";
 import Button from "../../Shared Component/Button";
-import { Link } from "react-router-dom";
 import usersData from "../../Custom hooks/usersData";
 import toast from "react-hot-toast";
 import axios from "axios";
-import JoditEditor from "jodit-react";
 
 const AddClass = () => {
   const userInfo = usersData();

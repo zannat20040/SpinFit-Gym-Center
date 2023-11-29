@@ -24,8 +24,8 @@ const Signup = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         const userInfo = {
-          email: user?.email,
-          name: user?.displayName,
+          email: email,
+          name: name,
           role: "member",
           roleAssignmnetDate: new Date().toISOString().split('T')[0],
         };

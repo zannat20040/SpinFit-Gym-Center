@@ -22,7 +22,7 @@ const usersData = () => {
       refetchInterval: 100,
     });
     
-  return  {data:userInfo, isLoading}
+  return  {data:userInfo, isLoading,refetch}
 };
 
 export default usersData;

@@ -6,6 +6,8 @@ const Button = ({ label }) => {
       <span className="mr-6">{label}</span>{" "}
       <FaArrowRightLong></FaArrowRightLong>
     </button>
+    
+    
   );
 };
 

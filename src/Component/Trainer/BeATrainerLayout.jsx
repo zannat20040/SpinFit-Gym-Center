@@ -5,7 +5,7 @@ import usersData from "../../Custom hooks/usersData";
 
 const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSkillCheckbox}) => {
   const { data: userInfo } = usersData();
-  const allDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+  const allDays = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   const skills = [
     "Supplementation",
@@ -88,6 +88,7 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                 name="specialization"
               />
             </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-400 font-roboto">
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white tracking-wider font-roboto">
@@ -101,6 +102,15 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                 required
                 name="age"
               />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-white tracking-wider font-roboto">
+                  Your Slot starting time
+                </span>
+              </label>
+              <input type="time" id="appt" name="startingTime" required className=" input input-bordered rounded-none"/>
+            </div>
             </div>
             <div className="form-control">
               <label className="label ">
@@ -205,7 +215,9 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                 </label>
               </div>
             ))}
-           
+          {
+            
+          }
           </div>
         </form>
       </div>

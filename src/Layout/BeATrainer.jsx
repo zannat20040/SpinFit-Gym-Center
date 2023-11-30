@@ -10,7 +10,8 @@ import swal from "sweetalert";
 const BeATrainer = () => {
   const { data: userInfo } = usersData();
 
-  const allDays = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+  const allDays = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
   const skills = [
     "Supplementation",
     "Dietary Guidelines",
@@ -55,6 +56,7 @@ const BeATrainer = () => {
     const name = form.name.value;
     const email = form.email.value;
     const specialization = form.specialization.value;
+    const startingTime = form.startingTime.value;
     const experience = form.experience.value;
     const age = form.age.value;
     const linkedin = form.linkedin.value;
@@ -86,8 +88,6 @@ const BeATrainer = () => {
 
     // skill level handle according to the skills
   
-    let index = 0;
-
     const updatedskills = [];
 
     const selectedSkill = skills.filter(
@@ -98,7 +98,7 @@ const BeATrainer = () => {
       const skillIsChecked = form[`skill${skillIndex + 1}`]?.checked;
 
       if (skillIsChecked) {
-        const skillLevel = form[`skill-level${skillIndex}`].value;
+        const skillLevel = form[`skill-level${skillIndex+1}`].value;
         updatedskills.push({
           skill: skill,
           value: skillLevel ,
@@ -112,6 +112,7 @@ const BeATrainer = () => {
       email: email,
       age: age,
       specialization:specialization,
+      startingTime:startingTime,
       yearsOfExperience: experience,
       profileImage: photo,
       role: userInfo?.role,

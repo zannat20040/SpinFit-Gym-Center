@@ -1,51 +1,74 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import Dislike from "../Component/Community/Dislike";
-import Like from "../Component/Community/Like";
 import RouteLabel from "../Shared Component/RouteLabel";
-import { useQuery } from "@tanstack/react-query";
 import { Calendar } from "react-date-range";
-import { isSunday, isSaturday, isFriday, getDay } from "date-fns";
+import { getDay } from "date-fns";
 import Button from "../Shared Component/Button";
-import { FaClock, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
+import {
+  FaArrowRightLong,
+  FaClock,
+  FaFacebookF,
+  FaLinkedinIn,
+} from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 
 const TrainerDetails = () => {
   const trainerDetails = useLoaderData();
-  console.log();
+  const [allSlotTime, setAllSlotTime] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [enableBooking, setEnableBooking] = useState(false);
 
   const availableTimeSlot = trainerDetails?.availableTimeSlot;
   const day = [];
   for (const data of availableTimeSlot) {
-    if (data.day === "sat") {
-      day.push(data.day + "urday");
-    } else {
-      day.push(data.day + "day");
-    }
+    day.push(data.day);
   }
 
-  console.log(day);
-  // get date name::::
-
-  // const [disabledDays, setDisabledDays] = useState({
-  //   sunday: false,
-  //   monday: false,
-  //   tuesday: false,
-  //   wednesday: false,
-  //   thursday: false,
-  //   friday: false,
-  //   saturday: false,
-  // });
+  const formatTime = (time) =>
+    time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
   const handleSelect = (date) => {
-    console.log(date);
+    setSelectedDate(date);
+    setSelectedTime(null);
+    const selectedDayName = getDayName(getDay(date));
+    const getTimeSlot = trainerDetails?.availableTimeSlot;
+    for (let item of getTimeSlot) {
+      if (item.day === selectedDayName) {
+        const slot = item.slot;
+        const startingTime = new Date(
+          `2023-01-01T${trainerDetails.startingTime}:00`
+        );
+
+        const slotDuration = 60 * 60 * 1000;
+
+        const timeSlots = Array.from({ length: slot }, (_, index) => {
+          const slotStartTime = new Date(
+            startingTime.getTime() + index * slotDuration
+          );
+          const slotEndTime = new Date(slotStartTime.getTime() + slotDuration);
+
+          return {
+            start: formatTime(slotStartTime),
+            end: formatTime(slotEndTime),
+          };
+        });
+        setAllSlotTime(timeSlots);
+      }
+    }
   };
 
-  // const disabledDay = (date) => {
-  //   const dayOfWeek = getDay(date);
-  //   return disabledDays[getDayName(dayOfWeek)];
-  // }
+  useEffect(() => {
+    if (selectedDate && selectedTime) {
+      setEnableBooking(true);
+      console.log(enableBooking); 
+    } else {
+      setEnableBooking(false);
+    }
+  }, [selectedDate, selectedTime]);
+  
+  console.log(selectedDate, selectedTime);
 
   const getDayName = (dayOfWeek) => {
     const days = [
@@ -60,13 +83,6 @@ const TrainerDetails = () => {
     return days[dayOfWeek];
   };
 
-  // const formatDate = (date) => {
-  //   const year = date.getFullYear();
-  //   const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  //   const day = date.getDate().toString().padStart(2, "0");
-  //   return `${year}-${month}-${day}`;
-  // };
-
   const disabledDay = (date) => {
     const dayOfWeek = getDay(date);
     // const availableDays = ["monday", "tuesday", "thursday", "friday"]; // Replace this with your actual available days from the backend
@@ -77,7 +93,7 @@ const TrainerDetails = () => {
     const isUnavailableDay = !day.includes(getDayName(dayOfWeek));
     // const isBookedDate = bookedDates.includes(formattedDate);
     const isBeforeToday = date < today;
-    // || isBookedDate || 
+    // || isBookedDate ||
     return isUnavailableDay || isBeforeToday;
   };
 
@@ -94,9 +110,9 @@ const TrainerDetails = () => {
         <div className="grid grid-cols-2 gap-10 justify-center items-start">
           {/* trainer profile  */}
 
-          <div>
+          <div className="flex- no-wrap">
             {trainerDetails && (
-              <div className="card items-start bg-base-100  mt-10 rounded-none">
+              <div className="card items-start bg-base-100  mt-10 rounded-none py-5 text-center text-lg">
                 <figure>
                   <img src={trainerDetails.profileImage} alt="Shoes" />
                 </figure>
@@ -152,7 +168,15 @@ const TrainerDetails = () => {
           <div className=" flex flex-col justify-center">
             <div className="flex gap-4 items-center my-3">
               <FaClock className=" text-2xl" />
-              <span className="font-roboto text-[#dde244]">Available on : </span>
+              <p className=" font-roboto text-[#dde244]  capitalize mr-2">
+                Starting time : {trainerDetails?.startingTime}
+              </p>
+            </div>
+            <div className="flex gap-4 items-center my-3">
+              <FaClock className=" text-2xl" />
+              <span className="font-roboto text-[#dde244]">
+                Available on :{" "}
+              </span>
               <div className="flex justify-start items-center  ">
                 {trainerDetails?.availableTimeSlot?.map((item) => (
                   <p className=" font-roboto text-[#dde244]  capitalize mr-2">
@@ -170,11 +194,50 @@ const TrainerDetails = () => {
               </div>
             </div>
             <Calendar
-              className="mt-5"
-              date={new Date()}
+              className="mt-5 bg-[#dde2444]"
+              date={selectedDate || new Date()}
               disabledDay={disabledDay}
               onChange={handleSelect}
             />
+            <div className="form-control w-full my-6">
+              <label className="label">
+                <span className="label-text text-white font-roboto">
+                  Book Your time
+                </span>
+              </label>
+              <select
+                className="select select-bordered rounded-none z-50"
+                name="category"
+                value={selectedTime || ""}
+                onChange={(e) => setSelectedTime(e.target.value)}
+              >
+                <option disabled selected>
+                  Select your time
+                </option>
+                {allSlotTime.map((slot, index) => (
+                  <option value={`${slot.start} - ${slot.end}`}>
+                    {slot.start} - {slot.end}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {enableBooking ? (
+              <Link
+                to={`/booknow?date=${selectedDate}&time=${selectedTime}`}
+                className="w-full"
+              >
+                <button className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none">
+                  <span className="mr-6">get you package</span>{" "}
+                  <FaArrowRightLong></FaArrowRightLong>
+                </button>
+              </Link>
+            ) : (
+              <button disabled className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none">
+                  <span className="mr-6">get you package</span>{" "}
+                  <FaArrowRightLong></FaArrowRightLong>
+                </button>
+            )}
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ import PostDetail from "./Component/Community/PostDetail";
 import Trainer from "./Layout/Trainer";
 import TrainerDetails from "./Layout/TrainerDetails";
 import BeATrainer from "./Layout/BeATrainer";
+import Booking from "./Component/TrainerBook.jsx/Booking";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/newTrainer",
         element: <BeATrainer></BeATrainer>,
+      },
+      {
+        path: "/booknow",
+        element: <Booking></Booking>
       },
       {
         path: "/trainer/:id",

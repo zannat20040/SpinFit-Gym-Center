@@ -87,7 +87,7 @@ const Dashboard = () => {
               <Link to="" className="p-2 font-roboto ">
                 Profile Settings
               </Link>
-              <Link to="" className="p-2 font-roboto ">
+              <Link to="recommended" className="p-2 font-roboto ">
                 Recommended Classes
               </Link>
             </div>

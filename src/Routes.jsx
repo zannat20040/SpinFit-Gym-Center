@@ -20,6 +20,7 @@ import AllSubscriber from "./Dashboard/Admin/AllSubscriber";
 import AllApplied from "./Dashboard/Admin/AllApplied";
 import Allmember from "./Dashboard/Trainer/Allmember";
 import Activity from "./Dashboard/Member/Activity";
+import RecommendPg from "./Dashboard/Member/RecommendPg";
 
 export const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
       {
         path: "activity",
         element: <Activity></Activity>,
+      },
+      {
+        path: "recommended",
+        element: <RecommendPg></RecommendPg>,
       },
       {
         path: "appliedTrainer",

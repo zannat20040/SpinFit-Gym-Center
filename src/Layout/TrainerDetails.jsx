@@ -84,8 +84,9 @@ const TrainerDetails = () => {
   };
 
   const disabledDay = (date) => {
-    const dayOfWeek = getDay(date);
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set hours to 0 for accurate date comparison
+      const dayOfWeek = getDay(date);
     const isUnavailableDay = !day.includes(getDayName(dayOfWeek));
     const isBeforeToday = date < today;
     return isUnavailableDay || isBeforeToday;
@@ -218,7 +219,7 @@ const TrainerDetails = () => {
 
             {enableBooking ? (
               <Link
-                to={`/booknow?date=${selectedDate}&time=${selectedTime}`}
+                to={`/booknow?date=${selectedDate}&time=${selectedTime}&email=${trainerDetails.email}`}
                 className="w-full"
               >
                 <button className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none">

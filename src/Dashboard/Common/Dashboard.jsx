@@ -8,14 +8,14 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/spinfit-removebg-preview.png";
 
 const Dashboard = () => {
-  const {data:userInfo, isLoading} = usersData();
-  const navigate = useNavigate()
+  const { data: userInfo, isLoading } = usersData();
+  const navigate = useNavigate();
 
   const { signOutProfile } = useContext(AuthContext);
   const HandleLogout = () => {
     signOutProfile()
       .then(() => {
-        navigate('/')
+        navigate("/");
         swal("Good job!", "Logged out successfully!", "success");
       })
       .catch((error) => {
@@ -27,13 +27,12 @@ const Dashboard = () => {
     return <p>Loading...</p>;
   }
 
-
   return (
     <div className="drawer h-screen">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex relative">
         {/* Page content here */}
-        <Sidebar className=''></Sidebar>
+        <Sidebar className=""></Sidebar>
         <div className="w-full">
           <div className=" bg-slate-950 p-4  flex justify-between lg:justify-end sticky top-0 z-40 ">
             <label
@@ -42,7 +41,7 @@ const Dashboard = () => {
             >
               <FaBars className="text-4xl text-black "></FaBars>
             </label>
-            
+
             <Navbar></Navbar>
           </div>
 
@@ -64,57 +63,66 @@ const Dashboard = () => {
               <img src={logo} alt="" className="h-10" />
             </Link>
           </div>
-          {
-            userInfo?.role==='trainer' &&
+          {userInfo?.role === "trainer" && (
             <div className="flex flex-col gap-2 mt-5 flex-grow">
-            <Link to="addclass" className="p-2 font-roboto ">
-              Add new Class
-            </Link>
-            <Link to="" className="p-2 font-roboto ">
-              Manage Slots
-            </Link>
-            <Link to="manageMember" className="p-2 font-roboto ">
-              Manage member
-            </Link>
-            <Link to="forum" className="p-2 font-roboto ">
-              Add new Forum
-            </Link>
-          </div>
-          }
-          {
-            userInfo?.role==='admin' &&
+              <Link to="addclass" className="p-2 font-roboto ">
+                Add new Class
+              </Link>
+              <Link to="" className="p-2 font-roboto ">
+                Manage Slots
+              </Link>
+              <Link to="manageMember" className="p-2 font-roboto ">
+                Manage member
+              </Link>
+              <Link to="forum" className="p-2 font-roboto ">
+                Add new Forum
+              </Link>
+            </div>
+          )}
+          {userInfo?.role === "member" && (
             <div className="flex flex-col gap-2 mt-5 flex-grow">
-            <Link to="appliedTrainer" className="p-2 font-roboto ">
-            Applied Trainer
-            </Link>
-            <Link to="alltrainers" className="p-2 font-roboto ">
-            All Trainers
-            </Link>
-            <Link to="subscriber" className="p-2 font-roboto ">
-              All Subscriber
-            </Link>
-            <Link to="/" className="p-2 font-roboto ">
-            Balance
-            </Link>
-            <Link to="forum" className="p-2 font-roboto ">
-              Add new Forum
-            </Link>
-          </div>
-          }
+              <Link to="activity" className="p-2 font-roboto ">
+                Activity Log
+              </Link>
+              <Link to="" className="p-2 font-roboto ">
+                Profile Settings
+              </Link>
+              <Link to="" className="p-2 font-roboto ">
+                Recommended Classes
+              </Link>
+            </div>
+          )}
+          {userInfo?.role === "admin" && (
+            <div className="flex flex-col gap-2 mt-5 flex-grow">
+              <Link to="appliedTrainer" className="p-2 font-roboto ">
+                Applied Trainer
+              </Link>
+              <Link to="alltrainers" className="p-2 font-roboto ">
+                All Trainers
+              </Link>
+              <Link to="subscriber" className="p-2 font-roboto ">
+                All Subscriber
+              </Link>
+              <Link to="/" className="p-2 font-roboto ">
+                Balance
+              </Link>
+              <Link to="forum" className="p-2 font-roboto ">
+                Add new Forum
+              </Link>
+            </div>
+          )}
 
           <div className="flex flex-col gap-2 mt-5">
             <Link to="/" className="p-2 font-roboto ">
               Update profile
             </Link>
-            <Link className="p-2 font-roboto " onClick={HandleLogout} >
+            <Link className="p-2 font-roboto " onClick={HandleLogout}>
               Log out
             </Link>
           </div>
         </ul>
       </div>
     </div>
-
-
   );
 };
 

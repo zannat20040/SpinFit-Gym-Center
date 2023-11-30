@@ -47,6 +47,19 @@ const Sidebar = () => {
             </Link>
           </div>
         )}
+        {userInfo?.role === "member" && (
+          <div className="flex flex-col gap-2 mt-5 flex-grow">
+            <Link to="activity" className="p-2 font-roboto ">
+            Activity Log
+            </Link>
+            <Link to="" className="p-2 font-roboto ">
+            Profile Settings
+            </Link>
+            <Link to="" className="p-2 font-roboto ">
+            Recommended Classes 
+            </Link>
+          </div>
+        )}
         {userInfo?.role === "admin" && (
           <div className="flex flex-col gap-2 mt-5 flex-grow">
             <Link to="appliedTrainer" className="p-2 font-roboto ">

@@ -15,6 +15,7 @@ const Booking = () => {
 
   const date = searchParams.get("date");
   const time = searchParams.get("time");
+  const email = searchParams.get("email");
   
   const {data:userInfo} = usersData()
 
@@ -38,6 +39,7 @@ const Booking = () => {
       bookingTime: time ,
       packagePrice: planPrice ,
       packagePame: planName ,
+      trainerName: email ,
     }
     console.log(packageData)
 

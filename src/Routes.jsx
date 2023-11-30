@@ -18,6 +18,8 @@ import Booking from "./Component/TrainerBook.jsx/Booking";
 import AllTrainer from "./Dashboard/Admin/AllTrainer";
 import AllSubscriber from "./Dashboard/Admin/AllSubscriber";
 import AllApplied from "./Dashboard/Admin/AllApplied";
+import Allmember from "./Dashboard/Trainer/Allmember";
+import Activity from "./Dashboard/Member/Activity";
 
 export const router = createBrowserRouter([
   {
@@ -96,7 +98,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "manageMember",
-        element: <AllSubscriber></AllSubscriber>,
+        element: <Allmember></Allmember>,
+      },
+      {
+        path: "activity",
+        element: <Activity></Activity>,
       },
       {
         path: "appliedTrainer",

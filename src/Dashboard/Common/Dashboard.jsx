@@ -61,7 +61,7 @@ const Dashboard = () => {
           className="drawer-overlay"
         ></label>
 
-        <ul className="menu p-4 w-80 min-h-full bg-slate-950 text-white lg:hidden">
+        <ul className="menu p-4 w-80  text-white lg:hidden">
           <div className="bg-slate-900 p-4 flex justify-center">
             <Link to="/">
               <img src={logo} alt="" className="h-10" />

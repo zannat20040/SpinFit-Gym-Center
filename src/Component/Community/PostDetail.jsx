@@ -13,7 +13,7 @@ const PostDetail = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["updatedLike"],
+    queryKey: ["details"],
     queryFn: async () => {
       const response = await axios.get(
         `http://localhost:5000/blog/${params.id}`

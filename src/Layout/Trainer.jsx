@@ -8,7 +8,7 @@ import Button from "../Shared Component/Button";
 
 const Trainer = () => {
   const { isLoading, data: trainers } = useQuery({
-    queryKey: ["forums"],
+    queryKey: ["trainers"],
     queryFn: async () => {
       const res = await fetch('http://localhost:5000/application?role=trainer');
       return res.json();

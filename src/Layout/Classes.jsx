@@ -7,7 +7,7 @@ import WeeklySchedule from "../Component/Classes/WeeklySchedule";
 
 const Classes = () => {
   const { isLoading, data: classes } = useQuery({
-    queryKey: ["forums"],
+    queryKey: ["classes"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/classes`);
       return res.json();
@@ -24,9 +24,9 @@ const Classes = () => {
         </div>
       ) : (
         <div className="container mx-auto px-4 ">
-          <div className="flex gap-5 ">
+          <div className="flex flex-col-reverse gap-5 ">
           <div className="grid grid-cols-3 gap-5">
-            {classes.map((item) => (
+            {classes?.map((item) => (
               <div className="card bg-slate-500 rounded-none text-primary-content">
                 <div className="card-body">
                   <h2 className="card-title text-[#dde244] text-3xl font-bold font-oswald  capitalize ">

@@ -21,16 +21,16 @@ const Dislike = ({details}) => {
       dislikedUser: existingDislikedUser,
     };
   
-    const HandleDislikeClick = async () => {
-      await axios
-        .patch(`http://localhost:5000/blog/${details?._id}`, {updatedDislike,dislike:true})
-        .then((res) => {
-          console.log(res.data);
-        })
-        .error((error) => {
-          console.log(error);
-        });
-    };
+    // const HandleDislikeClick = async () => {
+    //   await axios
+    //     .patch(`http://localhost:5000/blog/${details?._id}`, {updatedDislike,dislike:true})
+    //     .then((res) => {
+    //       console.log(res.data);
+    //     })
+    //     .error((error) => {
+    //       console.log(error);
+    //     });
+    // };
   
     return (
       <>

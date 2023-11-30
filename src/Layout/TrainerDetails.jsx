@@ -85,15 +85,9 @@ const TrainerDetails = () => {
 
   const disabledDay = (date) => {
     const dayOfWeek = getDay(date);
-    // const availableDays = ["monday", "tuesday", "thursday", "friday"]; // Replace this with your actual available days from the backend
-    // const bookedDates = ["2023-12-12", "2023-11-23"];
-    // const formattedDate = formatDate(date);
     const today = new Date();
-    // today.setHours(0, 0, 0, 0);
     const isUnavailableDay = !day.includes(getDayName(dayOfWeek));
-    // const isBookedDate = bookedDates.includes(formattedDate);
     const isBeforeToday = date < today;
-    // || isBookedDate ||
     return isUnavailableDay || isBeforeToday;
   };
 

@@ -39,7 +39,7 @@ const Sidebar = () => {
             <Link to="" className="p-2 font-roboto ">
               Manage Slots
             </Link>
-            <Link to="/" className="p-2 font-roboto ">
+            <Link to="manageMember" className="p-2 font-roboto ">
               Manage member
             </Link>
             <Link to="forum" className="p-2 font-roboto ">
@@ -49,7 +49,7 @@ const Sidebar = () => {
         )}
         {userInfo?.role === "admin" && (
           <div className="flex flex-col gap-2 mt-5 flex-grow">
-            <Link to="application" className="p-2 font-roboto ">
+            <Link to="appliedTrainer" className="p-2 font-roboto ">
               Applied Trainer
             </Link>
             <Link to="alltrainers" className="p-2 font-roboto ">

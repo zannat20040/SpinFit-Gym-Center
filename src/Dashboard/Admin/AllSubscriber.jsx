@@ -15,11 +15,7 @@ const AllSubscriber = () => {
     },
   });
 
-  if(isLoading){
-    <div className="container mx-auto mt-10 text-center">
-              <span className="loading loading-ring loading-lg"></span>
-            </div>
-  }
+ 
   return (
     <div>
       <div className="overflow-x-auto">

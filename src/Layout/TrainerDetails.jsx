@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import RouteLabel from "../Shared Component/RouteLabel";
 import { Calendar } from "react-date-range";
 import { getDay } from "date-fns";

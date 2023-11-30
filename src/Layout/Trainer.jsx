@@ -10,7 +10,7 @@ const Trainer = () => {
   const { isLoading, data: trainers } = useQuery({
     queryKey: ["forums"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/application?role=trainer`);
+      const res = await fetch('http://localhost:5000/application?role=trainer');
       return res.json();
     },
   });
@@ -41,7 +41,7 @@ const Trainer = () => {
                       ( {trainer?.yearsOfExperience} years experience )
                     </span>
                     <div className="flex  gap-3 mt-3 ">
-                      {trainer.socialIcons.map((item) => (
+                      {trainer?.socialIcons?.map((item) => (
                         <Link to={item?.link} key={item?.platform}>
                           <span className="w-12 h-12 text-black text-xl bg-[#dde244] rounded-full  flex justify-center items-center transition-transform transform hover:translate-y-[-10px] ease-in">
                             {item?.platform === "Facebook" && <FaFacebookF />}
@@ -58,7 +58,7 @@ const Trainer = () => {
                 </div>
                 <div className="card-body  ">
                   <div className="text-start flex-grow">
-                    {trainer.skills?.map((item) => (
+                    {trainer?.skills?.map((item) => (
                       <>
                         <p className="capitalize text-gray-300 font-roboto">
                           {item?.skill}

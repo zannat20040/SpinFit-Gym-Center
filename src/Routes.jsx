@@ -22,6 +22,8 @@ import Allmember from "./Dashboard/Trainer/Allmember";
 import Activity from "./Dashboard/Member/Activity";
 import RecommendPg from "./Dashboard/Member/RecommendPg";
 import PrivateRoute from "./Component/Private/PrivateRoute";
+import Balance from "./Dashboard/Admin/Balance";
+import Update from "./Dashboard/Common/Update";
 
 export const router = createBrowserRouter([
   {
@@ -84,35 +86,43 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "forum",
-        element: <Forum></Forum>,
+        element:<PrivateRoute><Forum></Forum></PrivateRoute>,
       },
       {
         path: "addclass",
-        element: <AddClass></AddClass>,
+        element: <PrivateRoute><AddClass></AddClass></PrivateRoute> ,
       },
       {
         path: "alltrainers",
-        element: <AllTrainer></AllTrainer>,
+        element: <PrivateRoute><AllTrainer></AllTrainer></PrivateRoute> ,
+      },
+      {
+        path: "balance",
+        element:<PrivateRoute><Balance></Balance></PrivateRoute> ,
+      },
+      {
+        path: "updateProfile",
+        element: <PrivateRoute><Update></Update></PrivateRoute> ,
       },
       {
         path: "subscriber",
-        element: <AllSubscriber></AllSubscriber>,
+        element:<PrivateRoute><AllSubscriber></AllSubscriber></PrivateRoute> ,
       },
       {
         path: "manageMember",
-        element: <Allmember></Allmember>,
+        element: <PrivateRoute><Allmember></Allmember></PrivateRoute>,
       },
       {
         path: "activity",
-        element: <Activity></Activity>,
+        element: <PrivateRoute><Activity></Activity></PrivateRoute>,
       },
       {
         path: "recommended",
-        element: <RecommendPg></RecommendPg>,
+        element: <PrivateRoute><RecommendPg></RecommendPg></PrivateRoute>,
       },
       {
         path: "appliedTrainer",
-        element:<AllApplied></AllApplied>,
+        element:<PrivateRoute><AllApplied></AllApplied></PrivateRoute>,
       },
     ],
   },

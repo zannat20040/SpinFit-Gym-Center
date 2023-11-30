@@ -31,7 +31,7 @@ const CommunityMainPg = ({ forum }) => {
             {forum?.postDetail?.post.split(" ").slice(0, 20).join(" ")}{" "}
             <span className="font-bold text-[#dde244]">... </span>
             <Link
-              to={`http://localhost:5173/community/${forum?._id}`}
+              to={`https://spinfit-610d6.web.app/community/${forum?._id}`}
               className="uppercase  text-[#dde244] font-medium rounded-none flex gap-3 items-center py-3"
             >
               <span className="inline">Read More</span>
@@ -42,7 +42,7 @@ const CommunityMainPg = ({ forum }) => {
           <>
             <p className="text-white font-roboto">{forum?.postDetail?.post}</p>
             <Link
-              to={`http://localhost:5173/community/${forum?._id}`}
+              to={`https://spinfit-610d6.web.app/community/${forum?._id}`}
               className="uppercase  text-[#dde244] font-medium rounded-none flex gap-3 items-center py-3"
             >
               <span className="inline">Read More</span>

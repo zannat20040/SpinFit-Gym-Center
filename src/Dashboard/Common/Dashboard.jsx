@@ -107,7 +107,7 @@ const Dashboard = () => {
               <Link to="subscriber" className="p-2 font-roboto ">
                 All Subscriber
               </Link>
-              <Link to="/" className="p-2 font-roboto ">
+              <Link to="balance" className="p-2 font-roboto ">
                 Balance
               </Link>
               <Link to="forum" className="p-2 font-roboto ">
@@ -117,7 +117,7 @@ const Dashboard = () => {
           )}
 
           <div className="flex flex-col gap-2 mt-5">
-            <Link to="/" className="p-2 font-roboto ">
+            <Link to="updateProfile" className="p-2 font-roboto ">
               Update profile
             </Link>
             <Link className="p-2 font-roboto " onClick={HandleLogout}>

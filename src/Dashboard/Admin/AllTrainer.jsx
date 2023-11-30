@@ -11,7 +11,7 @@ const AllTrainer = () => {
   } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:5000/users");
+      const response = await axios.get("https://server-psi-tawny-84.vercel.app/users");
       return response.data;
     },
   });

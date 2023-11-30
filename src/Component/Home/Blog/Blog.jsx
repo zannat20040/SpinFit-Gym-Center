@@ -10,7 +10,7 @@ const Blog = () => {
   const [mostRecentPost, setMostRecentPost] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/blog")
+      .get("https://server-psi-tawny-84.vercel.app/blog")
       .then((res) => {
         setBlogs(res.data);
       })

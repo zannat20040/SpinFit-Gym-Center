@@ -45,7 +45,7 @@ const Booking = () => {
     console.log(packageData)
 
     axios
-    .post("http://localhost:5000/bookings", packageData)
+    .post("https://server-psi-tawny-84.vercel.app/bookings", packageData)
     .then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {

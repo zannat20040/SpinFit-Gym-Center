@@ -15,7 +15,7 @@ const usersData = () => {
       queryKey: ["user Info"],
       queryFn: async () => {
         const response = await axios.get(
-          `http://localhost:5000/users?email=${user?.email}`
+          `https://server-psi-tawny-84.vercel.app/users?email=${user?.email}`
         );
         return response.data;
       },

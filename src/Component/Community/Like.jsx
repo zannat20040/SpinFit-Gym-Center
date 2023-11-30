@@ -21,7 +21,7 @@ const Like = ({ details }) => {
 
   const handleLikeClick = async () => {
     await axios
-      .patch(`http://localhost:5000/blog/${details?._id}`, {updatedLike, like:true})
+      .patch(`https://server-psi-tawny-84.vercel.app/blog/${details?._id}`, {updatedLike, like:true})
       .then((res) => {
         console.log(res.data);
       })

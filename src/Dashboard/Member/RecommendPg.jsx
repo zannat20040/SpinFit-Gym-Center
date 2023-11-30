@@ -10,7 +10,7 @@ const RecommendPg = () => {
     const { isLoading, data: classes } = useQuery({
         queryKey: ["classes"],
         queryFn: async () => {
-          const res = await fetch(`http://localhost:5000/classes`);
+          const res = await fetch(`https://server-psi-tawny-84.vercel.app/classes`);
           return res.json();
         },
       });

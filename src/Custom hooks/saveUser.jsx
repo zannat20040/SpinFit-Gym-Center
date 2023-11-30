@@ -12,7 +12,7 @@ const saveUser = (user) => {
       };
 
       axios
-        .post("http://localhost:5000/users", userInfo)
+        .post("https://server-psi-tawny-84.vercel.app/users", userInfo)
         .then((res) => {
           console.log(res.data);
           if(res.data.res.insertedId){

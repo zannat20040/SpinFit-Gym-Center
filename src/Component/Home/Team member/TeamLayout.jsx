@@ -7,7 +7,7 @@ const TeamLayout = () => {
   const { data: trainers } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/application?role=trainer`);
+      const res = await fetch(`https://server-psi-tawny-84.vercel.app/application?role=trainer`);
       return res.json();
     },
   });

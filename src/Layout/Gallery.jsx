@@ -10,7 +10,7 @@ const Gallery = () => {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:5000/gallery")
+      .get("https://server-psi-tawny-84.vercel.app/gallery")
       .then((res) => {
         const newItems = res.data.slice(items.length, items.length + 12);
         setItems([...items, ...newItems]);

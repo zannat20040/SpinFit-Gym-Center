@@ -13,7 +13,7 @@ const WeeklySchedule = () => {
     queryKey: ["weekSchedule"],
     queryFn: async () => {
       const response = await axios.get(
-        "http://localhost:5000/application?role=trainer"
+        "https://server-psi-tawny-84.vercel.app/application?role=trainer"
       );
       return response.data;
     },

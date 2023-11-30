@@ -136,7 +136,7 @@ const BeATrainer = () => {
     };
 
     axios
-      .post("http://localhost:5000/trainerApplication", trainerProfile)
+      .post("https://server-psi-tawny-84.vercel.app/trainerApplication", trainerProfile)
       .then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {

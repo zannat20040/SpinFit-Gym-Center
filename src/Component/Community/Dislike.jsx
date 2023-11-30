@@ -23,7 +23,7 @@ const Dislike = ({details}) => {
   
     // const HandleDislikeClick = async () => {
     //   await axios
-    //     .patch(`http://localhost:5000/blog/${details?._id}`, {updatedDislike,dislike:true})
+    //     .patch(`https://server-psi-tawny-84.vercel.app/blog/${details?._id}`, {updatedDislike,dislike:true})
     //     .then((res) => {
     //       console.log(res.data);
     //     })

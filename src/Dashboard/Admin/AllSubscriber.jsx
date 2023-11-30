@@ -11,7 +11,7 @@ const AllSubscriber = () => {
   } = useQuery({
     queryKey: ["subscribers"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:5000/subscribers");
+      const response = await axios.get("https://server-psi-tawny-84.vercel.app/subscribers");
       return response.data;
     },
   });

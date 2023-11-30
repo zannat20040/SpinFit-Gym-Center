@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
       {
         path: "/trainer/:id",
         element: <TrainerDetails></TrainerDetails>,
-        loader:({params})=>fetch(`http://localhost:5000/application/${params.id}`),
+        loader:({params})=>fetch(`https://server-psi-tawny-84.vercel.app/application/${params.id}`),
       },
       {
         path: "/community",
@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
       {
         path: "/community/:id",
         element: <PostDetail></PostDetail>,
-        // loader: ({params}) => fetch(`http://localhost:5000/blog/${params.id}`),
+        // loader: ({params}) => fetch(`https://server-psi-tawny-84.vercel.app/blog/${params.id}`),
       }
     ],
   },

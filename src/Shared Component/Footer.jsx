@@ -15,7 +15,7 @@ const Footer = () => {
             email:  email
         }
 
-        axios.post('http://localhost:5000/subscribers', subscribers)
+        axios.post('https://server-psi-tawny-84.vercel.app/subscribers', subscribers)
         .then(res=>{
             console.log(res.data.status)
             toast.success('Stay tuned for the latest news from SpinFit')

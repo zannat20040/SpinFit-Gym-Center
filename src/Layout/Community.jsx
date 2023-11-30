@@ -12,7 +12,7 @@ const Community = () => {
   } = useQuery({
     queryKey: ["forums"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/blog");
+      const res = await fetch("https://server-psi-tawny-84.vercel.app/blog");
       return res.json();
     },
   });

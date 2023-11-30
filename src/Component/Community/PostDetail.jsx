@@ -17,7 +17,7 @@ const PostDetail = () => {
     queryKey: ["details"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/blog/${params.id}`
+        `https://server-psi-tawny-84.vercel.app/blog/${params.id}`
       );
       return response.data;
     },

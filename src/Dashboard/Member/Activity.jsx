@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import usersData from "../../Custom hooks/usersData";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Activity = () => {
   const { data: userInfo } = usersData();
@@ -39,6 +40,9 @@ const Activity = () => {
   console.log(myBooking);
   return (
     <div>
+      <Helmet>
+        <title>SpinFit | Activity</title>
+      </Helmet>
       <div>
         <div className="overflow-x-auto">
           <table className="table">

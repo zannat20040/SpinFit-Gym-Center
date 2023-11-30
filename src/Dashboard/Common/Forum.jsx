@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { Helmet } from "react-helmet-async";
 
 const Forum = () => {
   const userInfo = usersData();
@@ -53,6 +54,9 @@ const Forum = () => {
 
   return (
     <>
+    <Helmet>
+        <title>SpinFit | Add forum</title>
+      </Helmet>
       <div className="container max-w-lg mx-auto h-screen ">
         <form onSubmit={HandleForm}>
           <div className="form-control w-full">

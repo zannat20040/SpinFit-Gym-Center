@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import RouteLabel from "../Shared Component/RouteLabel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Gallery = () => {
   const [items, setItems] = useState([]);
@@ -31,6 +32,9 @@ const Gallery = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>SpinFit | Gallery</title>
+      </Helmet>
       <RouteLabel label={"gallery"}></RouteLabel>
       <div className="container mx-auto px-4 pb-12">
         <InfiniteScroll

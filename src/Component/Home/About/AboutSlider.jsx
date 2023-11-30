@@ -11,7 +11,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 const AboutSlider = () => {
   return (
     <>
-      <div className="border-[20px] border-[#dde244]">
+      <div className="border-[20px] border-[#dde244] mt-14">
         <Swiper
           autoplay={{
             delay: 2500,

@@ -6,11 +6,20 @@ import BeATrainerLayout from "../Component/Trainer/BeATrainerLayout";
 import { imgUpload } from "../Utils/imageUpload";
 import axios from "axios";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet-async";
 
 const BeATrainer = () => {
   const { data: userInfo } = usersData();
 
-  const allDays = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const allDays = [
+    "Sunday",
+    "Monday",
+    "Tueday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   const skills = [
     "Supplementation",
@@ -87,7 +96,7 @@ const BeATrainer = () => {
     }
 
     // skill level handle according to the skills
-  
+
     const updatedskills = [];
 
     const selectedSkill = skills.filter(
@@ -98,10 +107,10 @@ const BeATrainer = () => {
       const skillIsChecked = form[`skill${skillIndex + 1}`]?.checked;
 
       if (skillIsChecked) {
-        const skillLevel = form[`skill-level${skillIndex+1}`].value;
+        const skillLevel = form[`skill-level${skillIndex + 1}`].value;
         updatedskills.push({
           skill: skill,
-          value: skillLevel ,
+          value: skillLevel,
         });
       }
     }
@@ -111,8 +120,8 @@ const BeATrainer = () => {
       fullName: name,
       email: email,
       age: age,
-      specialization:specialization,
-      startingTime:startingTime,
+      specialization: specialization,
+      startingTime: startingTime,
       yearsOfExperience: experience,
       profileImage: photo,
       role: userInfo?.role,
@@ -145,11 +154,16 @@ const BeATrainer = () => {
     console.log(trainerProfile);
   };
   return (
-    <BeATrainerLayout
-      HandleTrainerApplication={HandleTrainerApplication}
-      HandleCheckbox={HandleCheckbox}
-      HandleSkillCheckbox={HandleSkillCheckbox}
-    ></BeATrainerLayout>
+    <>
+      <Helmet>
+        <title>SpinFit | Be a trainer</title>
+      </Helmet>
+      <BeATrainerLayout
+        HandleTrainerApplication={HandleTrainerApplication}
+        HandleCheckbox={HandleCheckbox}
+        HandleSkillCheckbox={HandleSkillCheckbox}
+      ></BeATrainerLayout>
+    </>
   );
 };
 

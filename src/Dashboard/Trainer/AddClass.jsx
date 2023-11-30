@@ -3,6 +3,7 @@ import Button from "../../Shared Component/Button";
 import usersData from "../../Custom hooks/usersData";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const AddClass = () => {
   const {data:userInfo} = usersData();
@@ -45,6 +46,9 @@ console.log(newClass)
 
   return (
     <div className="container max-w-lg mx-auto h-screen ">
+      <Helmet>
+        <title>SpinFit | add class</title>
+      </Helmet>
       <form className="card-body p-2 " onSubmit={HandleAddClass}>
         <div className="form-control">
           <label className="label">

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Like from "./Like";
 import Dislike from "./Dislike";
+import { Helmet } from "react-helmet-async";
 const PostDetail = () => {
   const params = useParams();
   const {
@@ -33,6 +34,9 @@ const PostDetail = () => {
 
   return (
     <>
+    <Helmet>
+        <title>SpinFit | forum details</title>
+      </Helmet>
       <RouteLabel label={"Read full Blog"}></RouteLabel>
       <div className="container mx-auto px-4 pb-20">
         {details && (

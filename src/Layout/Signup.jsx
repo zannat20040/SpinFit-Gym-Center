@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import { imgUpload } from "../Utils/imageUpload";
 import SignupLayout from "../Authentication/SignupLayout";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Signup = () => {
   const { createWithPass, loading, setLoading } = useContext(AuthContext);
@@ -64,6 +65,9 @@ const Signup = () => {
 
   return (
     <>
+    <Helmet>
+        <title>SpinFit | Signup</title>
+      </Helmet>
       <RouteLabel label={"signup"}></RouteLabel>
       <SignupLayout HandleSignup={HandleSignup}></SignupLayout>
   

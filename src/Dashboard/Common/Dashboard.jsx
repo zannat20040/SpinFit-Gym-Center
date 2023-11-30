@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import usersData from "../../Custom hooks/usersData";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/spinfit-removebg-preview.png";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const { data: userInfo, isLoading } = usersData();
@@ -29,6 +30,9 @@ const Dashboard = () => {
 
   return (
     <div className="drawer h-screen">
+      <Helmet>
+        <title>SpinFit | dashboard</title>
+      </Helmet>
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex relative">
         {/* Page content here */}

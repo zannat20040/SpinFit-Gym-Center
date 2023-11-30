@@ -29,7 +29,7 @@ const Footer = () => {
     <>
       <div className="border-t-2 border-gray-500">
         <div className="container mx-auto px-4">
-          <footer className="footer flex justify-between py-10 font-roboto text-base  text-white">
+          <footer className="footer flex flex-wrap justify-between py-10 font-roboto text-base  text-white">
             <nav>
               <header className="footer-title">Services</header>
               <a className="link link-hover">Nutritional Services</a>
@@ -55,7 +55,7 @@ const Footer = () => {
               <a className="link link-hover">Cookie policy</a>
             </nav>
             {/* newletter section */}
-            <form onSubmit={HandleNewsletter} className="w-1/4">
+            <form onSubmit={HandleNewsletter} className="">
               <header className="footer-title">Newsletter</header>
               <p>Subscribe our Newsletter and gets out latest updates , offers, products and promotions we provide</p>
               <div className="form-control w-full ">

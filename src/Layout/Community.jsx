@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import RouteLabel from "../Shared Component/RouteLabel";
 import CommunityMainPg from "../Component/Community/CommunityMainPg";
+import { Helmet } from "react-helmet-async";
 
 const Community = () => {
   const {
@@ -26,6 +27,9 @@ const Community = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>SpinFit | community</title>
+      </Helmet>
       <RouteLabel label={"Forum"}></RouteLabel>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-3 gap-4">

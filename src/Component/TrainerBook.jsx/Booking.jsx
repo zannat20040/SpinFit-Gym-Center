@@ -7,6 +7,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { useLocation, useParams } from "react-router-dom";
 import usersData from "../../Custom hooks/usersData";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet-async";
 
 const Booking = () => {
   
@@ -63,6 +64,9 @@ const Booking = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>SpinFit | Booking</title>
+      </Helmet>
       <RouteLabel label={"Book you package now"}></RouteLabel>
       <div className="container mx-auto px-4 pb-32">
         <div className="flex gap-10  justify-center">

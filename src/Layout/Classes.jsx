@@ -4,6 +4,7 @@ import RouteLabel from "../Shared Component/RouteLabel";
 import Button from "../Shared Component/Button";
 import { Link } from "react-router-dom";
 import WeeklySchedule from "../Component/Classes/WeeklySchedule";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const { isLoading, data: classes } = useQuery({
@@ -17,6 +18,9 @@ const Classes = () => {
   console.log(classes);
   return (
     <div>
+      <Helmet>
+        <title>SpinFit | Classes</title>
+      </Helmet>
       <RouteLabel label={"All classes"}></RouteLabel>
       {isLoading ? (
         <div className="container mx-auto mt-10 text-center">

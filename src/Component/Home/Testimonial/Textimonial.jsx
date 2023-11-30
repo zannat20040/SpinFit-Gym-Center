@@ -26,7 +26,7 @@ const Textimonial = () => {
 
   return (
     <div className="container mx-auto px-4 mt-16">
-      <div className="grid grid-cols-2 gap-6">
+      <div className=" ">
       <div></div>
         <div className="text-end">
           <h1 className="mb-5 text-6xl font-bold font-oswald text-white">
@@ -45,7 +45,7 @@ const Textimonial = () => {
           >
             {testimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
-                <div className="bg-slate-900 py-10 ">
+                <div className=" py-10 ">
                   <LuQuote className="absolute text-9xl top-[-5px] right-20" />
                   <p className="relative mb-5 text-white font-roboto font-light text-xl">
                     {testimonial.testimonial}

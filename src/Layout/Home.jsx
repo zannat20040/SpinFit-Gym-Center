@@ -6,10 +6,14 @@ import Textimonial from '../Component/Home/Testimonial/Textimonial';
 import Blog from '../Component/Home/Blog/Blog';
 import Footer from '../Shared Component/Footer';
 import TeamLayout from '../Component/Home/Team member/TeamLayout';
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
     return (
         <div>
+             <Helmet>
+        <title>SpinFit | Home</title>
+      </Helmet>
             <Banner></Banner>
             <FeatureLayout></FeatureLayout>
             <AboutLayout></AboutLayout>

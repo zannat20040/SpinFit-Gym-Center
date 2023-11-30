@@ -37,9 +37,9 @@ const Blog = () => {
           Our Recent <span className="text-6xl text-[#dde244] ">Blogs</span>
         </h1>
       </div>
-      <div className="grid grid-cols-3 gap-5 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
         {forums.map((forum, index) => (
-         <div className="card w-96 bg-gray-500 rounded-none group ">
+         <div className="card  bg-gray-500 rounded-none group ">
          <figure className="h-[250px]">
            <img
              src={forum.postDetail?.image}

@@ -4,11 +4,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import RouteLabel from "../Shared Component/RouteLabel";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import GoogleSignIn from "../Shared Component/GoogleSignIn";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { loginWithPass, googleSignIn } = useContext(AuthContext);
-  // const navigate = useNavigate()
-  // const location = useLocation()
   const HandleLogin = (e) => {
     e.preventDefault();
 
@@ -16,20 +17,24 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-      loginWithPass(email, password)
-        .then((userCredential) => {
-          swal("Good job!", "Logged in successfully!", "success");
-        })
-        .catch((error) => {
-          swal("Opps!", error.message , "error");
-        });
-    };
-
-    
+    loginWithPass(email, password)
+      .then((userCredential) => {
+        swal("Good job!", "Logged in successfully!", "success");
+        navigate(
+          location?.state?.redirectTo ? location?.state?.redirectTo : "/"
+        );
+      })
+      .catch((error) => {
+        swal("Opps!", error.message, "error");
+      });
+  };
 
   return (
     <>
       <RouteLabel label={"login"}></RouteLabel>
+      <Helmet>
+        <title>SpinFit | Login</title>
+      </Helmet>
       <div className="container max-w-lg mx-auto h-screen ">
         <form onSubmit={HandleLogin}>
           <div className="form-control">
@@ -72,9 +77,8 @@ const Login = () => {
           </Link>
         </div>
         <div className="divider text-white">OR</div>
-        
-          <GoogleSignIn label={"Continue with Google"}></GoogleSignIn>
-       
+
+        <GoogleSignIn label={"Continue with Google"}></GoogleSignIn>
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import { AiFillInstagram } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { FaClock, FaFacebookF, FaGoogle, FaLinkedinIn } from "react-icons/fa6";
 import Button from "../Shared Component/Button";
+import { Helmet } from "react-helmet-async";
 
 const Trainer = () => {
   const { isLoading, data: trainers } = useQuery({
@@ -17,6 +18,9 @@ const Trainer = () => {
 
   return (
     <div className="pb-10">
+      <Helmet>
+        <title>SpinFit | trainer</title>
+      </Helmet>
       <RouteLabel label={"all trainer"}></RouteLabel>
       {isLoading ? (
         <div className="container mx-auto mt-10 text-center">

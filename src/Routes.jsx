@@ -21,6 +21,7 @@ import AllApplied from "./Dashboard/Admin/AllApplied";
 import Allmember from "./Dashboard/Trainer/Allmember";
 import Activity from "./Dashboard/Member/Activity";
 import RecommendPg from "./Dashboard/Member/RecommendPg";
+import PrivateRoute from "./Component/Private/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -54,11 +55,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/newTrainer",
-        element: <BeATrainer></BeATrainer>,
+        element: <PrivateRoute><BeATrainer></BeATrainer></PrivateRoute>,
       },
       {
         path: "/booknow",
-        element: <Booking></Booking>
+        element: <PrivateRoute><Booking></Booking></PrivateRoute>
       },
       {
         path: "/trainer/:id",
@@ -79,7 +80,7 @@ export const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "forum",

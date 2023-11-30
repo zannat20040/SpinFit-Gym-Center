@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 const AllTrainer = () => {
   const {
@@ -28,6 +29,9 @@ const AllTrainer = () => {
 
   return (
     <div className="overflow-x-auto">
+      <Helmet>
+        <title>SpinFit | all trainer</title>
+      </Helmet>
       <table className="table">
         {/* head */}
         <thead>

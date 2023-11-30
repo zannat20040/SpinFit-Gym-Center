@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaUserCheck } from "react-icons/fa";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
@@ -41,6 +42,9 @@ const AllApplied = () => {
 
   return (
     <div className="overflow-x-auto">
+      <Helmet>
+        <title>SpinFit | application</title>
+      </Helmet>
       <table className="table">
         {/* head */}
         <thead>

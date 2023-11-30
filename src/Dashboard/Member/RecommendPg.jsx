@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../Shared Component/Button';
+import { Helmet } from 'react-helmet-async';
 
 const RecommendPg = () => {
     const [myRecommended, setMyRecommended] = useState();
@@ -27,6 +28,9 @@ const RecommendPg = () => {
       console.log(classes)
     return (
         <div>
+          <Helmet>
+        <title>SpinFit | Recommended</title>
+      </Helmet>
              <div className="grid grid-cols-3 gap-5">
             {myRecommended?.map((item) => (
               <div className="card bg-slate-500 rounded-none text-primary-content">

@@ -7,7 +7,7 @@ const FeatureLayout = () => {
   return (
     <>
       <div className="container m-auto px-4 py-20">
-        <div className="grid grid-cols-2 py-10 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 py-10 items-center">
           <div className="grid grid-cols-2 gap-4">
             {gymFeatures.map((feature, index) => (
               <Feature feature={feature} key={index}></Feature>

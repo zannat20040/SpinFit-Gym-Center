@@ -12,6 +12,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
 
 const TrainerDetails = () => {
   const trainerDetails = useLoaderData();
@@ -96,6 +97,9 @@ const TrainerDetails = () => {
     <>
       {/* rounte label */}
       <RouteLabel label={"Read full Blog"}></RouteLabel>
+      <Helmet>
+        <title>SpinFit | Trainer details</title>
+      </Helmet>
       <div className="container mx-auto px-4 pb-20">
         {/* become a trainer button */}
         <Link to="/newTrainer">

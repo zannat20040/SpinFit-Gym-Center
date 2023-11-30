@@ -18,8 +18,8 @@ const TeamLayout = () => {
       <h1 className="mb-5 text-6xl font-bold font-oswald text-white py-5">
           Our Top <span className="text-6xl text-black">Expertise</span>
         </h1>
-        <div className="grid  py-10 items-center">
-          <div className="grid grid-cols-4 gap-4 ">
+        <div className=" py-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 ">
             {trainers?.map((member, index) => (
               <Team member={member} key={index}></Team>
             ))}

@@ -17,7 +17,6 @@ const WeeklySchedule = () => {
       );
       return response.data;
     },
-    refetchInterval: 1000,
   });
 
   const daysOfWeek = [

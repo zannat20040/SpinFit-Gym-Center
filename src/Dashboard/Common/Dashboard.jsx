@@ -87,8 +87,11 @@ const Dashboard = () => {
             <Link to="/application" className="p-2 font-roboto ">
             Applied Trainer
             </Link>
-            <Link to="" className="p-2 font-roboto ">
+            <Link to="alltrainers" className="p-2 font-roboto ">
             All Trainers
+            </Link>
+            <Link to="subscriber" className="p-2 font-roboto ">
+              All Subscriber
             </Link>
             <Link to="/" className="p-2 font-roboto ">
             Balance

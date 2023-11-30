@@ -15,6 +15,8 @@ import Trainer from "./Layout/Trainer";
 import TrainerDetails from "./Layout/TrainerDetails";
 import BeATrainer from "./Layout/BeATrainer";
 import Booking from "./Component/TrainerBook.jsx/Booking";
+import AllTrainer from "./Dashboard/Admin/AllTrainer";
+import AllSubscriber from "./Dashboard/Admin/AllSubscriber";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +84,14 @@ export const router = createBrowserRouter([
       {
         path: "addclass",
         element: <AddClass></AddClass>,
+      },
+      {
+        path: "alltrainers",
+        element: <AllTrainer></AllTrainer>,
+      },
+      {
+        path: "subscriber",
+        element: <AllSubscriber></AllSubscriber>,
       },
     ],
   },

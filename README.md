@@ -1,8 +1,6 @@
 
 ## SpinFit 
 
-https://worky-7a37f.web.app/
-
 ## Features
 
 - Highlights of recent community posts or articles.
@@ -23,3 +21,9 @@ https://worky-7a37f.web.app/
 - dynamic route title
 - 404 page for handling unmatched routes.
 
+
+## 🔗 Links
+
+* Client site repo: https://github.com/zannat20040/SpinFit-Gym-Center
+* Server site repo: https://github.com/zannat20040/SpinFit-server
+* Live site: https://spinfit-610d6.web.app/

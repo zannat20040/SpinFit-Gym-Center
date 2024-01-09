@@ -10,7 +10,6 @@ const Dislike = ({details}) => {
     const existingLikedUser = [...details?.likedUser];
 
     const isDisliked =  existingDislikedUser.includes(user?.email) || existingLikedUser.includes(user?.email) ;
-    // const isDisliked = existingDislikedUser.includes(user?.email);
   
     if (!isDisliked) {
         existingDislikedUser.push(user?.email);
@@ -21,16 +20,16 @@ const Dislike = ({details}) => {
       dislikedUser: existingDislikedUser,
     };
   
-    // const HandleDislikeClick = async () => {
-    //   await axios
-    //     .patch(`https://server-psi-tawny-84.vercel.app/blog/${details?._id}`, {updatedDislike,dislike:true})
-    //     .then((res) => {
-    //       console.log(res.data);
-    //     })
-    //     .error((error) => {
-    //       console.log(error);
-    //     });
-    // };
+    const HandleDislikeClick = async () => {
+      await axios
+        .patch(`https://server-psi-tawny-84.vercel.app/blog/${details?._id}`, {updatedDislike,dislike:true})
+        .then((res) => {
+          console.log(res.data);
+        })
+        .error((error) => {
+          console.log(error);
+        });
+    };
   
     return (
       <>

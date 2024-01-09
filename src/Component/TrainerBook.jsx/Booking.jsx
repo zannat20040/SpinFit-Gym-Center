@@ -8,19 +8,22 @@ import { useLocation, useParams } from "react-router-dom";
 import usersData from "../../Custom hooks/usersData";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet-async";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  Elements,
+} from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
+
+const stripePromise = loadStripe(import.meta.env.VITE_Payment);
+
 
 const Booking = () => {
-  
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
 
-  const date = searchParams.get("date");
-  const time = searchParams.get("time");
-  const email = searchParams.get("email");
-  
-  const {data:userInfo} = usersData()
 
   const [pricing, setPricing] = useState([]);
+  const [price, setPrice] = useState([]);
+
+
   useEffect(() => {
     axios
       .get("./pricing.json")
@@ -32,36 +35,17 @@ const Booking = () => {
       });
   }, []);
 
-  const HandleJoinNow=(planName,planPrice)=>{
-    const packageData = {
-      bookingUser: userInfo.name,
-      userEmail: userInfo.email,
-      bookingDate: date ,
-      bookingTime: time ,
-      packagePrice: planPrice ,
-      packagePame: planName ,
-      trainerName: email ,
-    }
-    console.log(packageData)
+  const HandleJoinNow = async (planName, planPrice) => {
+    document.getElementById("my_modal_2").showModal();
+ 
+    const priceInfo = {
+      packagePrice: planPrice,
+      packageName: planName,
+    };
+    setPrice(priceInfo)
+   
+  };
 
-    axios
-    .post("https://server-psi-tawny-84.vercel.app/bookings", packageData)
-    .then((res) => {
-      console.log(res.data);
-      if (res.data.insertedId) {
-        swal(
-          "Congratulations!",
-          "Trainer booked successfully",
-          "success"
-        );
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-
-  }
   return (
     <div>
       <Helmet>
@@ -71,7 +55,7 @@ const Booking = () => {
       <div className="container mx-auto px-4 pb-32">
         <div className="flex gap-10  justify-center">
           {pricing.map((item, index) => (
-            <div className="card  bg-gray-900 rounded-none ">
+            <div className="card  bg-gray-900 rounded-none " key={index}>
               <div className=" bg-[#dde244] ">
                 <h2 className="card-title text-4xl py-2font-oswald capitalize text-black justify-center py-12 px-5">
                   {item.name}
@@ -103,10 +87,25 @@ const Booking = () => {
                   ))}
                 </div>
                 <div className="card-actions justify-center w-full mt-7">
-                  <button onClick={()=>HandleJoinNow(item.name,item.price)} className="uppercase tracking-widest text-black btn border-none btn-outline bg-[#dde244] rounded-none w-full">
+                  {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+                  <button
+                    onClick={() => HandleJoinNow(item.name, item.price)}
+                    className="uppercase tracking-widest text-black btn border-none btn-outline bg-[#dde244] rounded-none w-full"
+                  >
                     <span className="mr-6">Join now</span>
                     <FaArrowRightLong></FaArrowRightLong>
                   </button>
+                  <dialog id="my_modal_2" className="modal  ">
+                    <div className="modal-box rounded-none">
+                      <Elements stripe={stripePromise} >
+                        <CheckoutForm price={price}/>
+                      </Elements>
+                    </div>
+                    <form method="dialog" className="modal-backdrop">
+                      <button>close</button>
+                    </form>
+                  </dialog>
                 </div>
               </div>
             </div>

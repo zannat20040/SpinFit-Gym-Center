@@ -32,8 +32,8 @@ const Trainer = () => {
             {trainers.map((trainer) => (
               <div className="card w-96 bg-gray-700 rounded-none">
                 <div className="flex gap-4 items-center px-8 py-8 border-b border-gray-100 ">
-                  <div class="avatar">
-                    <div class="w-24 rounded-full">
+                  <div className="avatar">
+                    <div className="w-24 rounded-full">
                       <img src={trainer.profileImage} />
                     </div>
                   </div>

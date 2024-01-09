@@ -16,23 +16,15 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-/* .feature {
-
-    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
-    background: url('https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-    width: fit-content;
-    min-height: 650px;
-    position: relative;
-} */
-
-/* .feature::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    background-color: rgba(0, 0, 0, 0.624);
-    width: calc(100% + 20px);
-    height: calc(100% + 20px);
-    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
-    z-index: -9
-} */
+.swiper-pagination-bullet-active{
+    background-color: #dde244!important;
+}
+.swiper-pagination-bullet{
+    border: 1px solid #dde244;
+}
+.swiper-button-prev {
+color: #dde244!important;
+}
+.swiper-button-next {
+color: #dde244!important;
+}

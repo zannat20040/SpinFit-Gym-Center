@@ -63,13 +63,13 @@ const TrainerDetails = () => {
   useEffect(() => {
     if (selectedDate && selectedTime) {
       setEnableBooking(true);
-      console.log(enableBooking); 
+      // console.log(enableBooking); 
     } else {
       setEnableBooking(false);
     }
   }, [selectedDate, selectedTime]);
   
-  console.log(selectedDate, selectedTime);
+  // console.log(selectedDate, selectedTime);
 
   const getDayName = (dayOfWeek) => {
     const days = [

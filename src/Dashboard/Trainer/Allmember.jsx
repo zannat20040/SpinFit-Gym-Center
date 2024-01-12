@@ -3,6 +3,8 @@ import usersData from "../../Custom hooks/usersData";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import PageTitle from "../Common/PageTitle";
+import { Link } from "react-router-dom";
 
 const Allmember = () => {
   const { data: userInfo } = usersData();
@@ -31,12 +33,13 @@ const Allmember = () => {
 
   console.log(myMember);
   return (
-    <div>
+    <div className="container mx-auto h-screen">
       <Helmet>
         <title>SpinFit | all member</title>
       </Helmet>
-      <div>
-        <div className="overflow-x-auto">
+      <PageTitle title={'your trainee'}></PageTitle>
+
+      <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
             <thead>
@@ -47,24 +50,25 @@ const Allmember = () => {
                 <th>Booking time</th>
                 <th>Package</th>
                 <th>Price</th>
+                <th className="text-center">Email Instruction</th>
               </tr>
             </thead>
             <tbody>
               {/* row 1 */}
               {myMember?.map((item, index) => (
-                <tr className="text-white font-roboto">
+                <tr className="text-white font-roboto bg-gray-800">
                   <th>{index + 1}</th>
                   <td>{item?.bookingUser}</td>
                   <td>{new Date(item?.bookingDate).toISOString().split('T')[0]}</td>
                   <td>{item?.bookingTime}</td>
                   <td>{item?.packagePame}</td>
                   <td>${item?.packagePrice}</td>
+                  <td className="text-center"><a href={`mailto:${item?.userEmail}`}><span  className="bg-[#dde244] text-black p-1 px-3 ">send</span></a></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </div>
     </div>
   );
 };

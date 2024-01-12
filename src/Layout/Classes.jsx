@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import WeeklySchedule from "../Component/Classes/WeeklySchedule";
 import { Helmet } from "react-helmet-async";
 
+
 const Classes = () => {
   const { isLoading, data: classes } = useQuery({
     queryKey: ["classes"],
@@ -14,6 +15,8 @@ const Classes = () => {
       return res.json();
     },
   });
+
+
 
   return (
     <div>

@@ -28,23 +28,30 @@ const Trainer = () => {
         </div>
       ) : (
         <div className="container px-4 mx-auto">
-          <div className="grid grid-cols-3 gap-4 ">
+          <div className="grid grid-cols-4 gap-4 ">
             {trainers.map((trainer) => (
-              <div className="card w-96 bg-gray-700 rounded-none">
-                <div className="flex gap-4 items-center px-8 py-8 border-b border-gray-100 ">
-                  <div className="avatar">
+              <div className="card  bg-gray-700 rounded-none">
+                <div className="flex flex-col justify-center items-center  gap-4 px-8 py-8   ">
+                  {/* image */}
+                  <div className="avatar  mb-4">
                     <div className="w-24 rounded-full">
                       <img src={trainer.profileImage} />
                     </div>
                   </div>
+                  {/* body */}
                   <div>
-                    <h2 className="card-title text-[#dde244] text-2xl font-bold font-oswald  capitalize ">
+                    {/* name */}
+                    <h2 className="card-title justify-center text-[#dde244] text-2xl font-bold font-oswald  capitalize ">
                       {trainer?.fullName}
                     </h2>
-                    <span className="text-gray-300 font-roboto">
+                    {/* experience */}
+                    <div className="text-center">
+                    <span className="text-gray-300  font-roboto">
                       ( {trainer?.yearsOfExperience} years experience )
                     </span>
-                    <div className="flex  gap-3 mt-3 ">
+                    </div>
+                    {/* social icon */}
+                    <div className="flex justify-center gap-3 mt-5 ">
                       {trainer?.socialIcons?.map((item) => (
                         <Link to={item?.link} key={item?.platform}>
                           <span className="w-12 h-12 text-black text-xl bg-[#dde244] rounded-full  flex justify-center items-center transition-transform transform hover:translate-y-[-10px] ease-in">
@@ -58,41 +65,26 @@ const Trainer = () => {
                         </Link>
                       ))}
                     </div>
-                  </div>
-                </div>
-                <div className="card-body  ">
-                  <div className="text-start flex-grow">
-                    {trainer?.skills?.map((item) => (
-                      <>
-                        <p className="capitalize text-gray-300 font-roboto">
-                          {item?.skill}
-                        </p>
-                        <progress
-                          className="progress  "
-                          value={item?.value}
-                          max="100"
-                        ></progress>
-                      </>
-                    ))}
-                  </div>
-                  <div className="flex gap-4 items-center my-3">
-                    <FaClock className=" text-2xl" />
-                    <div className="flex justify-start items-center  ">
+                    {/* schedule */}
+                    <div className="flex justify-center my-5 items-center  ">
+                    {/* <FaClock className="mr-4 text-[#dde244] text-2xl" /> */}
                        {
                         trainer?.availableTimeSlot?.map(item=>(
-                          <p className=" font-roboto text-[#dde244]  capitalize mr-2">
-                          {item?.day} , 
+                          <p className=" font-roboto text-gray-300 capitalize mr-2">
+                          {item?.day} /
                         </p>
                         ))
                        }
                     </div>
-                  </div>
-                  <div className="card-actions">
+                    {/* button */}
+                  <div className="flex justify-center">
                     <Link to={`/trainer/${trainer._id}`}>
                       <Button label={"know more"}></Button>
                     </Link>
                   </div>
+                  </div>
                 </div>
+
               </div>
             ))}
           </div>

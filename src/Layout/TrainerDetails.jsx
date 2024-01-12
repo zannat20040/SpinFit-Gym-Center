@@ -63,12 +63,12 @@ const TrainerDetails = () => {
   useEffect(() => {
     if (selectedDate && selectedTime) {
       setEnableBooking(true);
-      // console.log(enableBooking); 
+      // console.log(enableBooking);
     } else {
       setEnableBooking(false);
     }
   }, [selectedDate, selectedTime]);
-  
+
   // console.log(selectedDate, selectedTime);
 
   const getDayName = (dayOfWeek) => {
@@ -87,7 +87,7 @@ const TrainerDetails = () => {
   const disabledDay = (date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Set hours to 0 for accurate date comparison
-      const dayOfWeek = getDay(date);
+    const dayOfWeek = getDay(date);
     const isUnavailableDay = !day.includes(getDayName(dayOfWeek));
     const isBeforeToday = date < today;
     return isUnavailableDay || isBeforeToday;
@@ -106,44 +106,37 @@ const TrainerDetails = () => {
           <Button label={"become a trainer"}></Button>
         </Link>
 
-        <div className="grid grid-cols-2 gap-10 justify-center items-start">
-          {/* trainer profile  */}
+        <div className="grid grid-cols-2 mt-10 gap-20 justify-center items-start">
 
-          <div className="flex- no-wrap">
+          {/* left side   */}
+          <div className="flex ">
             {trainerDetails && (
-              <div className="card items-start bg-base-100  mt-10 rounded-none py-5 text-center text-lg">
-                <figure>
-                  <img src={trainerDetails.profileImage} alt="Shoes" />
-                </figure>
-                <div className="card-body px-0">
-                  <div className="flex gap-3  items-end">
-                    <h2 className="card-title text-4xl text-white font-oswald capitalize">
+              <div className="card items-start w-full justify-start bg-base-100  mt-10 rounded-none py-5  text-lg">
+                <div className="card-body w-full px-0">
+                  <div className=" flex flex-col items-start gap-2">
+                    {/* full name */}
+                    <h2 className="card-title text-4xl text-[#dde244] font-oswald capitalize">
                       {trainerDetails?.fullName}
                     </h2>
+                    {/* experience */}
                     <span className="text-gray-300 font-roboto">
-                      ( {trainerDetails?.yearsOfExperience} years experience )
+                      Experience: {trainerDetails?.yearsOfExperience}+
                     </span>
+                    {/* age */}
                     <span className="text-gray-300 font-roboto">
-                      ( Age:{trainerDetails?.age} )
+                      Age:{trainerDetails?.age}
                     </span>
                   </div>
-                  <div className=" mb-4 mt-2 badge badge-outline w-fit rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244]">
-                    {trainerDetails?.specialization}
+                  {/* about me */}
+                  <div>
+                    <h2 className=" font-oswald text-3xl text-[#dde244] font-medium tracking-wider ">
+                      About Me
+                    </h2>
+                    <p className="font-roboto text-gray-300">
+                      {trainerDetails?.bio}
+                    </p>
                   </div>
-                  <div className="flex gap-3  ">
-                    {trainerDetails.socialIcons.map((item) => (
-                      <Link to={item?.link} key={item?.platform}>
-                        <span className="w-12 h-12 text-black text-xl bg-[#dde244] rounded-full  flex justify-center items-center transition-transform transform hover:translate-y-[-10px] ease-in">
-                          {item?.platform === "Facebook" && <FaFacebookF />}
-                          {item?.platform === "Linkedin" && <FaLinkedinIn />}
-                          {item?.platform === "Instagram" && (
-                            <AiFillInstagram />
-                          )}
-                          {/* Add more conditions based on your available icons */}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
+                  {/* skills */}
                   <div className="mt-10">
                     {trainerDetails.skills?.map((item) => (
                       <>
@@ -158,85 +151,105 @@ const TrainerDetails = () => {
                       </>
                     ))}
                   </div>
+                  {/* booking time */}
+                  <div className="form-control w-full my-6">
+                    <label className="label">
+                      <span className="label-text text-white font-roboto">
+                        Book Your time
+                      </span>
+                    </label>
+                    <select
+                      className="select select-bordered rounded-none z-50"
+                      name="category"
+                      value={selectedTime || ""}
+                      onChange={(e) => setSelectedTime(e.target.value)}
+                    >
+                      <option disabled selected>
+                        Select your time
+                      </option>
+                      {allSlotTime.map((slot, index) => (
+                        <option value={`${slot.start} - ${slot.end}`}>
+                          {slot.start} - {slot.end}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  {/* button */}
+                  {enableBooking ? (
+                    <Link
+                      to={`/booknow?date=${selectedDate}&time=${selectedTime}&email=${trainerDetails.email}`}
+                      className="w-full"
+                    >
+                      <button className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none">
+                        <span className="mr-6">get you package</span>{" "}
+                        <FaArrowRightLong></FaArrowRightLong>
+                      </button>
+                    </Link>
+                  ) : (
+                    <button
+                      disabled
+                      className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none"
+                    >
+                      <span className="mr-6">get you package</span>{" "}
+                      <FaArrowRightLong></FaArrowRightLong>
+                    </button>
+                  )}
                 </div>
               </div>
             )}
           </div>
 
-          {/* calender  */}
-          <div className=" flex flex-col justify-center">
-            <div className="flex gap-4 items-center my-3">
-              <FaClock className=" text-2xl" />
+          {/* right side  */}
+          <div className=" flex flex-col justify-centerend items-end">
+            {/* image */}
+            <figure className="w-full">
+              <img
+                src={trainerDetails.profileImage}
+                alt="Shoes"
+                className="w-full"
+              />
+            </figure>
+            {/* specialization */}
+            <div className=" mb-4 mt-2 badge badge-outline w-fit rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244]">
+              {trainerDetails?.specialization}
+            </div>
+            {/* starting time */}
+            <div className="flex gap-4 items-center my-1">
+              {/* <FaClock className="  text-[#dde244] text-2xl" /> */}
               <p className=" font-roboto text-[#dde244]  capitalize mr-2">
                 Starting time : {trainerDetails?.startingTime}
               </p>
             </div>
-            <div className="flex gap-4 items-center my-3">
-              <FaClock className=" text-2xl" />
+            {/* available on */}
+            <div className="flex gap-4 items-center my-1">
+              {/* <FaClock className=" text-2xl text-[#dde244] " /> */}
               <span className="font-roboto text-[#dde244]">
                 Available on :{" "}
               </span>
               <div className="flex justify-start items-center  ">
                 {trainerDetails?.availableTimeSlot?.map((item) => (
                   <p className=" font-roboto text-[#dde244]  capitalize mr-2">
-                    {item?.day} ,
+                    {item?.day} /
                   </p>
                 ))}
               </div>
             </div>
-            <div className="flex gap-4 items-center my-3">
-              <FaClock className=" text-2xl" />
+            {/* time slot */}
+            <div className="flex gap-4 items-center my-1">
+              {/* <FaClock className=" text-2xl  text-[#dde244] " /> */}
               <div className="flex justify-start items-center  ">
                 <p className=" font-roboto text-[#dde244]  capitalize mr-2">
                   Weekly available : {trainerDetails?.weeklyAvailableTime} slot
                 </p>
               </div>
             </div>
+            {/* calender */}
             <Calendar
               className="mt-5 bg-[#dde2444]"
               date={selectedDate || new Date()}
               disabledDay={disabledDay}
               onChange={handleSelect}
             />
-            <div className="form-control w-full my-6">
-              <label className="label">
-                <span className="label-text text-white font-roboto">
-                  Book Your time
-                </span>
-              </label>
-              <select
-                className="select select-bordered rounded-none z-50"
-                name="category"
-                value={selectedTime || ""}
-                onChange={(e) => setSelectedTime(e.target.value)}
-              >
-                <option disabled selected>
-                  Select your time
-                </option>
-                {allSlotTime.map((slot, index) => (
-                  <option value={`${slot.start} - ${slot.end}`}>
-                    {slot.start} - {slot.end}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {enableBooking ? (
-              <Link
-                to={`/booknow?date=${selectedDate}&time=${selectedTime}&email=${trainerDetails.email}`}
-                className="w-full"
-              >
-                <button className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none">
-                  <span className="mr-6">get you package</span>{" "}
-                  <FaArrowRightLong></FaArrowRightLong>
-                </button>
-              </Link>
-            ) : (
-              <button disabled className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none">
-                  <span className="mr-6">get you package</span>{" "}
-                  <FaArrowRightLong></FaArrowRightLong>
-                </button>
-            )}
           </div>
         </div>
       </div>

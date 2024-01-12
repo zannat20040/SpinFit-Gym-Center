@@ -3,9 +3,21 @@ import RouteLabel from "../../Shared Component/RouteLabel";
 import Button from "../../Shared Component/Button";
 import usersData from "../../Custom hooks/usersData";
 
-const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSkillCheckbox}) => {
+const BeATrainerLayout = ({
+  HandleTrainerApplication,
+  HandleCheckbox,
+  HandleSkillCheckbox,
+}) => {
   const { data: userInfo } = usersData();
-  const allDays = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const allDays = [
+    "Sunday",
+    "Monday",
+    "Tueday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   const skills = [
     "Supplementation",
@@ -31,6 +43,7 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
         >
           <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-400 font-roboto ">
+              {/* name */}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-white tracking-wider">
@@ -45,6 +58,7 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                   name="name"
                 />
               </div>
+              {/* email */}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-white tracking-wider">
@@ -60,6 +74,7 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                 />
               </div>
             </div>
+            {/* experience */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white tracking-wider font-roboto">
@@ -74,6 +89,7 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                 name="experience"
               />
             </div>
+            {/* specialization */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white tracking-wider font-roboto">
@@ -89,29 +105,38 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-400 font-roboto">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white tracking-wider font-roboto">
-                  Your Age
-                </span>
-              </label>
-              <input
-                type="number"
-                placeholder="type here.."
-                className="input input-bordered rounded-none"
-                required
-                name="age"
-              />
+              {/* age */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-white tracking-wider font-roboto">
+                    Your Age
+                  </span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="type here.."
+                  className="input input-bordered rounded-none"
+                  required
+                  name="age"
+                />
+              </div>
+              {/* available slot */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-white tracking-wider font-roboto">
+                    Your Slot starting time
+                  </span>
+                </label>
+                <input
+                  type="time"
+                  id="appt"
+                  name="startingTime"
+                  required
+                  className=" input input-bordered rounded-none"
+                />
+              </div>
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white tracking-wider font-roboto">
-                  Your Slot starting time
-                </span>
-              </label>
-              <input type="time" id="appt" name="startingTime" required className=" input input-bordered rounded-none"/>
-            </div>
-            </div>
+            {/* image */}
             <div className="form-control">
               <label className="label ">
                 <span className="label-text rounded-none text-white tracking-wider font-roboto">
@@ -127,97 +152,117 @@ const BeATrainerLayout = ({ HandleTrainerApplication, HandleCheckbox , HandleSki
                 accept="image/*"
               />
             </div>
-            <label className="label">
-              <span className="label-text text-white tracking-wider font-roboto">
-                Give your social meadia link
-              </span>
-            </label>
-            {socialLink.map((link) => (
-              <div className="form-control mb-2">
-                <input
-                  type="url"
-                  placeholder={link}
-                  className="input input-bordered rounded-none"
-                  required
-                  name={link}
-                />
-              </div>
-            ))}
-            <label className="label  mt-5 ">
-              <span className="label-text text-white font-roboto">
-                Choose your available time according to the day
-              </span>
-            </label>
-            <div className=" grid-cols-2 grid gap-3 justify-between text-gray-400 font-roboto ">
-              {allDays.map((day) => (
-                <div className="form-control flex flex-row gap-4">
-                  <label className="label cursor-pointer  ">
-                    <input
-                      type="checkbox"
-                      name={day.toLowerCase()}
-                      value={day.toLowerCase}
-
-                      className="checkbox border border-white rounded-none checkbox-sm mr-1"
-                      onClick={(event) => HandleCheckbox(day, event)}
-                    />
-                    <span className="label-text font-roboto text-white">
-                      {day}
-                    </span>
-                  </label>
+             {/* about yourself */}
+             <div className="form-control">
+              <label className="label">
+                <span className="label-text text-white tracking-wider font-roboto">
+                  Write about you
+                </span>
+              </label>
+              <textarea
+                className="textarea textarea-bordered rounded-none"
+                placeholder="Bio"
+                required
+                name="bio"
+              ></textarea>
+            </div>
+            {/* social link */}
+            <div>
+              <label className="label">
+                <span className="label-text text-white tracking-wider font-roboto">
+                  Give your social meadia link
+                </span>
+              </label>
+              {socialLink.map((link) => (
+                <div className="form-control mb-2">
                   <input
-                    type="number"
+                    type="url"
+                    placeholder={link}
+                    className="input input-bordered rounded-none"
                     required
-                    name={`totalSlot-${day.toLowerCase()}`}
-                    disabled
-                    id={`totalSlot-${day}`}
-                    className="timepicker w-full input input-sm rounded-none border border-gray-600"
+                    name={link}
                   />
                 </div>
               ))}
             </div>
-            <div className="form-control mt-6 text-center">
-              <Button label={"Apply"}></Button>
-            </div>
-          </div>
-          <div>
-            <label className="label  mt-5 ">
-              <span className="label-text text-white font-roboto">
-                Give your skills level
-              </span>
-            </label>
-            {skills.map((skill,index) => (
-              <div className="" key={skill}>
-                <label className="label cursor-pointer w-full form-control flex gap-6 flex-row ">
-                  <div className="form-control w-full ">
-                    <label className="label gap-5 justify-start mb-3">
-                    <input
-                      type="checkbox"
-                      name={`skill${index+1}`}
-                      value=''
-                      id={`skill${index+1}`}
-                      className="checkbox border border-white rounded-none checkbox-sm mr-1"
-                      onClick={(event) => HandleSkillCheckbox(index, event)}
-                    />
-                      <span className="label-text text-white font-roboto">
-                        {skill}
+            {/* weekly time slot  */}
+            <div>
+              <label className="label  mt-5 ">
+                <span className="label-text text-white font-roboto">
+                  Choose your available time according to the day
+                </span>
+              </label>
+              <div className=" grid-cols-3 grid gap-3 justify-between text-gray-400 font-roboto ">
+                {allDays.map((day) => (
+                  <div className="form-control flex flex-row gap-4">
+                    <label className="label cursor-pointer  ">
+                      <input
+                        type="checkbox"
+                        name={day.toLowerCase()}
+                        value={day.toLowerCase}
+                        className="checkbox border border-white rounded-none checkbox-sm mr-1"
+                        onClick={(event) => HandleCheckbox(day, event)}
+                      />
+                      <span className="label-text font-roboto text-white">
+                        {day}
                       </span>
                     </label>
                     <input
-                      type="range"
-                      id={`skill-level${index+1}`}
-                      name={`skill-level${index+1}`}
-                      min="25"
-                      max="100"
+                      type="number"
+                      required
+                      name={`totalSlot-${day.toLowerCase()}`}
                       disabled
-                      className="range"
+                      id={`totalSlot-${day}`}
+                      className="timepicker w-full input input-sm rounded-none border border-gray-600"
                     />
                   </div>
-                </label>
+                ))}
               </div>
-            ))}
-          {
-            
-          }
+            </div>
+          </div>
+          <div>
+            {/* skills */}
+            <div>
+              <label className="label  mt-5 ">
+                <span className="label-text text-white font-roboto">
+                  Give your skills level
+                </span>
+              </label>
+              {skills.map((skill, index) => (
+                <div className="" key={skill}>
+                  <label className="label cursor-pointer w-full form-control flex gap-6 flex-row ">
+                    <div className="form-control w-full ">
+                      <label className="label gap-5 justify-start mb-3">
+                        <input
+                          type="checkbox"
+                          name={`skill${index + 1}`}
+                          value=""
+                          id={`skill${index + 1}`}
+                          className="checkbox border border-white rounded-none checkbox-sm mr-1"
+                          onClick={(event) => HandleSkillCheckbox(index, event)}
+                        />
+                        <span className="label-text text-white font-roboto">
+                          {skill}
+                        </span>
+                      </label>
+                      <input
+                        type="range"
+                        id={`skill-level${index + 1}`}
+                        name={`skill-level${index + 1}`}
+                        min="25"
+                        max="100"
+                        disabled
+                        className="range h-2"
+                      />
+                    </div>
+                  </label>
+                </div>
+              ))}
+            </div>
+            {/* button */}
+            <div className="form-control mt-6 text-center">
+              <Button label={"Apply"}></Button>
+            </div>
           </div>
         </form>
       </div>

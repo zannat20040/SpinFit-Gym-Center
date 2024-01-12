@@ -64,6 +64,7 @@ const BeATrainer = () => {
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
+    const bio = form.bio.value;
     const specialization = form.specialization.value;
     const startingTime = form.startingTime.value;
     const experience = form.experience.value;
@@ -120,6 +121,7 @@ const BeATrainer = () => {
       fullName: name,
       email: email,
       age: age,
+      bio:bio,
       specialization: specialization,
       startingTime: startingTime,
       yearsOfExperience: experience,

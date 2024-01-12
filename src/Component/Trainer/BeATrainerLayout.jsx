@@ -9,6 +9,7 @@ const BeATrainerLayout = ({
   HandleSkillCheckbox,
 }) => {
   const { data: userInfo } = usersData();
+  
   const allDays = [
     "Sunday",
     "Monday",

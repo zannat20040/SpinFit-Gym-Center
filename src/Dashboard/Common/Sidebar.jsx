@@ -25,7 +25,7 @@ const Sidebar = () => {
 
   return (
     <div>
-      <ul className="menu p-4 w-80 min-h-full bg-slate-950 text-white hidden lg:flex ">
+      <ul className="menu p-4 w-80 min-h-screen sticky top-0 bg-slate-950 text-white hidden lg:flex ">
         <div className="bg-slate-900 p-4 flex justify-center ">
           <Link to="/">
             <img src={logo} alt="" className="h-10" />

@@ -103,6 +103,7 @@ const BeATrainer = () => {
     const selectedSkill = skills.filter(
       (skill, index) => form[`skill${index + 1}`]?.checked
     );
+
     for (const skill of selectedSkill) {
       const skillIndex = skills.indexOf(skill);
       const skillIsChecked = form[`skill${skillIndex + 1}`]?.checked;
@@ -153,8 +154,8 @@ const BeATrainer = () => {
         console.log(error);
       });
 
-    console.log(trainerProfile);
   };
+  
   return (
     <>
       <Helmet>

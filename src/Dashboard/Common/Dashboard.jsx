@@ -45,11 +45,9 @@ const Dashboard = () => {
             >
               <FaBars className="text-4xl text-black "></FaBars>
             </label>
-
             <Navbar></Navbar>
           </div>
-
-          <div className="px-4 bg-slate-900 pt-14 pb-40 ">
+          <div className="bg-slate-900 p-20 ">
             <Outlet></Outlet>
           </div>
         </div>
@@ -125,7 +123,7 @@ const Dashboard = () => {
             </Link>
           </div>
         </ul>
-      </div>
+      </div> 
     </div>
   );
 };

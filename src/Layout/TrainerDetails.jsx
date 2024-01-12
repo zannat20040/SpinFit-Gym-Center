@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import RouteLabel from "../Shared Component/RouteLabel";
 import { Calendar } from "react-date-range";
 import { getDay } from "date-fns";
@@ -13,23 +13,30 @@ import {
 } from "react-icons/fa6";
 import { AiFillInstagram } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
+import usersData from "../Custom hooks/usersData";
 
 const TrainerDetails = () => {
+  const { data: userInfo } = usersData();
+
   const trainerDetails = useLoaderData();
   const [allSlotTime, setAllSlotTime] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [enableBooking, setEnableBooking] = useState(false);
 
+  const navigate =useNavigate()
+  // slot day get
   const availableTimeSlot = trainerDetails?.availableTimeSlot;
   const day = [];
   for (const data of availableTimeSlot) {
     day.push(data.day);
   }
 
+  // slot time formate
   const formatTime = (time) =>
     time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
+    // date select with slot time handle
   const handleSelect = (date) => {
     setSelectedDate(date);
     setSelectedTime(null);
@@ -39,38 +46,40 @@ const TrainerDetails = () => {
       if (item.day === selectedDayName) {
         const slot = item.slot;
         const startingTime = new Date(
-          `2023-01-01T${trainerDetails.startingTime}:00`
+          `2024-01-01T${trainerDetails.startingTime}:00`
         );
 
         const slotDuration = 60 * 60 * 1000;
 
-        const timeSlots = Array.from({ length: slot }, (_, index) => {
+        const allSlotTime = [];
+
+        for (let index = 0; index < slot; index++) {
           const slotStartTime = new Date(
             startingTime.getTime() + index * slotDuration
           );
           const slotEndTime = new Date(slotStartTime.getTime() + slotDuration);
 
-          return {
+          allSlotTime.push({
             start: formatTime(slotStartTime),
             end: formatTime(slotEndTime),
-          };
-        });
-        setAllSlotTime(timeSlots);
+          });
+          setAllSlotTime(allSlotTime);
+        }
       }
     }
   };
 
+  // button enable & disable
   useEffect(() => {
     if (selectedDate && selectedTime) {
       setEnableBooking(true);
-      // console.log(enableBooking);
     } else {
       setEnableBooking(false);
     }
   }, [selectedDate, selectedTime]);
 
-  // console.log(selectedDate, selectedTime);
 
+  // get slot day
   const getDayName = (dayOfWeek) => {
     const days = [
       "sunday",
@@ -84,6 +93,7 @@ const TrainerDetails = () => {
     return days[dayOfWeek];
   };
 
+  // calender date disable
   const disabledDay = (date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Set hours to 0 for accurate date comparison
@@ -91,6 +101,20 @@ const TrainerDetails = () => {
     const isUnavailableDay = !day.includes(getDayName(dayOfWeek));
     const isBeforeToday = date < today;
     return isUnavailableDay || isBeforeToday;
+  };
+
+  // booking information
+  const HandleBook = (name, email) => {
+    const bookingdetails = {
+      trainerName: name,
+      trainerEmail: email,
+      traineeName: userInfo.name,
+      traineeEmail: userInfo.email,
+      trainingDate: selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) ,
+      trainingTime:selectedTime
+    };
+
+    navigate('/booknow', { state: { bookingdetails } })
   };
 
   return (
@@ -107,7 +131,6 @@ const TrainerDetails = () => {
         </Link>
 
         <div className="grid grid-cols-2 mt-10 gap-20 justify-center items-start">
-
           {/* left side   */}
           <div className="flex ">
             {trainerDetails && (
@@ -151,6 +174,13 @@ const TrainerDetails = () => {
                       </>
                     ))}
                   </div>
+                  {/* calender */}
+                  <Calendar
+                    className="mt-5 bg-[#dde2444]"
+                    date={selectedDate || new Date()}
+                    disabledDay={disabledDay}
+                    onChange={handleSelect}
+                  />
                   {/* booking time */}
                   <div className="form-control w-full my-6">
                     <label className="label">
@@ -176,16 +206,25 @@ const TrainerDetails = () => {
                   </div>
                   {/* button */}
                   {enableBooking ? (
-                    <Link
-                      to={`/booknow?date=${selectedDate}&time=${selectedTime}&email=${trainerDetails.email}`}
-                      className="w-full"
+                    <button
+                      className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none"
+                      onClick={() =>
+                        HandleBook(
+                          trainerDetails.fullName,
+                          trainerDetails.email
+                        )
+                      }
                     >
-                      <button className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none">
-                        <span className="mr-6">get you package</span>{" "}
-                        <FaArrowRightLong></FaArrowRightLong>
-                      </button>
-                    </Link>
+                      <span className="mr-6">get you package</span>{" "}
+                      <FaArrowRightLong></FaArrowRightLong>
+                    </button>
                   ) : (
+                    // <Link
+                    //   to={`/booknow?date=${selectedDate}&time=${selectedTime}&email=${trainerDetails.email}`}
+                    //   className="w-full"
+                    // >
+
+                    // </Link>
                     <button
                       disabled
                       className="uppercase tracking-widest w-full text-black btn border-none btn-outline bg-[#dde244] rounded-none"
@@ -243,13 +282,6 @@ const TrainerDetails = () => {
                 </p>
               </div>
             </div>
-            {/* calender */}
-            <Calendar
-              className="mt-5 bg-[#dde2444]"
-              date={selectedDate || new Date()}
-              disabledDay={disabledDay}
-              onChange={handleSelect}
-            />
           </div>
         </div>
       </div>

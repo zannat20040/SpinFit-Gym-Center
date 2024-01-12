@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from "react";
 import RouteLabel from "../../Shared Component/RouteLabel";
 import axios from "axios";
-import TrainerDetails from "../../Layout/TrainerDetails";
-import Button from "../../Shared Component/Button";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import usersData from "../../Custom hooks/usersData";
 import swal from "sweetalert";
 import { Helmet } from "react-helmet-async";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-} from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment);
 
-
 const Booking = () => {
 
+  const location = useLocation()
+  const bookingInfo = location.state.bookingdetails
 
   const [pricing, setPricing] = useState([]);
   const [price, setPrice] = useState([]);
-
 
   useEffect(() => {
     axios
@@ -37,13 +33,12 @@ const Booking = () => {
 
   const HandleJoinNow = async (planName, planPrice) => {
     document.getElementById("my_modal_2").showModal();
- 
+
     const priceInfo = {
       packagePrice: planPrice,
       packageName: planName,
     };
-    setPrice(priceInfo)
-   
+    setPrice(priceInfo);
   };
 
   return (
@@ -86,7 +81,7 @@ const Booking = () => {
                     </p>
                   ))}
                 </div>
-                <div className="card-actions justify-center w-full mt-7">
+                <div className="card-actions  justify-center w-full mt-7">
                   {/* Open the modal using document.getElementById('ID').showModal() method */}
 
                   <button
@@ -97,9 +92,15 @@ const Booking = () => {
                     <FaArrowRightLong></FaArrowRightLong>
                   </button>
                   <dialog id="my_modal_2" className="modal  ">
-                    <div className="modal-box rounded-none">
-                      <Elements stripe={stripePromise} >
-                        <CheckoutForm price={price}/>
+                    <div className="modal-box rounded-none p-10">
+                      <Elements stripe={stripePromise}>
+                        
+                        {bookingInfo && (
+                          <CheckoutForm
+                            price={price}
+                            bookingInfo={bookingInfo}
+                          />
+                        )}
                       </Elements>
                     </div>
                     <form method="dialog" className="modal-backdrop">

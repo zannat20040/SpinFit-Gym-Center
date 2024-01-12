@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Calendar } from "react-date-range";
 
 const WeeklySchedule = () => {
   const [schedules, setSchedules] = useState([]);
+  const [isToggoling, setIsToggoling] = useState(false);
+
   const {
     data: weekSchedule,
     refetch,
@@ -59,72 +60,176 @@ const WeeklySchedule = () => {
   // console.log(thursday);
   // console.log(friday);
 
+  const blockElements = {
+    content: "tabs-content",
+    panel: "tabs-panel",
+    label: "tabs-title",
+  };
+
   return (
-    <div>
-     <div className="overflow-x-auto">
-        <table className="table bg-slate-600 p-4 text-center
-         rounded-none mt-10">
-          <thead className="text-[#dde244]">
-            <tr>
-              {daysOfWeek.map((day, index) => (
-                <th>{day}</th>
+    <div className="mt-10">
+      {/* sat */}
+      <div className="collapse  bg-gray-900 rounded-none mb-2">
+        <input type="radio" name="my-accordion-2" value="accordian" />
+        <div className="collapse-title text-xl font-medium  bg-slate-950 font-oswald text-white mb-4">
+          Saturday
+        </div>
+        <div className="collapse-content ">
+          {saturday.length < 1
+            ? <span className="font-roboto capitalize ">
+            No trainer today
+          </span>
+            : saturday.map((data) => (
+                <div className="px-5 py-4 mb-1 flex gap-2 justify-between bg-gray-800">
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Trainer: {data.trainerName}
+                  </span>
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Avaiable Slot: {data.slotRange}
+                  </span>
+                </div>
               ))}
-            </tr>
-          </thead>
-          <tbody className="font-roboto text-white">
-            <tr>
-              <td>
-                {saturday.length < 1 ? 'No trainer available' : saturday.map((sat) => (
-                  <span className="flex flex-col capitalize mt-1 p-2 text-center">
-                    {sat.trainerName} : {sat.slotRange}
+        </div>
+      </div>
+      {/* sun */}
+      <div className="collapse  bg-gray-900 rounded-none mb-2">
+        <input type="radio" name="my-accordion-2" value="accordian" />
+        <div className="collapse-title text-xl font-medium  bg-slate-950 font-oswald text-white mb-4">
+          Sunday
+        </div>
+        <div className="collapse-content ">
+          {sunday.length < 1
+            ? <span className="font-roboto capitalize ">
+            No trainer today
+          </span>
+            : sunday.map((data) => (
+                <div className="px-5 py-4 mb-1 flex gap-2 justify-between bg-gray-800">
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Trainer: {data.trainerName}
                   </span>
-                ))}
-              </td>
-              <td>
-                {sunday.length < 1 ? 'No trainer available' : sunday.map((sat) => (
-                  <span className="flex flex-col capitalize mt-1 p-2 text-center">
-                    {sat.trainerName} : {sat.slotRange}
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Avaiable Slot: {data.slotRange}
                   </span>
-                ))}
-              </td>
-              <td>
-                {monday.length < 1 ? 'No trainer available' : saturday.length < 1 ? 'No trainer available' : monday.map((sat) => (
-                  <span className="flex flex-col capitalize mt-1 p-2 text-center">
-                    {sat.trainerName} : {sat.slotRange}
+                </div>
+              ))}
+        </div>
+      </div>
+      {/* mon */}
+      <div className="collapse  bg-gray-900 rounded-none mb-2">
+        <input type="radio" name="my-accordion-2" value="accordian" />
+        <div className="collapse-title text-xl font-medium  bg-slate-950 font-oswald text-white mb-4">
+          Monday
+        </div>
+        <div className="collapse-content ">
+          {monday.length < 1
+            ?   <span className="font-roboto capitalize ">
+            No trainer today
+          </span>
+            : monday.map((data) => (
+                <div className="px-5 py-4 mb-1 flex gap-2 justify-between bg-gray-800">
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Trainer: {data.trainerName}
                   </span>
-                ))}
-              </td>
-              <td>
-                {tuesday.length < 1 ? 'No trainer available' : tuesday.map((sat) => (
-                  <span className="flex flex-col capitalize mt-1 p-2 text-center">
-                    {sat.trainerName} : {sat.slotRange}
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Avaiable Slot: {data.slotRange}
                   </span>
-                ))}
-              </td>
-              <td>
-                {wednesday.length < 1 ? 'No trainer available' : wednesday.map((sat) => (
-                  <span className="flex flex-col capitalize mt-1 p-2 text-center">
-                    {sat.trainerName} : {sat.slotRange}
+                </div>
+              ))}
+        </div>
+      </div>
+      {/* tues */}
+      <div className="collapse  bg-gray-900 rounded-none mb-2">
+        <input type="radio" name="my-accordion-2" value="accordian" />
+        <div className="collapse-title text-xl font-medium  bg-slate-950 font-oswald text-white mb-4">
+          Tuesday
+        </div>
+        <div className="collapse-content ">
+          {tuesday.length < 1
+            ? <span className="font-roboto capitalize ">
+            No trainer today
+          </span>
+            : tuesday.map((data) => (
+                <div className="px-5 py-4 mb-1 flex gap-2 justify-between bg-gray-800">
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Trainer: {data.trainerName}
                   </span>
-                ))}
-              </td>
-              <td>
-                {thursday.length < 1 ? 'No trainer available' : thursday.map((sat) => (
-                  <span className="flex flex-col capitalize mt-1 p-2 text-center">
-                    {sat.trainerName} : {sat.slotRange}
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Avaiable Slot: {data.slotRange}
                   </span>
-                ))}
-              </td>
-              <td>
-                {friday.length < 1 ? 'No trainer available' : friday.map((sat) => (
-                  <span className="flex flex-col capitalize mt-1 p-2 text-center">
-                    {sat.trainerName} : {sat.slotRange}
+                </div>
+              ))}
+        </div>
+      </div>
+      {/* wed */}
+      <div className="collapse  bg-gray-900 rounded-none mb-2">
+        <input type="radio" name="my-accordion-2" value="accordian" />
+        <div className="collapse-title text-xl font-medium  bg-slate-950 font-oswald text-white mb-4">
+          Wednesday
+        </div>
+        <div className="collapse-content ">
+          {wednesday.length < 1
+            ? <span className="font-roboto capitalize ">
+            No trainer today
+          </span>
+            : wednesday.map((data) => (
+                <div className="px-5 py-4 mb-1 flex gap-2 justify-between bg-gray-800">
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Trainer: {data.trainerName}
                   </span>
-                ))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Avaiable Slot: {data.slotRange}
+                  </span>
+                </div>
+              ))}
+        </div>
+      </div>
+      {/* thurs */}
+      <div className="collapse  bg-gray-900 rounded-none mb-2">
+        <input type="radio" name="my-accordion-2" value="accordian" />
+        <div className="collapse-title text-xl font-medium  bg-slate-950 font-oswald text-white mb-4">
+          Thursday
+        </div>
+        <div className="collapse-content ">
+          {thursday.length < 1
+            ? <span className="font-roboto capitalize ">
+            No trainer today
+          </span>
+            : thursday.map((data) => (
+                <div className="px-5 py-4 mb-1 flex gap-2 justify-between bg-gray-800">
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Trainer: {data.trainerName}
+                  </span>
+                  <span className="flex flex-col font-roboto text-white capitalize ">
+                    Avaiable Slot: {data.slotRange}
+                  </span>
+                </div>
+              ))}
+        </div>
+      </div>
+      {/* fri */}
+      <div className="collapse  bg-gray-900 rounded-none mb-2">
+        <input type="radio" name="my-accordion-2" value="accordian" />
+        <div className="collapse-title text-xl font-medium  bg-slate-950 font-oswald text-white mb-4">
+          Friday
+        </div>
+        <div className="collapse-content ">
+          {friday.length < 1 ? (
+            <span className="font-roboto capitalize ">
+            No trainer today
+          </span>
+          ) : (
+            friday.map((data) => (
+              <div className="px-5 py-4 mb-1 flex gap-2 justify-between bg-gray-800">
+                <span className="flex flex-col font-roboto text-white capitalize ">
+                  Trainer: {data.trainerName}
+                </span>
+                <span className="flex flex-col font-roboto text-white capitalize ">
+                  Avaiable Slot: {data.slotRange}
+                </span>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

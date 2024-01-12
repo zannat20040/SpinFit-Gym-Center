@@ -24,6 +24,7 @@ import RecommendPg from "./Dashboard/Member/RecommendPg";
 import PrivateRoute from "./Component/Private/PrivateRoute";
 import Balance from "./Dashboard/Admin/Balance";
 import Update from "./Dashboard/Common/Update";
+import ClassDetails from "./Layout/ClassDetails";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,11 @@ export const router = createBrowserRouter([
       {
         path: "/classes",
         element: <Classes></Classes>,
+      },
+      {
+        path: "/classes/:id",
+        element: <ClassDetails></ClassDetails>,
+        loader: ({params}) =>fetch(`http://localhost:5000/allClass/${params.id}`)
       },
       {
         path: "/trainer",

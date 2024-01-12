@@ -15,7 +15,6 @@ const Classes = () => {
     },
   });
 
-  console.log(classes);
   return (
     <div>
       <Helmet>
@@ -29,42 +28,29 @@ const Classes = () => {
       ) : (
         <div className="container mx-auto px-4 ">
           <div className="flex flex-col-reverse gap-5 ">
-          <div className="grid grid-cols-3 gap-5">
-            {classes?.map((item) => (
-              <div className="card bg-slate-500 rounded-none text-primary-content">
-                <div className="card-body">
-                  <h2 className="card-title text-[#dde244] text-3xl font-bold font-oswald  capitalize ">
-                    {item?.name}
-                  </h2>
-                  <span className="capitalize text-gray-300 font-roboto">
-                    {item?.trainerName}
-                  </span>
-                  <span className="text-[#dde244] capitalize border font-roboto px-3 py-1 inline">
-                    {item?.category}
-                  </span>
-                  <p className="font-roboto text-white">{item?.details}</p>
-                  <p className="font-roboto text-white">
-                    Class Duration:{" "}
-                    <span className="text-[#dde244]">
-                      {item?.classDuration} minutes
-                    </span>
-                  </p>
-
-                  <div className="card-actions justify-start">
-                    <Link to="/trainer">
-                      <Button label={"join now"}></Button>
-                    </Link>
-                  </div>
+            <div className="grid grid-cols-3 gap-5">
+              {classes?.map((item) => (
+                <div
+                  className="hero h-40 "
+                  style={{ backgroundImage: `url(${item?.photo})` }}
+                >
+                  <div className="hero-overlay bg-opacity-60"></div>
+                  <Link to={`/classes/${item._id}`}>
+                    <h1 className="font-oswald text-3xl text-white font-bold">
+                      {item?.name}
+                    </h1>
+                  </Link>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div>
-          <h2 className="card-title text-[#dde244] text-4xl font-bold font-oswald  capitalize ">
-                    Weekly Schedule
-                  </h2>
-            <WeeklySchedule></WeeklySchedule>
-          </div>
+
+               
+              ))}
+            </div>
+            <div>
+              <h2 className="card-title text-[#dde244] text-4xl font-bold font-oswald  capitalize ">
+                Weekly Schedule
+              </h2>
+              <WeeklySchedule></WeeklySchedule>
+            </div>
           </div>
         </div>
       )}

@@ -51,17 +51,17 @@ const WeeklySchedule = () => {
   const wednesday = schedules.filter((day) => day.daySlot === "wednesday");
   const thursday = schedules.filter((day) => day.daySlot === "thursday");
   const friday = schedules.filter((day) => day.daySlot === "friday");
-  console.log(saturday);
-  console.log(sunday);
-  console.log(monday);
-  console.log(tuesday);
-  console.log(wednesday);
-  console.log(thursday);
-  console.log(friday);
+  // console.log(saturday);
+  // console.log(sunday);
+  // console.log(monday);
+  // console.log(tuesday);
+  // console.log(wednesday);
+  // console.log(thursday);
+  // console.log(friday);
 
   return (
     <div>
-     bg-gray-900 mt-1 p-2 text-center  <div className="overflow-x-auto">
+     <div className="overflow-x-auto">
         <table className="table bg-slate-600 p-4 text-center
          rounded-none mt-10">
           <thead className="text-[#dde244]">

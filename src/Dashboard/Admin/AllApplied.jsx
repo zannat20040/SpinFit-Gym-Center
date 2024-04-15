@@ -16,29 +16,46 @@ const AllApplied = () => {
     queryKey: ["appliedTrainers"],
     queryFn: async () => {
       const response = await axios.get(
-        `https://server-psi-tawny-84.vercel.app/application?role=member`
+        `http://localhost:5000/application?role=member`
       );
       return response.data;
     },
   });
 
-  
+  console.log(appliedTrainers);
 
-  const HandleAccept= async(id)=>{
-    // console.log(id)
+  const HandleReject = (item) => {
+    console.log(item);
     const updated = {
-        role:'member',
-        status:'rejected'
-    }
-    // await axios
-    // .patch(`https://server-psi-tawny-84.vercel.app/application/${id}`, {role:'member'})
-    // .then((res) => {
-    //   console.log(res.data);
-    // })
-    // .error((error) => {
-    //   console.log(error);
-    // });
-  }
+      role: "member",
+      status: "rejected",
+    };
+    axios
+      .patch(`http://localhost:5000/users?email=${item?.email}`, updated)
+      .then((res) => {
+        console.log("Role updated successfully:", res.data);
+        refetch();
+      })
+      .catch((error) => {
+        console.log("Error updating salary date:", error);
+      });
+  };
+  const HandleAccept = (item) => {
+    console.log(item);
+    const updated = {
+      role: "trainer",
+      status: "accepted",
+    };
+    axios
+      .patch(`http://localhost:5000/users?email=${item?.email}`, updated)
+      .then((res) => {
+        console.log("Role updated successfully:", res.data);
+        refetch();
+      })
+      .catch((error) => {
+        console.log("Error updating salary date:", error);
+      });
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -85,27 +102,25 @@ const AllApplied = () => {
                   <FaUserCheck className="text-xl" />
                 </button>
                 <dialog id="my_modal_2" className="modal">
-                  <div className="modal-box">
+                  <div className="modal-box px-10">
                     {item && (
-                      <div className="card items-start bg-base-100  mt-10 rounded-none py-5 text-center text-lg">
-                        
-                        <div className="card-body px-0">
-                          <div className="flex gap-3  items-end">
+                      <div className="card items-start bg-base-100  rounded-none py-5 text-center text-lg">
+                        <div className="card-body p-0 w-full ">
+                          <div className="flex gap-3  justify-center items-end w-full flex-wrap">
                             <h2 className="card-title text-4xl text-white font-oswald capitalize">
                               {item?.fullName}
                             </h2>
                             <span className="text-gray-300 font-roboto">
-                              ( {item?.yearsOfExperience} years
-                              experience )
+                              ( {item?.yearsOfExperience} years experience )
                             </span>
                             <span className="text-gray-300 font-roboto">
                               ( Age:{item?.age} )
                             </span>
                           </div>
-                          <div className=" mb-4 mt-2 badge badge-outline w-fit rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244]">
+                          <div className=" mb-4 mt-2 badge badge-outline w-fit rounded-none px-5 py-3 border-[#dde244] font-medium uppercase text-[#dde244] mx-auto">
                             {item?.specialization}
                           </div>
-                          <div className="flex gap-3  ">
+                          <div className="flex gap-3  justify-center">
                             {item?.socialIcons.map((data) => (
                               <Link to={data?.link} key={data?.platform}>
                                 <span className="w-12 h-12 text-black text-xl bg-[#dde244] rounded-full  flex justify-center items-center transition-transform transform hover:translate-y-[-10px] ease-in">
@@ -113,7 +128,7 @@ const AllApplied = () => {
                                     <FaFacebookF />
                                   )}
                                   {data?.platform === "Linkedin" && (
-                                    <FaLinkedinIn/>
+                                    <FaLinkedinIn />
                                   )}
                                   {data?.platform === "Instagram" && (
                                     <AiFillInstagram />
@@ -123,7 +138,7 @@ const AllApplied = () => {
                               </Link>
                             ))}
                           </div>
-                          <div className="mt-10 text-start">
+                          <div className="mt-10 text-start w-full">
                             {item?.skills?.map((data) => (
                               <>
                                 <p className="capitalize text-gray-300 font-roboto">
@@ -137,14 +152,14 @@ const AllApplied = () => {
                               </>
                             ))}
                           </div>
-                          <div className="mt-10 text-start">
-                          <h2 className="card-title text-2xl  text-[#dde244] mb-3 font-oswald capitalize">
+                          <div className="mt-10 text-start w-full">
+                            <h2 className="card-title text-2xl  text-[#dde244] mb-3 font-oswald capitalize">
                               Available Slot
                             </h2>
                             {item?.availableTimeSlot?.map((data) => (
                               <div className="grid grid-cols-2">
                                 <p className="capitalize text-gray-300 font-roboto">
-                                  {data?.day} : 
+                                  {data?.day} :
                                 </p>
                                 <p className="capitalize text-gray-300 font-roboto">
                                   {data?.slot}
@@ -152,9 +167,19 @@ const AllApplied = () => {
                               </div>
                             ))}
                           </div>
-                          <div className="flex gap-2 mt-5 justify-center ">
-                            <button className="bg-[#dde244] rounded-none btn btn-outline btn-md border-0 text-black " onClick={()=>HandleAccept(item._id)}>Confirm</button>
-                            <button className="bg-[#dde244] rounded-none btn btn-outline btn-md border-0 text-black">Reject</button>
+                          <div className="grid grid-cols-2 gap-5 mt-5 justify-between w-full ">
+                            <button
+                              className="bg-[#dde244]  w-full rounded btn btn-outline btn-md border-0 text-black "
+                              onClick={() => HandleAccept(item)}
+                            >
+                              Confirm
+                            </button>
+                            <button
+                              className="bg-[#dde244] rounded w-full btn btn-outline btn-md border-0 text-black"
+                              onClick={() => HandleReject(item)}
+                            >
+                              Reject
+                            </button>
                           </div>
                         </div>
                       </div>

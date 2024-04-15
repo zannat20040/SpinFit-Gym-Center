@@ -8,13 +8,19 @@ import Button from "../Shared Component/Button";
 import { Helmet } from "react-helmet-async";
 
 const Trainer = () => {
-  const { isLoading, data: trainers } = useQuery({
+
+  const { isLoading, data: allTrainers } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const res = await fetch('https://server-psi-tawny-84.vercel.app/application?role=trainer');
-      return res.json();
+      const response = await axios.get(
+        "http://localhost:5000/application?role=trainer"
+      );
+      return response.data;
     },
+
   });
+
+  console.log('23 line; ', allTrainers)
 
   return (
     <div className="pb-10">
@@ -29,7 +35,7 @@ const Trainer = () => {
       ) : (
         <div className="container px-4 mx-auto">
           <div className="grid grid-cols-4 gap-4 ">
-            {trainers.map((trainer) => (
+            {allTrainers?.map((trainer) => (
               <div className="card  bg-gray-700 rounded-none">
                 <div className="flex flex-col justify-center items-center  gap-4 px-8 py-8   ">
                   {/* image */}

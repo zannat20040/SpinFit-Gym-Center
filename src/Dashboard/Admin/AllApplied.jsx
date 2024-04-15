@@ -25,7 +25,7 @@ const AllApplied = () => {
   
 
   const HandleAccept= async(id)=>{
-    console.log(id)
+    // console.log(id)
     const updated = {
         role:'member',
         status:'rejected'

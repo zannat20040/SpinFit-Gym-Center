@@ -17,7 +17,7 @@ const Footer = () => {
 
         axios.post('https://server-psi-tawny-84.vercel.app/subscribers', subscribers)
         .then(res=>{
-            console.log(res.data.status)
+            // console.log(res.data.status)
             toast.success('Stay tuned for the latest news from SpinFit')
         })
         .catch(error=>{

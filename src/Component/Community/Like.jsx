@@ -23,7 +23,7 @@ const Like = ({ details }) => {
     await axios
       .patch(`https://server-psi-tawny-84.vercel.app/blog/${details?._id}`, {updatedLike, like:true})
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .error((error) => {
         console.log(error);

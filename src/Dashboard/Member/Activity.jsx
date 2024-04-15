@@ -3,6 +3,7 @@ import usersData from "../../Custom hooks/usersData";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import PageTitle from "../Common/PageTitle";
 
 const Activity = () => {
   const { data: userInfo } = usersData();
@@ -14,37 +15,37 @@ const Activity = () => {
   } = useQuery({
     queryKey: ["allBookings"],
     queryFn: async () => {
-      const response = await axios.get("https://server-psi-tawny-84.vercel.app/bookings");
+      const response = await axios.get(`https://server-psi-tawny-84.vercel.app/bookings?email=${userInfo.email}`);
       return response.data;
     },
   });
 
-  useEffect(() => {
-    if (allBookings) {
-      const data = allBookings.filter(
-        (item) => item.userEmail === userInfo.email
-      );
+  // useEffect(() => {
+  //   if (allBookings) {
+  //     const data = allBookings.filter(
+  //       (item) => item.userEmail === userInfo.email
+  //     );
 
-      const today = new Date();
-      console.log(today);
-      console.log(data);
-      const filterByDate = data.filter((item) => {
-        const itemDateString = item.bookingDate.toString().slice(4, 15);
-        const todayDateString = today.toString().slice(4, 15);
-        return itemDateString === todayDateString;
-      });
-      setMyBooking(filterByDate);
-    }
-  }, [allBookings]);
+  //     const today = new Date();
+  //     console.log(today);
+  //     console.log(data);
+  //     const filterByDate = data.filter((item) => {
+  //       const itemDateString = item.bookingDate.toString().slice(4, 15);
+  //       const todayDateString = today.toString().slice(4, 15);
+  //       return itemDateString === todayDateString;
+  //     });
+  //     setMyBooking(filterByDate);
+  //   }
+  // }, [allBookings]);
 
-  console.log(myBooking);
+  // console.log(myBooking);
   return (
-    <div>
+    <div className="container mx-auto h-screen">
       <Helmet>
         <title>SpinFit | Activity</title>
       </Helmet>
-      <div>
-        <div className="overflow-x-auto">
+      <PageTitle title={"Today's Activity"}></PageTitle>
+      <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
             <thead>
@@ -72,7 +73,6 @@ const Activity = () => {
             </tbody>
           </table>
         </div>
-      </div>
     </div>
   );
 };

@@ -81,7 +81,6 @@ export const router = createBrowserRouter([
       {
         path: "/community/:id",
         element: <PostDetail></PostDetail>,
-        // loader: ({params}) => fetch(`https://server-psi-tawny-84.vercel.app/blog/${params.id}`),
       }
     ],
   },

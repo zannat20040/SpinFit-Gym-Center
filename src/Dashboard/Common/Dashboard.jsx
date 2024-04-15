@@ -29,7 +29,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="drawer h-screen">
+    <div className="drawer h-screen z-40">
       <Helmet>
         <title>SpinFit | dashboard</title>
       </Helmet>
@@ -59,7 +59,7 @@ const Dashboard = () => {
           className="drawer-overlay"
         ></label>
 
-        <ul className="menu p-4 w-80  text-white lg:hidden">
+        <ul className="menu p-4 w-80 z-50 text-white lg:hidden">
           <div className="bg-slate-900 p-4 flex justify-center">
             <Link to="/">
               <img src={logo} alt="" className="h-10" />

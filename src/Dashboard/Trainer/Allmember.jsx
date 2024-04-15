@@ -21,7 +21,7 @@ const Allmember = () => {
     },
   });
 
-  console.log(allmembers);
+  // console.log(allmembers);
   useEffect(() => {
     if (allmembers) {
       const data = allmembers.filter(
@@ -31,7 +31,7 @@ const Allmember = () => {
     }
   }, [allmembers]);
 
-  console.log(myMember);
+  // console.log(myMember);
   return (
     <div className="container mx-auto h-screen">
       <Helmet>
@@ -39,7 +39,7 @@ const Allmember = () => {
       </Helmet>
       <PageTitle title={'your trainee'}></PageTitle>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto ">
           <table className="table">
             {/* head */}
             <thead>

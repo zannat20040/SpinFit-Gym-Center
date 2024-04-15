@@ -1,9 +1,13 @@
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import swal from "sweetalert";
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import axios from "axios";
 
-const CheckoutForm = ({ price, bookingInfo }) => {
+const TrainerPayment = ({ item,refetch }) => {
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
   const [clientSecret, setClientSecret] = useState("");
@@ -11,23 +15,29 @@ const CheckoutForm = ({ price, bookingInfo }) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  useEffect(() => {
-    const packageData = { ...bookingInfo, ...price };
+  const { _id, roleAssignmnetDate, ...itemWithoutId } = item;
 
-    if (packageData.packagePrice != undefined) {
+  
+  useEffect(() => {
+    const paymentInfo = { ...itemWithoutId, salary: 1000 };
+    if (item) {
       axios
-        .post("http://localhost:5000/create-payment-intent", packageData)
+        .post("http://localhost:5000/salary-payment-intent", paymentInfo)
         .then((res) => {
           setClientSecret(res.data.clientSecret);
         })
         .catch((error) => console.log(error));
     }
-  }, [price, bookingInfo]);
+  }, [item]);
+
+  console.log(clientSecret);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!stripe || !elements || !price.packagePrice) {
+    console.log(item);
+
+    if (!stripe || !elements || !item.email) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
 
@@ -59,8 +69,8 @@ const CheckoutForm = ({ price, bookingInfo }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: bookingInfo?.traineeName || "anonymous",
-            email: bookingInfo?.traineeEmail || "anonymous",
+            name: item?.name || "anonymous",
+            email: item?.email || "anonymous",
           },
         },
       });
@@ -72,12 +82,25 @@ const CheckoutForm = ({ price, bookingInfo }) => {
       // console.log("error payment intent", confirmError.message);
     } else {
       if (paymentIntent.status === "succeeded") {
-        // console.log("Payment success. Transaction ID : ", paymentIntent?.id);
+        console.log("Payment success. Transaction ID : ", paymentIntent?.id);
         axios
-          .post("http://localhost:5000/bookings", { ...bookingInfo, ...price })
+          .post("http://localhost:5000/salaries", { ...itemWithoutId, salary: 1000 })
           .then((res) => {
-            // console.log(res.data);
-            setSuccess("Your Trainer booking payment is successfully done");
+            
+            const currentDate = new Date().toISOString().split('T')[0];
+            console.log(currentDate)
+            axios.patch(`http://localhost:5000/users?email=${itemWithoutId?.email}`, {
+                salaryMonth: currentDate,
+            })
+            .then((res) => {
+              console.log("Salary date updated successfully:", res.data);
+              refetch()
+            })
+            .catch((error) => {
+              console.log("Error updating salary date:", error);
+            });
+
+            setSuccess("Your Trainer salary payment is successfully done");
           })
           .catch((error) => {
             console.log(error);
@@ -87,36 +110,20 @@ const CheckoutForm = ({ price, bookingInfo }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1 className="text-3xl font-oswald text-[#dde244] ">Payment Details</h1>
+    <form onSubmit={handleSubmit} className="w-full">
       <div className="font-roboto my-6 text-white">
         <div className="text-xl">
-          <span className="capitalize">
-            Your Name : {bookingInfo?.traineeName}
-          </span>
+          <span className="capitalize">Trainer Name : {item?.name}</span>
         </div>
         <div className="text-xl">
-          <span className="">Your Email : {bookingInfo?.traineeEmail}</span>
+          <span className="">Trainer Email : {item?.email}</span>
         </div>
         <div className="text-xl">
-          <span className="capitalize">
-            Trainer Name : {bookingInfo?.trainerName}
-          </span>
+          <span className="">Salary Date : {item?.salaryMonth}</span>
         </div>
+
         <div className="text-xl">
-          <span className="">Trainer Email : {bookingInfo?.trainerEmail} </span>
-        </div>
-        <div className="text-xl">
-          <span className="">Slot : {bookingInfo?.trainingTime}</span>
-        </div>
-        <div className="text-xl">
-          <span className="">Date : {bookingInfo?.trainingDate}</span>
-        </div>
-        <div className="text-xl">
-          <span className="">Package : {price?.packageName}</span>
-        </div>
-        <div className="text-xl">
-          <span className="">Price : ${price?.packagePrice}</span>
+          <span className="">Salary : 1000$</span>
         </div>
       </div>
       <CardElement
@@ -145,13 +152,13 @@ const CheckoutForm = ({ price, bookingInfo }) => {
         <button
           disabled={!stripe || !clientSecret}
           type="submit"
-          className="uppercase btn-sm mt-5   tracking-widest text-black btn border-none btn-outline bg-[#dde244] rounded-none"
+          className="w-full uppercase btn mt-2   tracking-widest text-black rounded border-none btn-outline bg-[#dde244] "
         >
-          Comfirm Payment
+         Pay $1000
         </button>
       </div>
     </form>
   );
 };
 
-export default CheckoutForm;
+export default TrainerPayment;

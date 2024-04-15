@@ -3,7 +3,7 @@ import React from 'react';
 import swal from 'sweetalert';
 
 const saveUser = (user) => {
-    console.log(user)
+    // console.log(user)
     const userInfo = {
         email: user?.email,
         name: user?.displayName,
@@ -14,7 +14,7 @@ const saveUser = (user) => {
       axios
         .post("https://server-psi-tawny-84.vercel.app/users", userInfo)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if(res.data.res.insertedId){
             swal(
               "Congratulations!",

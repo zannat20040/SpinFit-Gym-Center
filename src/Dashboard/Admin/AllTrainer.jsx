@@ -1,9 +1,16 @@
+import { CardElement, Elements } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import TrainerPayment from "../../Component/TrainerPayment/TrainerPayment";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_Payment);
+
 
 const AllTrainer = () => {
+
   const {
     data: trainers,
     refetch,
@@ -11,22 +18,30 @@ const AllTrainer = () => {
   } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const response = await axios.get("https://server-psi-tawny-84.vercel.app/users");
-      return response.data;
+      const response = await axios.get(
+        "https://server-psi-tawny-84.vercel.app/users"
+      );
+      return response.data?.filter(trainer => trainer.role === 'trainer');
     },
   });
-  console.log(trainers);
+  // console.log(trainers);
+
+
 
   const isButtonDisabled = (joiningDate) => {
     const currentDate = new Date();
     const joinedDate = new Date(joiningDate);
-    const diffInMonths =
-      (currentDate.getFullYear() - joinedDate.getFullYear()) * 12 +
-      (currentDate.getMonth() - joinedDate.getMonth());
+    const diffInMilliseconds = currentDate - joinedDate;
+    const diffInMonths = diffInMilliseconds / (30 * 24 * 60 * 60 * 1000);
 
-    return diffInMonths < 1;
+    if (diffInMonths >= 1) {
+      return false;
+    } else {
+      return true;
+    }
   };
-
+ 
+  
   return (
     <div className="overflow-x-auto">
       <Helmet>
@@ -52,12 +67,33 @@ const AllTrainer = () => {
               <td>{item?.email}</td>
               <td>{item?.roleAssignmnetDate}</td>
               <td>
+                {/* Open the modal using document.getElementById('ID').showModal() method */}
                 <button
-                  className="bg-[#dde244] text-black btn"
-                  disabled={isButtonDisabled(item?.roleAssignmnetDate)}
+                  className="bg-[#dde244] w-full text-black btn"
+                  disabled={isButtonDisabled(item?.salaryMonth)}
+                  onClick={() =>
+                    document.getElementById(`my_modal_${index}`).showModal()
+                  }
                 >
-                  Pay
+                  {isButtonDisabled(item?.salaryMonth) ? "Paid" : "Pending"}
                 </button>
+
+                <dialog id={`my_modal_${index}`} className="modal">
+                  <div className="modal-box p-10 rounded-none ">
+                    <h1 className="text-3xl font-oswald text-[#dde244] ">
+                      Salary Details
+                    </h1>
+                    <div className="modal-action ">
+                    <Elements stripe={stripePromise}>
+                          <TrainerPayment item={item} refetch={refetch} />
+                        </Elements>
+                    </div>
+                  </div>
+
+                  <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                  </form>
+                </dialog>
               </td>
             </tr>
           ))}

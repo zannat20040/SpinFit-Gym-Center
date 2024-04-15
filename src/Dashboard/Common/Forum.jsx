@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { Helmet } from "react-helmet-async";
+import PageTitle from "./PageTitle";
 
 const Forum = () => {
   const userInfo = usersData();
@@ -41,7 +42,7 @@ const Forum = () => {
     axios
       .post("https://server-psi-tawny-84.vercel.app/blog", blog)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.insertedId) {
           toast.success("Blog posted successfully");
         }
@@ -57,7 +58,8 @@ const Forum = () => {
     <Helmet>
         <title>SpinFit | Add forum</title>
       </Helmet>
-      <div className="container max-w-lg mx-auto h-screen ">
+      <div className="container mx-auto h-full ">
+        <PageTitle title={'Your blog'}></PageTitle>
         <form onSubmit={HandleForm}>
           <div className="form-control w-full">
             <label className="label">

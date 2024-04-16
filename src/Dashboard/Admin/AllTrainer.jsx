@@ -1,10 +1,11 @@
 import { CardElement, Elements } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import TrainerPayment from "../../Component/TrainerPayment/TrainerPayment";
 import { loadStripe } from "@stripe/stripe-js";
+import toast from "react-hot-toast";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment);
 
@@ -26,6 +27,21 @@ const AllTrainer = () => {
   });
   // console.log(trainers);
 
+  const [remainingBalance, setRemainingBalance] = useState(0);
+
+  // Fetch remaining balance from backend when the component mounts
+  useEffect(() => {
+    const fetchRemainingBalance = async () => {
+      const response = await axios.get("http://localhost:5000/balance");
+      setRemainingBalance(response.data.totalRemainingBalance);
+    };
+    fetchRemainingBalance();
+  }, []);
+
+  // Check if the remaining balance is greater than the payment amount
+  const isPaymentAllowed = (paymentAmount) => {
+    return remainingBalance >= paymentAmount;
+  };
 
 
   const isButtonDisabled = (joiningDate) => {
@@ -40,7 +56,15 @@ const AllTrainer = () => {
       return true;
     }
   };
- 
+
+  const handlePaymentButtonClick = (index, salaryMonth) => {
+    if (isPaymentAllowed(salaryMonth)) {
+      document.getElementById(`my_modal_${index}`).showModal();
+    } else {
+      toast.success("Payment is not allowed because of insufficient balance.");
+    }
+  };
+
   
   return (
     <div className="overflow-x-auto">
@@ -71,9 +95,7 @@ const AllTrainer = () => {
                 <button
                   className="bg-[#dde244] w-full text-black btn"
                   disabled={isButtonDisabled(item?.salaryMonth)}
-                  onClick={() =>
-                    document.getElementById(`my_modal_${index}`).showModal()
-                  }
+                  onClick={() => handlePaymentButtonClick(index, item?.salaryMonth)}
                 >
                   {isButtonDisabled(item?.salaryMonth) ? "Paid" : "Pending"}
                 </button>

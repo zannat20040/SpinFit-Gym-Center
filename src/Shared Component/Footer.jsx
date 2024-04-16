@@ -10,12 +10,15 @@ const Footer = () => {
         const form = e.target
         const name = form.name.value
         const email = form.email.value
+        const currentDate = new Date().toISOString().split('T')[0];
+
         const subscribers = {
             name : name,
-            email:  email
+            email:  email,
+            subscribeDate:currentDate
         }
 
-        axios.post('https://server-psi-tawny-84.vercel.app/subscribers', subscribers)
+        axios.post('http://localhost:5000/subscribers', subscribers)
         .then(res=>{
             // console.log(res.data.status)
             toast.success('Stay tuned for the latest news from SpinFit')

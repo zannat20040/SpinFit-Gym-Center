@@ -68,8 +68,7 @@ const ReactBarChart = () => {
   
       const existingItem = accumulator.find((item) => item.date === formattedDate);
     
-      console.log("=========finish=========");
-  
+ 
       if (existingItem) {
         existingItem.paidMembers++;
       } else {
@@ -101,12 +100,6 @@ uniqueBookingDatesWithCounts.forEach(item => {
 
 // Convert object to array
 const data = Object.values(mergedData);
-
-console.log(data);
-
-console.log(uniqueDatesWithCounts);
-
-
   
 
   return (

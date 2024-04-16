@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import ReactBarChart from "../../Component/AdminDashboard/ReactBarChart";
+import PaymentTable from "../../Component/AdminDashboard/PaymentTable";
 
 const Balance = () => {
 
@@ -42,6 +43,7 @@ const Balance = () => {
       </div>
       <div>
         <ReactBarChart />
+        <PaymentTable />
       </div>
     </div>
   );

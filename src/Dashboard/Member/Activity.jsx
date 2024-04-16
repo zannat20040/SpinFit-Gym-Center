@@ -20,25 +20,7 @@ const Activity = () => {
     },
   });
 
-  // useEffect(() => {
-  //   if (allBookings) {
-  //     const data = allBookings.filter(
-  //       (item) => item.userEmail === userInfo.email
-  //     );
-
-  //     const today = new Date();
-  //     console.log(today);
-  //     console.log(data);
-  //     const filterByDate = data.filter((item) => {
-  //       const itemDateString = item.bookingDate.toString().slice(4, 15);
-  //       const todayDateString = today.toString().slice(4, 15);
-  //       return itemDateString === todayDateString;
-  //     });
-  //     setMyBooking(filterByDate);
-  //   }
-  // }, [allBookings]);
-
-  // console.log(myBooking);
+ 
   return (
     <div className="container mx-auto h-screen">
       <Helmet>

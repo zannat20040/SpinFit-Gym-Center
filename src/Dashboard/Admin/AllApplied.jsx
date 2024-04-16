@@ -22,10 +22,8 @@ const AllApplied = () => {
     },
   });
 
-  console.log(appliedTrainers);
 
   const HandleReject = (item) => {
-    console.log(item);
     const updated = {
       role: "member",
       status: "rejected",
@@ -33,7 +31,6 @@ const AllApplied = () => {
     axios
       .patch(`http://localhost:5000/users?email=${item?.email}`, updated)
       .then((res) => {
-        console.log("Role updated successfully:", res.data);
         refetch();
       })
       .catch((error) => {
@@ -41,7 +38,6 @@ const AllApplied = () => {
       });
   };
   const HandleAccept = (item) => {
-    console.log(item);
     const updated = {
       role: "trainer",
       status: "accepted",
@@ -49,7 +45,6 @@ const AllApplied = () => {
     axios
       .patch(`http://localhost:5000/users?email=${item?.email}`, updated)
       .then((res) => {
-        console.log("Role updated successfully:", res.data);
         refetch();
       })
       .catch((error) => {

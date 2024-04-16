@@ -42,7 +42,6 @@ const Forum = () => {
     axios
       .post("https://server-psi-tawny-84.vercel.app/blog", blog)
       .then((res) => {
-        // console.log(res.data);
         if (res.data.insertedId) {
           toast.success("Blog posted successfully");
         }

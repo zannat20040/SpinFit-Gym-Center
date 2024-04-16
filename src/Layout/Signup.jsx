@@ -34,7 +34,6 @@ const Signup = () => {
         axios
           .post("https://server-psi-tawny-84.vercel.app/users", userInfo)
           .then((res) => {
-            // console.log(res.data);
               swal(
                 "Congratulations!",
                 "You have taken the first step towards an amazing journey",

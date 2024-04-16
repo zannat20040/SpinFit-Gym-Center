@@ -4,7 +4,6 @@ import { FaFacebookF, FaGoogle, FaLinkedinIn } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Team = ({ member }) => {
-  // console.log(member)
   return (
     <div
       className="hero border group relative overflow-hidden transition-transform duration-300 transform scale-100 group-hover:scale-105"

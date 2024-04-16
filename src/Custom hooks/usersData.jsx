@@ -5,8 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 
 const usersData = () => {
   const { user } = useContext(AuthContext);
-  // const [userInfo, setUserInfo] = useState([]);
-  // console.log(user)
   const {
     data: userInfo,
     refetch,

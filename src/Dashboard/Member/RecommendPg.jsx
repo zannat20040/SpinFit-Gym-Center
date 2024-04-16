@@ -25,7 +25,6 @@ const RecommendPg = () => {
         }
       }, [classes]);
     
-      // console.log(classes)
     return (
         <div>
           <Helmet>

@@ -20,7 +20,6 @@ const Footer = () => {
 
         axios.post('http://localhost:5000/subscribers', subscribers)
         .then(res=>{
-            // console.log(res.data.status)
             toast.success('Stay tuned for the latest news from SpinFit')
         })
         .catch(error=>{

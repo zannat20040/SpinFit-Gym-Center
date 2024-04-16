@@ -48,7 +48,6 @@ const CheckoutForm = ({ price, bookingInfo }) => {
       console.log("[error]", error);
       setError(error.message);
     } else {
-      //   console.log("[PaymentMethod]", paymentMethod);
       setError("");
     }
 
@@ -69,14 +68,11 @@ const CheckoutForm = ({ price, bookingInfo }) => {
       setSuccess("");
       setError(confirmError.message);
 
-      // console.log("error payment intent", confirmError.message);
     } else {
       if (paymentIntent.status === "succeeded") {
-        // console.log("Payment success. Transaction ID : ", paymentIntent?.id);
         axios
           .post("http://localhost:5000/bookings", { ...bookingInfo, ...price })
           .then((res) => {
-            // console.log(res.data);
             setSuccess("Your Trainer booking payment is successfully done");
           })
           .catch((error) => {

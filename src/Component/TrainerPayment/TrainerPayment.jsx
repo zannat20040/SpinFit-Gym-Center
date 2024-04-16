@@ -30,12 +30,9 @@ const TrainerPayment = ({ item,refetch }) => {
     }
   }, [item]);
 
-  console.log(clientSecret);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(item);
 
     if (!stripe || !elements || !item.email) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -58,7 +55,6 @@ const TrainerPayment = ({ item,refetch }) => {
       console.log("[error]", error);
       setError(error.message);
     } else {
-      //   console.log("[PaymentMethod]", paymentMethod);
       setError("");
     }
 
@@ -79,21 +75,17 @@ const TrainerPayment = ({ item,refetch }) => {
       setSuccess("");
       setError(confirmError.message);
 
-      // console.log("error payment intent", confirmError.message);
     } else {
       if (paymentIntent.status === "succeeded") {
-        console.log("Payment success. Transaction ID : ", paymentIntent?.id);
         axios
           .post("http://localhost:5000/salaries", { ...itemWithoutId, salary: 1000 })
           .then((res) => {
             
             const currentDate = new Date().toISOString().split('T')[0];
-            console.log(currentDate)
             axios.patch(`http://localhost:5000/users?email=${itemWithoutId?.email}`, {
                 salaryMonth: currentDate,
             })
             .then((res) => {
-              console.log("Salary date updated successfully:", res.data);
               refetch()
             })
             .catch((error) => {

@@ -10,7 +10,6 @@ const GoogleSignIn = () => {
   const HandleGoogleSignin = () => {
     googleSignIn()
       .then((result) => {
-        // console.log(result);
         swal(
           "Congratulations!",
           "You have taken the first step towards an amazing journey",
@@ -27,7 +26,6 @@ const GoogleSignIn = () => {
         axios
           .post("https://server-psi-tawny-84.vercel.app/users", userInfo)
           .then((res) => {
-            // console.log(res.data);
           })
           .catch((error) => {
             console.log(error);

@@ -20,7 +20,7 @@ const Balance = () => {
   return (
     <div>
       {/* balance */}
-      <div className="font-oswald grid grid-cols-3 gap-5 justify-between items-center">
+      <div className="font-oswald grid grid-cols-3 gap-5 justify-between items-center mb-10">
       <div className="card text-primary-content bg-slate-800 rounded ">
         <div className="card-body">
           <h2 className="card-title font-light text-white ">Total Booking Payment</h2>

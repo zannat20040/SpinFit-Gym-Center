@@ -21,7 +21,6 @@ const Allmember = () => {
     },
   });
 
-  // console.log(allmembers);
   useEffect(() => {
     if (allmembers) {
       const data = allmembers.filter(
@@ -31,7 +30,6 @@ const Allmember = () => {
     }
   }, [allmembers]);
 
-  // console.log(myMember);
   return (
     <div className="container mx-auto h-screen">
       <Helmet>

@@ -52,14 +52,7 @@ const WeeklySchedule = () => {
   const wednesday = schedules.filter((day) => day.daySlot === "wednesday");
   const thursday = schedules.filter((day) => day.daySlot === "thursday");
   const friday = schedules.filter((day) => day.daySlot === "friday");
-  // console.log(saturday);
-  // console.log(sunday);
-  // console.log(monday);
-  // console.log(tuesday);
-  // console.log(wednesday);
-  // console.log(thursday);
-  // console.log(friday);
-
+  
   const blockElements = {
     content: "tabs-content",
     panel: "tabs-panel",

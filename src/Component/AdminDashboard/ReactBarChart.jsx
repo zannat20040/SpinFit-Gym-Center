@@ -37,43 +37,77 @@ const ReactBarChart = () => {
     fetchData();
   }, []);
 
-  const uniqueDatesWithCounts = subscriberData.reduce((accumulator, current) => {
-    const { subscribeDate } = current;
-    const existingItem = accumulator.find(item => item.date === subscribeDate);
-    if (existingItem) {
-        
-      existingItem.subscribers++;
-    } else {
-      accumulator.push({ date: subscribeDate, subscribers: 1 });
-    }
-    return accumulator;
-  }, []);
-  
-  console.log(uniqueDatesWithCounts);
+  const uniqueDatesWithCounts = subscriberData.reduce(
+    (accumulator, current) => {
+      const { subscribeDate } = current;
+      const existingItem = accumulator.find(
+        (item) => item.date === subscribeDate
+      );
+      if (existingItem) {
+        existingItem.subscribers++;
+      } else {
+        accumulator.push({ date: subscribeDate, subscribers: 1 });
+      }
+      return accumulator;
+    },
+    []
+  );
 
-  const uniqueBookingDatesWithCounts = bookingData.reduce((accumulator, current) => {
-    const { bookingDate } = current;
-    const existingItem = accumulator.find(item => console.log(item));
-   
-    if (existingItem) {
-        
-      existingItem.paidMembers++;
-    } else {
-      accumulator.push({ date: bookingDate, paidMembers: 1 });
-    }
-    return accumulator;
-  }, []);
+  const uniqueBookingDatesWithCounts = bookingData.reduce(
+    (accumulator, current) => {
+      const { trainingDate } = current;
+      const date = new Date(trainingDate);
   
-  console.log(uniqueBookingDatesWithCounts);
+      // Extract year, month, and day from the Date object
+      let year = date.getFullYear();
+      let month = (date.getMonth() + 1).toString().padStart(2, "0");
+      let day = date.getDate().toString().padStart(2, "0");
   
+      // Construct the formatted date string in 'YYYY-MM-DD' format
+      const formattedDate = `${year}-${month}-${day}`;
+  
+      const existingItem = accumulator.find((item) => item.date === formattedDate);
+    
+      console.log("=========finish=========");
+  
+      if (existingItem) {
+        existingItem.paidMembers++;
+      } else {
+        accumulator.push({ date: formattedDate, paidMembers: 1 });
+      }
+      return accumulator;
+    },
+    []
+  );
+  
+// Initialize an empty object to store merged data
+const mergedData = {};
 
- 
-  // Sample data representing newsletter subscribers and paid members for each date
-  const data = [
-    { date: "2022-01-01", subscribers: 1000, paidMembers: 500 },
-    { date: "2022-01-02", subscribers: 1200, paidMembers: 600 },
-    { date: "2022-01-03", subscribers: 800, paidMembers: 700 },
-  ];
+// Merge data from uniqueDatesWithCounts array
+uniqueDatesWithCounts.forEach(item => {
+  mergedData[item.date] = { date: item.date, subscribers: item.subscribers, paidMembers: 0 };
+});
+
+// Merge data from uniqueBookingDatesWithCounts array
+uniqueBookingDatesWithCounts.forEach(item => {
+  // Check if date already exists in mergedData
+  if (mergedData[item.date]) {
+    mergedData[item.date].paidMembers = item.paidMembers;
+  } else {
+    // If date doesn't exist, add it to mergedData
+    mergedData[item.date] = { date: item.date, subscribers: 0, paidMembers: item.paidMembers };
+  }
+});
+
+// Convert object to array
+const data = Object.values(mergedData);
+
+console.log(data);
+
+console.log(uniqueDatesWithCounts);
+
+
+  
 
   return (
     <ResponsiveContainer width="100%" height={400}>

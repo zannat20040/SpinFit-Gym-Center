@@ -20,7 +20,6 @@ const Trainer = () => {
 
   });
 
-  console.log('23 line; ', allTrainers)
 
   return (
     <div className="pb-10">

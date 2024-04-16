@@ -5,7 +5,6 @@ import Button from "../Shared Component/Button";
 
 const ClassDetails = () => {
   const classDetails = useLoaderData();
-  // console.log(classDetails);
 
   return (
     <div>

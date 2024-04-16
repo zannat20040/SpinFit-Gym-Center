@@ -25,7 +25,6 @@ const AllTrainer = () => {
       return response.data?.filter(trainer => trainer.role === 'trainer');
     },
   });
-  // console.log(trainers);
 
   const [remainingBalance, setRemainingBalance] = useState(0);
 

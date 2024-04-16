@@ -28,7 +28,6 @@ const Blog = () => {
       setForums(mostRecent);
     }, [blogs]);
 
-  // console.log(forums)  
 
   return (
     <div className="container mx-auto px-4 pb-32">

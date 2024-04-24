@@ -36,7 +36,7 @@ const Sidebar = () => {
             <Link to="addclass" className="p-2 font-roboto ">
               Add new Class
             </Link>
-            <Link to="" className="p-2 font-roboto ">
+            <Link to="manageslot" className="p-2 font-roboto ">
               Manage Slots
             </Link>
             <Link to="manageMember" className="p-2 font-roboto ">

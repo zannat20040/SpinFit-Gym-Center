@@ -127,7 +127,7 @@ const TrainerDetails = () => {
       <div className="container mx-auto px-4 pb-20">
         {/* become a trainer button */}
         <Link to="/newTrainer">
-          <Button label={"become a trainer"}></Button>
+          <Button label={"be a trainer"}></Button>
         </Link>
 
         <div className="grid grid-cols-2 mt-10 gap-20 justify-center items-start">

@@ -11,37 +11,37 @@ const AllSubscriber = () => {
   } = useQuery({
     queryKey: ["subscribers"],
     queryFn: async () => {
-      const response = await axios.get("https://server-psi-tawny-84.vercel.app/subscribers");
+      const response = await axios.get(
+        "https://server-psi-tawny-84.vercel.app/subscribers"
+      );
       return response.data;
     },
   });
 
- 
   return (
     <div>
       <Helmet>
         <title>SpinFit | all subscriber</title>
       </Helmet>
-      <div className="overflow-x-auto">
+
+      <div className="overflow-x-auto bg-slate-800 text-white ">
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="bg-base-200 font-roboto text-[#dde244]">
-              <th>No.</th>
-              <th>Name</th>
-              <th>Email</th>
+            <tr className="text-[#dde244] text-center">
+              <th className="p-4">No.</th>
+              <th className="p-4">Name</th>
+              <th className="p-4">Email</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            {
-              subscribers?.map((item, index) => (
-                <tr className="text-white font-roboto">
-                  <th>{index + 1}</th>
-                  <td>{item?.name}</td>
-                  <td>{item?.email}</td>
-                </tr>
-              ))}
+            {subscribers?.map((item, index) => (
+              <tr className="hover text-center font-roboto">
+                <th>{index + 1}</th>
+                <td>{item?.name}</td>
+                <td>{item?.email}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

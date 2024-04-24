@@ -39,7 +39,7 @@ const Classes = () => {
                 >
                   <div className="hero-overlay bg-opacity-60"></div>
                   <Link to={`/classes/${item._id}`}>
-                    <h1 className="font-oswald text-3xl text-white font-bold">
+                    <h1 className="font-oswald text-3xl text-white font-bold text-center">
                       {item?.name}
                     </h1>
                   </Link>

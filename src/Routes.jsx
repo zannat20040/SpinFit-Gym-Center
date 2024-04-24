@@ -25,6 +25,7 @@ import PrivateRoute from "./Component/Private/PrivateRoute";
 import Balance from "./Dashboard/Admin/Balance";
 import Update from "./Dashboard/Common/Update";
 import ClassDetails from "./Layout/ClassDetails";
+import ManageSlot from "./Dashboard/Trainer/ManageSlot";
 
 export const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
       {
         path: "addclass",
         element: <PrivateRoute><AddClass></AddClass></PrivateRoute> ,
+      },
+      {
+        path: "manageslot",
+        element: <PrivateRoute><ManageSlot /></PrivateRoute> 
       },
       {
         path: "alltrainers",

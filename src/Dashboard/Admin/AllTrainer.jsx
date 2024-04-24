@@ -9,9 +9,7 @@ import toast from "react-hot-toast";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment);
 
-
 const AllTrainer = () => {
-
   const {
     data: trainers,
     refetch,
@@ -22,7 +20,7 @@ const AllTrainer = () => {
       const response = await axios.get(
         "https://server-psi-tawny-84.vercel.app/users"
       );
-      return response.data?.filter(trainer => trainer.role === 'trainer');
+      return response.data?.filter((trainer) => trainer.role === "trainer");
     },
   });
 
@@ -41,7 +39,6 @@ const AllTrainer = () => {
   const isPaymentAllowed = (paymentAmount) => {
     return remainingBalance >= paymentAmount;
   };
-
 
   const isButtonDisabled = (joiningDate) => {
     const currentDate = new Date();
@@ -64,27 +61,28 @@ const AllTrainer = () => {
     }
   };
 
-  
   return (
     <div className="overflow-x-auto">
       <Helmet>
         <title>SpinFit | all trainer</title>
       </Helmet>
-      <table className="table">
-        {/* head */}
-        <thead>
-          <tr className="bg-base-200 font-roboto text-[#dde244]">
-            <th>No.</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Joining Date</th>
-            <th>Salary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* row 1 */}
+
+      <div className="overflow-x-auto bg-slate-800 text-white ">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr className="text-[#dde244] text-center">
+              <th className="p-6">No.</th>
+              <th className="p-6">Name</th>
+              <th className="p-6">Email</th>
+              <th className="p-6">Joining Date</th>
+              <th className="p-6">Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+           
           {trainers?.map((item, index) => (
-            <tr className="text-white font-roboto">
+            <tr className="hover text-center font-roboto">
               <th>{index + 1}</th>
               <td className="capitalize">{item?.name}</td>
               <td>{item?.email}</td>
@@ -94,7 +92,9 @@ const AllTrainer = () => {
                 <button
                   className="bg-[#dde244] w-full text-black btn"
                   disabled={isButtonDisabled(item?.salaryMonth)}
-                  onClick={() => handlePaymentButtonClick(index, item?.salaryMonth)}
+                  onClick={() =>
+                    handlePaymentButtonClick(index, item?.salaryMonth)
+                  }
                 >
                   {isButtonDisabled(item?.salaryMonth) ? "Paid" : "Pending"}
                 </button>
@@ -105,9 +105,9 @@ const AllTrainer = () => {
                       Salary Details
                     </h1>
                     <div className="modal-action ">
-                    <Elements stripe={stripePromise}>
-                          <TrainerPayment item={item} refetch={refetch} />
-                        </Elements>
+                      <Elements stripe={stripePromise}>
+                        <TrainerPayment item={item} refetch={refetch} />
+                      </Elements>
                     </div>
                   </div>
 
@@ -118,8 +118,14 @@ const AllTrainer = () => {
               </td>
             </tr>
           ))}
-        </tbody>
-      </table>
+
+          </tbody>
+
+
+
+        </table>
+      </div>
+   
     </div>
   );
 };

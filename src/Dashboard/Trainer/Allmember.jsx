@@ -16,20 +16,13 @@ const Allmember = () => {
   } = useQuery({
     queryKey: ["allmembers"],
     queryFn: async () => {
-      const response = await axios.get("https://server-psi-tawny-84.vercel.app/bookings");
+      const response = await axios.get(`http://localhost:5000/bookings/${userInfo?.email}`);
       return response.data;
     },
   });
 
-  useEffect(() => {
-    if (allmembers) {
-      const data = allmembers.filter(
-        (item) => item.trainerName === userInfo.email
-      );
-      setMyMember(data);
-    }
-  }, [allmembers]);
 
+  console.log(allmembers)
   return (
     <div className="container mx-auto h-screen">
       <Helmet>
@@ -37,31 +30,31 @@ const Allmember = () => {
       </Helmet>
       <PageTitle title={'your trainee'}></PageTitle>
 
-      <div className="overflow-x-auto ">
+      <div className="overflow-x-auto bg-slate-800 text-white ">
           <table className="table">
             {/* head */}
             <thead>
-              <tr className="bg-base-200 font-roboto text-[#dde244]">
-                <th>No.</th>
-                <th>Name</th>
-                <th>Booking date</th>
-                <th>Booking time</th>
-                <th>Package</th>
-                <th>Price</th>
-                <th className="text-center">Email Instruction</th>
+              <tr className="text-center font-roboto text-[#dde244]">
+                <th className="p-6">No.</th>
+                <th className="p-6">Name</th>
+                <th className="p-6">Booking date</th>
+                <th className="p-6">Booking time</th>
+                <th className="p-6">Package</th>
+                <th className="p-6">Price</th>
+                <th className="text-center p-6 ">Email Instruction</th>
               </tr>
             </thead>
             <tbody>
               {/* row 1 */}
-              {myMember?.map((item, index) => (
-                <tr className="text-white font-roboto bg-gray-800">
+              {allmembers?.map((item, index) => (
+                <tr className="hover text-center font-roboto">
                   <th>{index + 1}</th>
-                  <td>{item?.bookingUser}</td>
-                  <td>{new Date(item?.bookingDate).toISOString().split('T')[0]}</td>
-                  <td>{item?.bookingTime}</td>
-                  <td>{item?.packagePame}</td>
+                  <td>{item?.traineeName}</td>
+                  <td>{item?.trainingDate}</td>
+                  <td>{item?.trainingTime}</td>
+                  <td>{item?.packageName}</td>
                   <td>${item?.packagePrice}</td>
-                  <td className="text-center"><a href={`mailto:${item?.userEmail}`}><span  className="bg-[#dde244] text-black p-1 px-3 ">send</span></a></td>
+                  <td className="text-center"><a href={`mailto:${item?.traineeEmail}`}><span  className="bg-[#dde244] rounded text-black p-1 px-3 ">send</span></a></td>
                 </tr>
               ))}
             </tbody>

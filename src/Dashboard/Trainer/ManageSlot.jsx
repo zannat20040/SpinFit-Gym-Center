@@ -86,8 +86,8 @@ const ManageSlot = () => {
                   </button>
 
                   <dialog id={`my_modal_${i}`} className="modal">
-                    <div className="modal-box rounded">
-                      <h3 className="font-bold text-lg ">
+                    <div className="modal-box rounded p-10">
+                      <h3 className="font-bold text-3xl text-[#dde244] mb-6 text-center ">
                         See who booked this Slot
                       </h3>
                       {modalInfo && <SlotModal modalInfo={modalInfo} />}

@@ -48,13 +48,13 @@ const Allmember = () => {
               {/* row 1 */}
               {allmembers?.map((item, index) => (
                 <tr className="hover text-center font-roboto">
-                  <th>{index + 1}</th>
-                  <td>{item?.traineeName}</td>
-                  <td>{item?.trainingDate}</td>
-                  <td>{item?.trainingTime}</td>
-                  <td>{item?.packageName}</td>
-                  <td>${item?.packagePrice}</td>
-                  <td className="text-center"><a href={`mailto:${item?.traineeEmail}`}><span  className="bg-[#dde244] rounded text-black p-1 px-3 ">send</span></a></td>
+                  <th className="p-4">{index + 1}</th>
+                  <td className="p-4">{item?.traineeName}</td>
+                  <td className="p-4">{item?.trainingDate}</td>
+                  <td className="p-4">{item?.trainingTime}</td>
+                  <td className="p-4">{item?.packageName}</td>
+                  <td className="p-4">${item?.packagePrice}</td>
+                  <td className="text-center p-4"><a href={`mailto:${item?.traineeEmail}`}><span  className="bg-[#dde244] rounded text-black p-1 px-3 ">send</span></a></td>
                 </tr>
               ))}
             </tbody>

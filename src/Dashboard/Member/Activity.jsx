@@ -7,54 +7,100 @@ import PageTitle from "../Common/PageTitle";
 
 const Activity = () => {
   const { data: userInfo } = usersData();
-  const [myBooking, setMyBooking] = useState();
+  const [myFilteredBooking, setMyFilteredBooking] = useState();
   const {
-    data: allBookings,
+    data: myBookings,
     refetch,
     isLoading,
   } = useQuery({
     queryKey: ["allBookings"],
     queryFn: async () => {
-      const response = await axios.get(`https://server-psi-tawny-84.vercel.app/bookings?email=${userInfo.email}`);
+      const response = await axios.get(
+        `http://localhost:5000/bookings?traineeEmail=${userInfo?.email}`
+      );
       return response.data;
     },
   });
 
- 
+  console.log(myBookings);
+
+  const formatDate = (dateString) => {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dateParts = dateString.split(", ");
+    const monthIndex = months.indexOf(dateParts[1].split(" ")[0]);
+    // const monthIndex =
+    console.log(
+      "date part:=======> ",
+      dateParts,
+      "month index:=======> ",
+      monthIndex
+    );
+    return `${dateParts[2]}-${monthIndex + 1 < 10 ? "0" : ""}${
+      monthIndex + 1
+    }-${dateParts[1].split(" ")[1]}`;
+  };
+
+  useEffect(() => {
+    if (myBookings) {
+      const currentDate = new Date().toISOString().split("T")[0];
+      const filteredBookings = myBookings.filter(
+        (booking) => currentDate === formatDate(booking.trainingDate)
+      );
+      setMyFilteredBooking(filteredBookings);
+    }
+  }, [myBookings]);
+
+  console.log(myFilteredBooking);
+
   return (
     <div className="container mx-auto h-screen">
       <Helmet>
         <title>SpinFit | Activity</title>
       </Helmet>
       <PageTitle title={"Today's Activity"}></PageTitle>
-      <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr className="bg-base-200 font-roboto text-[#dde244]">
-                <th>No.</th>
-                <th>Trainer Email</th>
-                <th>Booking date</th>
-                <th>Booking time</th>
-                <th>Package</th>
-                <th>Price</th>
+      <div className="overflow-x-auto bg-slate-800 text-white ">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr className="text-center font-roboto text-[#dde244]">
+              <th className="p-6">No.</th>
+              <th className="p-6">Trainer Name</th>
+              <th className="p-6">Trainer Email</th>
+              <th className="p-6">Booking date</th>
+              <th className="p-6">Booking time</th>
+              <th className="p-6">Package</th>
+              <th className="p-6">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {myFilteredBooking && myFilteredBooking.length <1 ? <p>You don't have any class today</p>: myFilteredBooking?.map((item, index) => (
+              <tr className="hover text-center font-roboto className='p-4'">
+                <th className='p-4'>{index + 1}</th>
+                <td className='p-4'>{item?.trainerName}</td>
+                <td className='p-4'>{item?.trainerEmail}</td>
+                <td className='p-4'>{formatDate(item.trainingDate)}</td>
+                <td className='p-4'>{item?.trainingTime}</td>
+                <td className='p-4'>{item?.packageName}</td>
+                <td className='p-4'>${item?.packagePrice}</td>
               </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              {myBooking?.map((item, index) => (
-                <tr className="text-white font-roboto">
-                  <th>{index + 1}</th>
-                  <td>{item?.trainerName}</td>
-                  <td>{new Date(item?.bookingDate).toISOString().split('T')[0]}</td>
-                  <td>{item?.bookingTime}</td>
-                  <td>{item?.packagePame}</td>
-                  <td>${item?.packagePrice}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

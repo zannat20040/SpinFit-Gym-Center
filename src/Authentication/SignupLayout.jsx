@@ -10,7 +10,7 @@ const SignupLayout = ({ HandleSignup  }) => {
 
 
   return (
-    <div className="container max-w-lg mx-auto h-screen pb-24">
+    <div className="container max-w-lg mx-auto h-screen pb-24 px-4">
       <form className="card-body p-2 " onSubmit={HandleSignup}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-400 font-roboto ">
           <div className="form-control">

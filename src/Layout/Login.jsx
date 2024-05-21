@@ -35,7 +35,7 @@ const Login = () => {
       <Helmet>
         <title>SpinFit | Login</title>
       </Helmet>
-      <div className="container max-w-lg mx-auto h-screen ">
+      <div className="container max-w-lg mx-auto h-screen px-4">
         <form onSubmit={HandleLogin}>
           <div className="form-control">
             <label className="label">

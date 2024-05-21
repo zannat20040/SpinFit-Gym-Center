@@ -35,7 +35,7 @@ const Trainer = () => {
         <div className="container px-4 mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-4 gap-10 ">
             {allTrainers?.map((trainer) => (
-              <div className="card   rounded-none">
+              <div className="card   rounded-none" key={trainer._id}>
                 <div className="flex bg-gray-700 flex-col justify-center items-center  gap-4 px-8 py-8   ">
                   {/* image */}
                   <div className="avatar  mb-4">
@@ -86,7 +86,7 @@ const Trainer = () => {
                     {/* button */}
                    </div>
                   <div className="flex justify-center">
-                    <Link to={`/trainer/${trainer._id}`}>
+                    <Link to={`/trainer/${trainer.email}`}>
                       <Button label={"know more"}></Button>
                     </Link>
                   </div>

@@ -33,7 +33,7 @@ const Classes = () => {
           <div className="lg:grid lg:grid-cols-3 justify-between gap-5 flex flex-col-reverse">
             <div className="grid grid-cols-2 md:grid-cols-3 col-span-2 gap-5">
               {classes?.map((item) => (
-                <div
+                <div key={item?._id}
                   className="hero h-40 "
                   style={{ backgroundImage: `url(${item?.photo})` }}
                 >

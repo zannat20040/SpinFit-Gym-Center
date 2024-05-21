@@ -100,7 +100,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-slate-900 sticky top-0 z-50  ">
+    <nav className=" bg-slate-900 sticky top-0 z-50  ">
      <div className="container mx-auto flex items-center justify-between px-4 py-2 text-white ">
      <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">
         <Link>
@@ -135,9 +135,7 @@ const Navbar = () => {
                   ? "active duration-300 transition-all ease-in-out"
                   : ""
               }
-              duration-300
-              transitio-all
-              ease-in-out
+             
             >
               DashBoard
             </NavLink>

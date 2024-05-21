@@ -16,7 +16,7 @@ const AllApplied = () => {
     queryKey: ["appliedTrainers"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/application?role=member`
+        `https://server-psi-tawny-84.vercel.app/application?role=member`
       );
       return response.data;
     },
@@ -28,7 +28,7 @@ const AllApplied = () => {
       status: "rejected",
     };
     axios
-      .patch(`http://localhost:5000/users?email=${item?.email}`, updated)
+      .patch(`https://server-psi-tawny-84.vercel.app/users?email=${item?.email}`, updated)
       .then((res) => {
         refetch();
       })
@@ -42,7 +42,7 @@ const AllApplied = () => {
       status: "accepted",
     };
     axios
-      .patch(`http://localhost:5000/users?email=${item?.email}`, updated)
+      .patch(`https://server-psi-tawny-84.vercel.app/users?email=${item?.email}`, updated)
       .then((res) => {
         refetch();
       })

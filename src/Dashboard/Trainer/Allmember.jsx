@@ -16,7 +16,7 @@ const Allmember = () => {
   } = useQuery({
     queryKey: ["allmembers"],
     queryFn: async () => {
-      const response = await axios.get(`http://localhost:5000/bookings/${userInfo?.email}`);
+      const response = await axios.get(`https://server-psi-tawny-84.vercel.app/bookings/${userInfo?.email}`);
       return response.data;
     },
   });

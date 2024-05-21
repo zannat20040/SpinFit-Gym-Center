@@ -57,7 +57,8 @@ export const router = createBrowserRouter([
       {
         path: "/classes/:id",
         element: <ClassDetails></ClassDetails>,
-        loader: ({params}) =>fetch(`http://localhost:5000/allClass/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`https://server-psi-tawny-84.vercel.app/allClass/${params.id}`),
       },
       {
         path: "/trainer",
@@ -65,16 +66,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/newTrainer",
-        element: <PrivateRoute><BeATrainer></BeATrainer></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <BeATrainer></BeATrainer>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/booknow",
-        element: <PrivateRoute><Booking></Booking></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <Booking></Booking>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/trainer/:id",
         element: <TrainerDetails></TrainerDetails>,
-        loader:({params})=>fetch(`https://server-psi-tawny-84.vercel.app/application/${params.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://server-psi-tawny-84.vercel.app/application/${params.id}`
+          ),
       },
       {
         path: "/community",
@@ -83,33 +95,57 @@ export const router = createBrowserRouter([
       {
         path: "/community/:id",
         element: <PostDetail></PostDetail>,
-      }
+      },
     ],
   },
 
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "forum",
-        element:<PrivateRoute><Forum></Forum></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Forum></Forum>
+          </PrivateRoute>
+        ),
       },
       {
         path: "addclass",
-        element: <PrivateRoute><AddClass></AddClass></PrivateRoute> ,
+        element: (
+          <PrivateRoute>
+            <AddClass></AddClass>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageslot",
-        element: <PrivateRoute><ManageSlot /></PrivateRoute> 
+        element: (
+          <PrivateRoute>
+            <ManageSlot />
+          </PrivateRoute>
+        ),
       },
       {
         path: "alltrainers",
-        element: <PrivateRoute><AllTrainer></AllTrainer></PrivateRoute> ,
+        element: (
+          <PrivateRoute>
+            <AllTrainer></AllTrainer>
+          </PrivateRoute>
+        ),
       },
       {
         path: "balance",
-        element:<PrivateRoute><Balance></Balance></PrivateRoute> ,
+        element: (
+          <PrivateRoute>
+            <Balance></Balance>
+          </PrivateRoute>
+        ),
       },
       // {
       //   path: "updateProfile",
@@ -117,23 +153,43 @@ export const router = createBrowserRouter([
       // },
       {
         path: "subscriber",
-        element:<PrivateRoute><AllSubscriber></AllSubscriber></PrivateRoute> ,
+        element: (
+          <PrivateRoute>
+            <AllSubscriber></AllSubscriber>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageMember",
-        element: <PrivateRoute><Allmember></Allmember></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Allmember></Allmember>
+          </PrivateRoute>
+        ),
       },
       {
         path: "activity",
-        element: <PrivateRoute><Activity></Activity></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Activity></Activity>
+          </PrivateRoute>
+        ),
       },
       {
         path: "recommended",
-        element: <PrivateRoute><RecommendPg></RecommendPg></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <RecommendPg></RecommendPg>
+          </PrivateRoute>
+        ),
       },
       {
         path: "appliedTrainer",
-        element:<PrivateRoute><AllApplied></AllApplied></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AllApplied></AllApplied>
+          </PrivateRoute>
+        ),
       },
     ],
   },

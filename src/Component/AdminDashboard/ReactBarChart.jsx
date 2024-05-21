@@ -22,10 +22,10 @@ const ReactBarChart = () => {
     const fetchData = async () => {
       try {
         const subcriberresponse = await axios.get(
-          "http://localhost:5000/subscribers"
+          "https://server-psi-tawny-84.vercel.app/subscribers"
         );
         const bookingresponse = await axios.get(
-          "http://localhost:5000/bookings"
+          "https://server-psi-tawny-84.vercel.app/bookings"
         );
         setSubscriberData(subcriberresponse.data);
         setBookingData(bookingresponse.data);

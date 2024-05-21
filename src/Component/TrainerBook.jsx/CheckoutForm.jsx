@@ -16,7 +16,7 @@ const CheckoutForm = ({ price, bookingInfo }) => {
 
     if (packageData.packagePrice != undefined) {
       axios
-        .post("http://localhost:5000/create-payment-intent", packageData)
+        .post("https://server-psi-tawny-84.vercel.app/create-payment-intent", packageData)
         .then((res) => {
           setClientSecret(res.data.clientSecret);
         })
@@ -71,7 +71,7 @@ const CheckoutForm = ({ price, bookingInfo }) => {
     } else {
       if (paymentIntent.status === "succeeded") {
         axios
-          .post("http://localhost:5000/bookings", { ...bookingInfo, ...price })
+          .post("https://server-psi-tawny-84.vercel.app/bookings", { ...bookingInfo, ...price })
           .then((res) => {
             setSuccess("Your Trainer booking payment is successfully done");
           })

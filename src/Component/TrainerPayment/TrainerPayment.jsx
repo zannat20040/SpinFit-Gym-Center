@@ -22,7 +22,7 @@ const TrainerPayment = ({ item,refetch }) => {
     const paymentInfo = { ...itemWithoutId, salary: 1000 };
     if (item) {
       axios
-        .post("http://localhost:5000/salary-payment-intent", paymentInfo)
+        .post("https://server-psi-tawny-84.vercel.app/salary-payment-intent", paymentInfo)
         .then((res) => {
           setClientSecret(res.data.clientSecret);
         })
@@ -78,11 +78,11 @@ const TrainerPayment = ({ item,refetch }) => {
     } else {
       if (paymentIntent.status === "succeeded") {
         axios
-          .post("http://localhost:5000/salaries", { ...itemWithoutId, salary: 1000 })
+          .post("https://server-psi-tawny-84.vercel.app/salaries", { ...itemWithoutId, salary: 1000 })
           .then((res) => {
             
             const currentDate = new Date().toISOString().split('T')[0];
-            axios.patch(`http://localhost:5000/users?email=${itemWithoutId?.email}`, {
+            axios.patch(`https://server-psi-tawny-84.vercel.app/users?email=${itemWithoutId?.email}`, {
                 salaryMonth: currentDate,
             })
             .then((res) => {

@@ -18,7 +18,7 @@ const Footer = () => {
             subscribeDate:currentDate
         }
 
-        axios.post('http://localhost:5000/subscribers', subscribers)
+        axios.post('https://server-psi-tawny-84.vercel.app/subscribers', subscribers)
         .then(res=>{
             toast.success('Stay tuned for the latest news from SpinFit')
         })

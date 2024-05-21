@@ -17,7 +17,7 @@ const ManageSlot = () => {
     queryKey: ["trainers"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/application/${userInfo?.email}`
+        `https://server-psi-tawny-84.vercel.app/application/${userInfo?.email}`
       );
       return response.data;
     },

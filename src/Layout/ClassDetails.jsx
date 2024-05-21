@@ -10,7 +10,7 @@ const ClassDetails = () => {
     <div>
       <RouteLabel label={"Class details"}></RouteLabel>
       <div className="container mx-auto px-4 pb-10">
-        <div className="items-center rounded-none  grid grid-cols-2 gap-10 justify-between ">
+        <div className="items-center rounded-none  grid grid-cols-1 md:grid-cols-2 gap-10 justify-between ">
           <figure className="w-full">
             <img src={classDetails.photo} alt="Album" className="w-full" />
           </figure>

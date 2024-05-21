@@ -9,7 +9,7 @@ const Balance = () => {
 
   useEffect(() => {
     // Fetch total remaining balance from backend
-    axios.get("http://localhost:5000/balance")
+    axios.get("https://server-psi-tawny-84.vercel.app/balance")
       .then(response => {
         setBalance(response.data);
       })

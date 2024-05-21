@@ -29,7 +29,7 @@ const AllTrainer = () => {
   // Fetch remaining balance from backend when the component mounts
   useEffect(() => {
     const fetchRemainingBalance = async () => {
-      const response = await axios.get("http://localhost:5000/balance");
+      const response = await axios.get("https://server-psi-tawny-84.vercel.app/balance");
       setRemainingBalance(response.data.totalRemainingBalance);
     };
     fetchRemainingBalance();

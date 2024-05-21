@@ -18,7 +18,9 @@ import usersData from "../Custom hooks/usersData";
 const TrainerDetails = () => {
   const { data: userInfo } = usersData();
 
+
   const trainerDetails = useLoaderData();
+  console.log(trainerDetails)
   const [allSlotTime, setAllSlotTime] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);

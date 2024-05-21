@@ -16,7 +16,7 @@ const Activity = () => {
     queryKey: ["allBookings"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/bookings?traineeEmail=${userInfo?.email}`
+        `https://server-psi-tawny-84.vercel.app/bookings?traineeEmail=${userInfo?.email}`
       );
       return response.data;
     },

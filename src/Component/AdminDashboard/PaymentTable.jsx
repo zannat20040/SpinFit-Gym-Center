@@ -11,7 +11,7 @@ const PaymentTable = () => {
       } = useQuery({
         queryKey: ["allBookings"],
         queryFn: async () => {
-          const response = await axios.get("http://localhost:5000/bookings");
+          const response = await axios.get("https://server-psi-tawny-84.vercel.app/bookings");
           return response.data;
         },
       });

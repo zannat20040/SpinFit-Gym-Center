@@ -26,6 +26,7 @@ import Balance from "./Dashboard/Admin/Balance";
 import Update from "./Dashboard/Common/Update";
 import ClassDetails from "./Layout/ClassDetails";
 import ManageSlot from "./Dashboard/Trainer/ManageSlot";
+import ProfileSettings from "./Dashboard/Member/ProfileSettings";
 
 export const router = createBrowserRouter([
   {
@@ -110,10 +111,10 @@ export const router = createBrowserRouter([
         path: "balance",
         element:<PrivateRoute><Balance></Balance></PrivateRoute> ,
       },
-      {
-        path: "updateProfile",
-        element: <PrivateRoute><Update></Update></PrivateRoute> ,
-      },
+      // {
+      //   path: "updateProfile",
+      //   element: <PrivateRoute><ProfileSettings></ProfileSettings></PrivateRoute> ,
+      // },
       {
         path: "subscriber",
         element:<PrivateRoute><AllSubscriber></AllSubscriber></PrivateRoute> ,

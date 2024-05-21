@@ -62,6 +62,7 @@ const Navbar = () => {
   );
 
   return (
+
     <div className="relative ">
       <div className="sticky bg-slate-900 top-0 z-50">
         <div className="container mx-auto">

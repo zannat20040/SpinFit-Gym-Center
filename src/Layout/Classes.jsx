@@ -30,8 +30,8 @@ const Classes = () => {
         </div>
       ) : (
         <div className="container mx-auto px-4 ">
-          <div className="grid grid-cols-3 justify-between gap-5 ">
-            <div className="grid grid-cols-3 col-span-2 gap-5">
+          <div className="lg:grid lg:grid-cols-3 justify-between gap-5 flex flex-col-reverse">
+            <div className="grid grid-cols-2 md:grid-cols-3 col-span-2 gap-5">
               {classes?.map((item) => (
                 <div
                   className="hero h-40 "

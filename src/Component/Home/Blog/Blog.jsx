@@ -43,7 +43,7 @@ const Blog = () => {
            <img
              src={forum.postDetail?.image}
              alt="Shoes"
-             className="group-hover:scale-125  duration-300  transition ease-in-out delay-150"
+             className="w-full h-full group-hover:scale-125  duration-300  transition ease-in-out delay-150"
            />
          </figure>
          <div className="card-body">

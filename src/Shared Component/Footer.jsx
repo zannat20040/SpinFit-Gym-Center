@@ -89,14 +89,14 @@ const Footer = () => {
           </footer>
         </div>
       </div>
-      <div className="border-t-4 border-gray-500">
+      <div className="border-t-4 border-gray-500 ">
         <div className="container mx-auto px-3">
-          <footer className="footer items-center text-white font-roboto py-5">
-            <aside className="items-center grid-flow-col">
+          <footer className="footer items-center text-white font-roboto py-5 ">
+            <aside className="items-center w-full flex flex-col justify-center md:flex-row md:justify-start">
               <img src={logo} alt="" className="w-[150px]" />
-              <p>Copyright © 2023 - All right reserved by SpinFit GYM center</p>
+              <p className="text-center">Copyright © 2023 - All right reserved by SpinFit GYM center</p>
             </aside>
-            <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+            <nav className="grid-flow-col gap-4md:justify-self-end w-full justify-center">
               <a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

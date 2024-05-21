@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/spinfit-removebg-preview.png";
 import usersData from "../../Custom hooks/usersData";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import ProfileSettings from "../Member/ProfileSettings";
 
 const Sidebar = () => {
   const {data:userInfo, isLoading} = usersData();
@@ -52,9 +53,9 @@ const Sidebar = () => {
             <Link to="activity" className="p-2 font-roboto ">
             Activity Log
             </Link>
-            <Link to="" className="p-2 font-roboto ">
+            {/* <Link to="updateProfile" className="p-2 font-roboto ">
             Profile Settings
-            </Link>
+            </Link> */}
             <Link to="recommended" className="p-2 font-roboto ">
             Recommended Classes 
             </Link>
@@ -80,9 +81,21 @@ const Sidebar = () => {
           </div>
         )}
         <div className="flex flex-col gap-2 mt-5">
-          <Link to="updateProfile" className="p-2 font-roboto ">
+          <button  className="text-start p-2 font-roboto " onClick={()=>document.getElementById('my_modal_2').showModal()}>
             Update profile
-          </Link>
+          </button>
+
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
+<dialog id="my_modal_2" className="modal p-0">
+  <div className="modal-box p-0">
+   <ProfileSettings />
+  </div>
+  <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+
           <Link  className="p-2 font-roboto " onClick={HandleLogout}>
             Log out
           </Link>

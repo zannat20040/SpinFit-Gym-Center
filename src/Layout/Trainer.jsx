@@ -33,10 +33,10 @@ const Trainer = () => {
         </div>
       ) : (
         <div className="container px-4 mx-auto">
-          <div className="grid grid-cols-4 gap-4 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-4 gap-10 ">
             {allTrainers?.map((trainer) => (
-              <div className="card  bg-gray-700 rounded-none">
-                <div className="flex flex-col justify-center items-center  gap-4 px-8 py-8   ">
+              <div className="card   rounded-none">
+                <div className="flex bg-gray-700 flex-col justify-center items-center  gap-4 px-8 py-8   ">
                   {/* image */}
                   <div className="avatar  mb-4">
                     <div className="w-24 rounded-full">
@@ -55,8 +55,10 @@ const Trainer = () => {
                       ( {trainer?.yearsOfExperience} years experience )
                     </span>
                     </div>
-                    {/* social icon */}
-                    <div className="flex justify-center gap-3 mt-5 ">
+                  <div className="justify-between h-full flex flex-col">
+                  <div className="fkex flex-col">
+                     {/* social icon */}
+                     <div className="flex justify-center gap-3 mt-5 ">
                       {trainer?.socialIcons?.map((item) => (
                         <Link to={item?.link} key={item?.platform}>
                           <span className="w-12 h-12 text-black text-xl bg-[#dde244] rounded-full  flex justify-center items-center transition-transform transform hover:translate-y-[-10px] ease-in">
@@ -71,7 +73,7 @@ const Trainer = () => {
                       ))}
                     </div>
                     {/* schedule */}
-                    <div className="flex justify-center my-5 items-center  ">
+                    <div className="flex justify-center my-5 items-center ">
                     {/* <FaClock className="mr-4 text-[#dde244] text-2xl" /> */}
                        {
                         trainer?.availableTimeSlot?.map(item=>(
@@ -82,10 +84,12 @@ const Trainer = () => {
                        }
                     </div>
                     {/* button */}
+                   </div>
                   <div className="flex justify-center">
                     <Link to={`/trainer/${trainer._id}`}>
                       <Button label={"know more"}></Button>
                     </Link>
+                  </div>
                   </div>
                   </div>
                 </div>

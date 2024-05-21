@@ -40,8 +40,8 @@ const PostDetail = () => {
       <RouteLabel label={"Read full Blog"}></RouteLabel>
       <div className="container mx-auto px-4 pb-20">
         {details && (
-          <div className="card lg:card-side rounded-none ">
-            <div className="card-body w-1/2">
+          <div className="card flex-col-reverse lg:card-side rounded-none ">
+            <div className="card-body w-full lg:w-1/2 p-0 pt-8 lg:p-4 ">
               <h2 className="card-title text-4xl text-white font-oswald ">
                 {details?.postDetail?.title}
               </h2>
@@ -59,7 +59,7 @@ const PostDetail = () => {
               <p className="font-roboto">
                 Post Date:{" "}
                 <span className="text-[#dde244]">
-                  {details?.postDetail?.date}
+                  {details?.postDetail?.date?.split('T')[0]}
                 </span>
               </p>
               <div className="flex gap-5 mt-4">
@@ -78,7 +78,7 @@ const PostDetail = () => {
                 </div>
               </div>
             </div>
-            <figure className="w-1/2">
+            <figure className="lg:w-1/2 w-full">
               <img src={details?.postDetail?.image} alt="Album" />
             </figure>
           </div>

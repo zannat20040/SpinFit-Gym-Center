@@ -39,7 +39,7 @@ const BeATrainerLayout = ({
       <RouteLabel label={"Read full Blog"}></RouteLabel>
       <div className="container  mx-auto h-screen  ">
         <form
-          className="card-body p-2 grid grid-cols-2 gap-5 pb-20"
+          className="card-body p-2 grid-cols-1 lg:grid grid-cols-2 gap-5 pb-20"
           onSubmit={HandleTrainerApplication}
         >
           <div>

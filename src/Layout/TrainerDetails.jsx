@@ -130,11 +130,11 @@ const TrainerDetails = () => {
           <Button label={"be a trainer"}></Button>
         </Link>
 
-        <div className="grid grid-cols-2 mt-10 gap-20 justify-center items-start">
+        <div className="flex flex-col-reverse lg:grid  lg:grid-cols-2 mt-10 gap-0 lg:gap-20 justify-center items-start">
           {/* left side   */}
-          <div className="flex ">
+          <div className="w-full ">
             {trainerDetails && (
-              <div className="card items-start w-full justify-start bg-base-100  mt-10 rounded-none py-5  text-lg">
+              <div className="card items-start w-full justify-start bg-base-100 mt-10 rounded-none py-5  text-lg">
                 <div className="card-body w-full px-0">
                   <div className=" flex flex-col items-start gap-2">
                     {/* full name */}
@@ -160,14 +160,14 @@ const TrainerDetails = () => {
                     </p>
                   </div>
                   {/* skills */}
-                  <div className="mt-10">
+                  <div className="mt-10 w-full">
                     {trainerDetails.skills?.map((item) => (
                       <>
                         <p className="capitalize text-gray-300 font-roboto">
                           {item?.skill}
                         </p>
                         <progress
-                          className="progress  "
+                          className="progress w-full "
                           value={item?.value}
                           max="100"
                         ></progress>
@@ -176,10 +176,11 @@ const TrainerDetails = () => {
                   </div>
                   {/* calender */}
                   <Calendar
-                    className="mt-5 bg-[#dde2444]"
+                    className="mt-5 w-full  overflow-x-scroll"
                     date={selectedDate || new Date()}
                     disabledDay={disabledDay}
                     onChange={handleSelect}
+                    width={100}
                   />
                   {/* booking time */}
                   <div className="form-control w-full my-6">

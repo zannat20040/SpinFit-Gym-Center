@@ -5,7 +5,7 @@ import Button from '../../../Shared Component/Button';
 const FeatureHeading = () => {
     return (
         <div className="text-neutral-content flex justify-end mt-4">
-            <div className="max-w-md text-end ">
+            <div className="max-w-md text-end flex flex-col items-end ">
               <h1 className="mb-5 text-6xl font-bold  text-[#dde244] font-oswald">
                 Unlock Your Fitness Potential
               </h1>
